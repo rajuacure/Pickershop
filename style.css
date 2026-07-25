@@ -710,3 +710,33 @@ font-size:16px;
 }
 
 }
+/* Price */
+
+.old-price{
+color:#888;
+text-decoration:line-through;
+font-size:18px;
+margin-top:10px;
+}
+
+.new-price{
+color:#2E7D32;
+font-size:26px;
+font-weight:bold;
+margin:8px 0;
+}
+
+/* Stock */
+
+.stock{
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.in-stock{
+color:#2E7D32;
+}
+
+.out-stock{
+color:#E53935;
+}
