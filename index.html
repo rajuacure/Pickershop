@@ -14,6 +14,33 @@ class="whatsapp"
 target="_blank">
 💬
 </a>
+  <button onclick="topFunction()" id="topBtn">⬆</button>
+
+<script>
+let topBtn=document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.body.scrollTop>300 || document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+}
+
+function topFunction(){
+
+document.body.scrollTop=0;
+
+document.documentElement.scrollTop=0;
+
+}
+</script>
 <body>
 
 <header>
