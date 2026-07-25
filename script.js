@@ -760,9 +760,7 @@ cart=[];
 
 updateCartCount();
 
-alert("আপনার অর্ডার সফলভাবে প্রস্তুত হয়েছে।");
-
-window.location.href="index.html";
+showOrderSuccess();
 
 }
 // =====================================
