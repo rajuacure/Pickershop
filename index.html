@@ -242,7 +242,29 @@ onclick="filterProducts('health')">
 
 </section>
 <!-- ================= PRODUCTS ================= -->
+<!-- Product Details Modal -->
 
+<div id="productModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<img id="modalImage" src="" alt="Product Image">
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalPrice"></p>
+
+<p id="modalDescription"></p>
+
+<button class="cart-btn" id="modalCartBtn">
+🛒 কার্টে যোগ করুন
+</button>
+
+</div>
+
+</div>
 <section class="products" id="products">
 
 <div class="card product-card" data-category="powder">
