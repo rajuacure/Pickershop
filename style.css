@@ -753,3 +753,44 @@ animation:spin 1s linear infinite;
 transform:rotate(360deg);
 }
 }
+.newsletter{
+
+padding:60px 20px;
+
+text-align:center;
+
+background:#f5f5f5;
+
+}
+
+.newsletter input{
+
+padding:15px;
+
+width:300px;
+
+max-width:90%;
+
+border:1px solid #ccc;
+
+border-radius:10px;
+
+}
+
+.newsletter button{
+
+padding:15px 25px;
+
+background:#2E7D32;
+
+color:#fff;
+
+border:none;
+
+border-radius:10px;
+
+margin-left:10px;
+
+cursor:pointer;
+
+}
