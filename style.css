@@ -1165,3 +1165,28 @@ margin:12px auto;
 width:100%;
 
 }
+/* Profile Edit */
+
+.profile-box input{
+
+width:100%;
+
+padding:14px;
+
+margin:12px 0;
+
+border:1px solid #ccc;
+
+border-radius:10px;
+
+font-size:16px;
+
+box-sizing:border-box;
+
+}
+
+.profile-box button{
+
+margin-top:10px;
+
+}
