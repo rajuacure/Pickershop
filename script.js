@@ -526,3 +526,9 @@ navigator.clipboard.writeText(window.location.href);
 showToast("লিংক কপি হয়েছে 🔗");
 
 }
+window.addEventListener("load", function () {
+    const loader = document.getElementById("loader");
+    if (loader) {
+        loader.style.display = "none";
+    }
+});
