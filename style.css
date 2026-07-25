@@ -130,3 +130,50 @@ font-size:28px;
 height:220px;
 }
 }
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:60px;
+height:60px;
+background:#25D366;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+z-index:999;
+transition:.3s;
+}
+
+.whatsapp:hover{
+transform:scale(1.1);
+}
+.hero{
+background:linear-gradient(135deg,#4CAF50,#2E7D32);
+color:white;
+padding:60px 20px;
+text-align:center;
+}
+
+.hero h2{
+font-size:36px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:25px;
+}
+
+.shop-btn{
+background:white;
+color:#2E7D32;
+padding:15px 35px;
+border-radius:40px;
+text-decoration:none;
+font-weight:bold;
+}
