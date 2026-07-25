@@ -78,7 +78,21 @@ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 padding:30px;
 }
+.floating-cart{
+position:fixed;
+top:90px;
+right:20px;
+background:#2E7D32;
+padding:12px 18px;
+border-radius:30px;
+z-index:9999;
+}
 
+.floating-cart a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
 .card{
 background:#fff;
 border-radius:18px;
