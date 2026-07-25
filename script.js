@@ -870,3 +870,89 @@ orderBox.innerHTML = "🆔 Order ID: " + id;
 }
 
 });
+// =====================================
+// Picker Shop V7
+// Order Tracking
+// =====================================
+
+let orderStatus = Number(localStorage.getItem("orderStatus")) || 1;
+
+function updateTrackingUI(){
+
+const orderId = document.getElementById("trackOrderID");
+
+if(orderId){
+
+orderId.innerHTML = localStorage.getItem("lastOrderID") || "No Order Found";
+
+}
+
+const progress = document.getElementById("progressBar");
+
+if(progress){
+
+progress.style.width = (orderStatus * 25) + "%";
+
+}
+
+for(let i=1;i<=4;i++){
+
+let status;
+
+if(i===1){
+
+status=document.querySelector(".status");
+
+}else{
+
+status=document.getElementById("status"+i);
+
+}
+
+if(status){
+
+if(i<=orderStatus){
+
+status.classList.add("active");
+
+}else{
+
+status.classList.remove("active");
+
+}
+
+}
+
+}
+
+localStorage.setItem("orderStatus",orderStatus);
+
+}
+
+function nextStatus(){
+
+if(orderStatus<4){
+
+orderStatus++;
+
+updateTrackingUI();
+
+showToast("📦 অর্ডার স্ট্যাটাস আপডেট হয়েছে");
+
+}else{
+
+showToast("✅ অর্ডার ইতোমধ্যে Delivered");
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+if(document.getElementById("progressBar")){
+
+updateTrackingUI();
+
+}
+
+});
