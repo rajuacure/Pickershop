@@ -1,9 +1,25 @@
-let cart = [];
+function showToast(message){
 
-function addToCart(name, price) {
-  cart.push({ name, price });
-  localStorage.setItem("pickerCart", JSON.stringify(cart));
-  alert(name + " কার্টে যোগ হয়েছে!");
+let toast=document.createElement("div");
+
+toast.className="toast";
+
+toast.innerHTML=message;
+
+document.body.appendChild(toast);
+
+setTimeout(()=>{
+
+toast.classList.add("show");
+
+},100);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},3000);
+
 }
 function loadCart(){
 
