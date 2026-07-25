@@ -439,3 +439,90 @@ loadCart();
 loadWishlist();
 
 });
+// ==========================
+// Product Review
+// ==========================
+
+function submitReview(){
+
+const name=document.getElementById("reviewName");
+
+const review=document.getElementById("reviewText");
+
+const list=document.getElementById("reviewList");
+
+if(!name || !review || !list) return;
+
+if(name.value.trim()==="" || review.value.trim()===""){
+
+showToast("নাম ও রিভিউ লিখুন");
+
+return;
+
+}
+
+list.innerHTML += `
+<div class="review-card">
+<h4>${name.value}</h4>
+<p>${review.value}</p>
+</div>
+`;
+
+name.value="";
+review.value="";
+
+showToast("রিভিউ যোগ হয়েছে ⭐");
+
+}
+
+
+// ==========================
+// Like Button
+// ==========================
+
+let likes=0;
+
+function likeProduct(){
+
+likes++;
+
+const count=document.getElementById("likeCount");
+
+if(count){
+
+count.innerHTML=likes;
+
+}
+
+showToast("ধন্যবাদ ❤️");
+
+}
+
+
+// ==========================
+// WhatsApp Share
+// ==========================
+
+function shareWhatsApp(){
+
+const url=encodeURIComponent(window.location.href);
+
+window.open(
+"https://wa.me/?text="+url,
+"_blank"
+);
+
+}
+
+
+// ==========================
+// Copy Link
+// ==========================
+
+function copyLink(){
+
+navigator.clipboard.writeText(window.location.href);
+
+showToast("লিংক কপি হয়েছে 🔗");
+
+}
