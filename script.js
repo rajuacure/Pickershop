@@ -1005,3 +1005,87 @@ loadDeliveryInfo();
 }
 
 });
+// =====================================
+// Picker Shop V8
+// Login & Register System
+// =====================================
+
+// Register
+
+function registerUser(){
+
+const name=document.getElementById("regName").value.trim();
+
+const email=document.getElementById("regEmail").value.trim();
+
+const password=document.getElementById("regPassword").value.trim();
+
+if(name==="" || email==="" || password===""){
+
+alert("সব তথ্য পূরণ করুন");
+
+return;
+
+}
+
+const user={
+
+name:name,
+email:email,
+password:password
+
+};
+
+localStorage.setItem("pickerUser",JSON.stringify(user));
+
+alert("✅ Registration সফল হয়েছে");
+
+window.location.href="login.html";
+
+}
+
+// Login
+
+function loginUser(){
+
+const email=document.getElementById("loginEmail").value.trim();
+
+const password=document.getElementById("loginPassword").value.trim();
+
+const user=JSON.parse(localStorage.getItem("pickerUser"));
+
+if(!user){
+
+alert("আগে Register করুন");
+
+return;
+
+}
+
+if(email===user.email && password===user.password){
+
+localStorage.setItem("pickerLogin","true");
+
+alert("🎉 Login সফল হয়েছে");
+
+window.location.href="index.html";
+
+}else{
+
+alert("❌ Email অথবা Password ভুল");
+
+}
+
+}
+
+// Logout
+
+function logoutUser(){
+
+localStorage.removeItem("pickerLogin");
+
+alert("আপনি সফলভাবে Logout করেছেন");
+
+window.location.href="login.html";
+
+}
