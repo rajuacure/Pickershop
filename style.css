@@ -616,3 +616,22 @@ transition:.3s;
 background:#1B5E20;
 
 }
+.rating{
+
+color:#FFC107;
+
+font-size:22px;
+
+margin:10px 0;
+
+letter-spacing:3px;
+
+}
+
+.card:hover .rating{
+
+transform:scale(1.1);
+
+transition:.3s;
+
+}
