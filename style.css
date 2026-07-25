@@ -546,3 +546,34 @@ font-weight:bold;
 .wish-btn:hover{
 background:#c2185b;
 }
+.search-section{
+
+max-width:700px;
+
+margin:40px auto;
+
+padding:0 20px;
+
+}
+
+.search-section input{
+
+width:100%;
+
+padding:15px;
+
+font-size:18px;
+
+border:2px solid #2E7D32;
+
+border-radius:12px;
+
+outline:none;
+
+}
+
+.search-section input:focus{
+
+box-shadow:0 0 10px rgba(46,125,50,.3);
+
+}
