@@ -1373,3 +1373,26 @@ totalReview.innerHTML=reviews.length;
 }
 
 }
+// ==========================
+// Review Actions
+// ==========================
+
+function deleteReview(index){
+
+let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+reviews.splice(index,1);
+
+localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+loadReviews();
+
+showToast("🗑 Review Delete হয়েছে");
+
+}
+
+function helpReview(index){
+
+showToast("👍 ধন্যবাদ! আপনার Feedback গ্রহণ করা হয়েছে");
+
+}
