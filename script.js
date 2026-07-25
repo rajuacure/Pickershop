@@ -1209,3 +1209,86 @@ if(editEmail){
 editEmail.value=user.email;
 
 }
+// =====================================
+// Review System
+// =====================================
+
+function submitReview(){
+
+const name=document.getElementById("reviewName").value.trim();
+
+const rating=document.getElementById("reviewRating").value;
+
+const text=document.getElementById("reviewText").value.trim();
+
+if(name==="" || text===""){
+
+alert("সব তথ্য পূরণ করুন");
+
+return;
+
+}
+
+let reviews=JSON.parse(localStorage.getItem("pickerReviews")) || [];
+
+reviews.unshift({
+
+name:name,
+
+rating:rating,
+
+text:text
+
+});
+
+localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+loadReviews();
+
+document.getElementById("reviewName").value="";
+
+document.getElementById("reviewText").value="";
+
+showToast("⭐ ধন্যবাদ! আপনার রিভিউ সংরক্ষণ হয়েছে");
+
+}
+
+function loadReviews(){
+
+const box=document.getElementById("reviewList");
+
+if(!box) return;
+
+let reviews=JSON.parse(localStorage.getItem("pickerReviews")) || [];
+
+box.innerHTML="";
+
+reviews.forEach(function(item){
+
+box.innerHTML+=`
+
+<div class="review-item">
+
+<h4>${item.name}</h4>
+
+<div class="review-stars">
+
+${"⭐".repeat(Number(item.rating))}
+
+</div>
+
+<p>${item.text}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+loadReviews();
+
+});
