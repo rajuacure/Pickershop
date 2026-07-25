@@ -19,7 +19,21 @@ setTimeout(()=>{
 toast.remove();
 
 },3000);
+function updateCartCount(){
 
+let cart=JSON.parse(localStorage.getItem("pickerCart"))||[];
+
+let count=document.getElementById("cartCount");
+
+if(count){
+
+count.innerHTML=cart.length;
+
+}
+
+}
+
+updateCartCount();
 }
 function loadCart(){
 
