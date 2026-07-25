@@ -1425,3 +1425,14 @@ reader.onload();
 }
 
 }
+function likeReview(index){
+
+let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+reviews[index].likes++;
+
+localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+loadReviews();
+
+}
