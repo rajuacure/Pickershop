@@ -8,21 +8,15 @@
 
 <title>Picker Shop | Pure • Natural • Trusted</title>
 
-<meta name="description" content="Picker Shop - হারবাল, ন্যাচারাল ও স্বাস্থ্যকর পণ্যের বিশ্বস্ত অনলাইন শপ।">
-
-<meta name="keywords" content="Picker Shop, Herbal Powder, Natural Products, Bangladesh">
-
-<meta property="og:title" content="Picker Shop">
-
-<meta property="og:description" content="হারবাল ও প্রাকৃতিক পণ্যের বিশ্বস্ত অনলাইন শপ">
-
-<meta property="og:image" content="images/logo.png">
-
-<meta property="og:type" content="website">
-
-<link rel="icon" href="images/favicon.png">
+<meta name="description" content="বাংলাদেশের বিশ্বস্ত হারবাল ও প্রাকৃতিক পণ্যের অনলাইন শপ">
 
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -30,609 +24,100 @@
 
 <!-- Loader -->
 
-<div id="loader"></div>
+<div id="loader">
 
-<!-- WhatsApp -->
-
-<a href="https://wa.me/8801400599748?text=আসসালামু আলাইকুম, আমি Picker Shop থেকে একটি পণ্য অর্ডার করতে চাই।"
-
-class="whatsapp"
-
-target="_blank">
-
-💬
-
-</a>
-
-<!-- Scroll Top -->
-
-<button id="topBtn"
-
-onclick="topFunction()">
-
-⬆
-
-</button>
-
-<!-- Floating Cart -->
-
-<div class="floating-cart">
-
-<a href="cart.html">
-
-🛒
-
-<span id="cartCount">0</span>
-
-</a>
+<div class="spinner"></div>
 
 </div>
 
 <!-- Header -->
 
-<header>
+<header class="header">
 
 <div class="container">
 
-<img src="images/logo.png"
+<a href="index.html" class="logo">
 
-class="logo"
+<img src="images/logo.png" alt="Picker Shop">
 
-alt="Picker Shop">
-
-<h1>Picker Shop</h1>
-
-<p>
-
-Pure • Natural • Trusted
-
-</p>
-
-<nav>
-
-<a href="index.html">
-
-🏠 হোম
+<span>Picker Shop</span>
 
 </a>
 
-<a href="#products">
+<nav class="navbar">
 
-🛍️ পণ্য
+<a href="index.html">হোম</a>
 
-</a>
+<a href="#products">পণ্য</a>
 
-<a href="wishlist.html">
-
-❤️ Wishlist
-
-</a>
+<a href="wishlist.html">Wishlist</a>
 
 <a href="cart.html">
 
 🛒 Cart
 
-</a>
-
-<a href="profile.html">
-
-👤 Profile
+<span id="cartCount">0</span>
 
 </a>
 
-<a href="contact.html">
-
-☎ যোগাযোগ
-
-</a>
+<a href="login.html">লগইন</a>
 
 </nav>
 
-<div class="search-section">
+<button class="menu-btn" id="menuBtn">
 
-<input
+☰
 
-type="text"
-
-id="searchInput"
-
-placeholder="🔍 পণ্য খুঁজুন..."
-
-onkeyup="searchProducts()">
-
-</div>
+</button>
 
 </div>
 
 </header>
 
-<!-- Hero -->
+<!-- Hero Section -->
 
 <section class="hero">
 
-<h2>
+<div class="container">
 
-🌿 প্রকৃতির ছোঁয়ায় সুস্থ জীবন
+<div class="hero-content">
 
-</h2>
+<h1>
 
-<p>
+প্রাকৃতিক পণ্যের বিশ্বস্ত ঠিকানা
 
-প্রিমিয়াম হারবাল ও ন্যাচারাল পণ্য এখন এক জায়গায়
-
-</p>
-
-<a
-
-href="#products"
-
-class="shop-btn">
-
-🛒 এখনই কেনাকাটা করুন
-
-</a>
-
-</section>
-
-<!-- Offer Banner -->
-
-<section class="offer-banner">
-
-<h2>
-
-🎉 বিশেষ অফার
-
-</h2>
+</h1>
 
 <p>
 
-৩টি বা তার বেশি পণ্য অর্ডার করলে বিশেষ ডিসকাউন্ট।
+হারবাল, অর্গানিক এবং স্বাস্থ্যকর পণ্য এখন এক জায়গায়।
 
 </p>
 
-<a
+<a href="#products" class="btn">
 
-href="https://wa.me/8801400599748"
-
-class="offer-btn"
-
-target="_blank">
-
-অর্ডার করুন
+এখনই কেনাকাটা করুন
 
 </a>
 
+</div>
+
+<div class="hero-image">
+
+<img src="images/hero.png" alt="Picker Shop">
+
+</div>
+
+</div>
+
 </section>
 
-<!-- Category -->
+<!-- Categories -->
 
 <section class="categories">
 
-<h2>
+<div class="container">
 
-🌿 আমাদের ক্যাটাগরি
-
-</h2>
+<h2>জনপ্রিয় ক্যাটাগরি</h2>
 
 <div class="category-grid">
-
-<div class="category-card">
-
-🌱
-
-<h3>হারবাল পাউডার</h3>
-
-</div>
-
-<div class="category-card">
-
-🌾
-
-<h3>বীজ</h3>
-
-</div>
-
-<div class="category-card">
-
-🥥
-
-<h3>প্রাকৃতিক তেল</h3>
-
-</div>
-
-<div class="category-card">
-
-🍯
-
-<h3>মধু</h3>
-
-</div>
-
-<div class="category-card">
-
-🌸
-
-<h3>বিউটি কেয়ার</h3>
-
-</div>
-
-<div class="category-card">
-
-💪
-
-<h3>স্বাস্থ্যসেবা</h3>
-
-</div>
-
-</div>
-
-</section>
-<!-- Best Seller -->
-
-<section class="best-seller">
-
-<h2>⭐ Best Seller Products</h2>
-
-<p>
-
-গ্রাহকদের সবচেয়ে বেশি পছন্দের প্রাকৃতিক পণ্য
-
-</p>
-
-</section>
-
-<!-- Products -->
-
-<section class="products"
-
-id="productsContainer">
-
-<!-- Product 1 -->
-
-<div class="card product-card"
-
-data-category="powder">
-
-<span class="discount-badge">
-
--10%
-
-</span>
-
-<img src="images/ashwagandha.jpg"
-
-alt="অশ্বগন্ধা পাউডার">
-
-<h3>অশ্বগন্ধা পাউডার</h3>
-
-<div class="rating">
-
-★★★★★
-
-</div>
-
-<p>৳220</p>
-
-<button
-
-class="cart-btn"
-
-onclick="addToCart('অশ্বগন্ধা পাউডার',220)">
-
-🛒 কার্টে যোগ করুন
-
-</button>
-
-<button
-
-class="wish-btn"
-
-onclick="addToWishlist('অশ্বগন্ধা পাউডার')">
-
-❤️ Wishlist
-
-</button>
-
-<a
-
-href="https://wa.me/8801400599748?text=আমি অশ্বগন্ধা পাউডার অর্ডার করতে চাই"
-
-class="btn"
-
-target="_blank">
-
-অর্ডার করুন
-
-</a>
-
-</div>
-
-</section>
-<!-- More Products -->
-
-<section class="products">
-
-<!-- Product 7 -->
-
-<div class="card product-card" data-category="seed">
-
-<img src="images/flaxseed.jpg" alt="ফ্ল্যাক্স সিড">
-
-<h3>ফ্ল্যাক্স সিড</h3>
-
-<div class="rating">★★★★★</div>
-
-<p>৳280</p>
-
-<button class="cart-btn"
-onclick="addToCart('ফ্ল্যাক্স সিড',280)">
-🛒 কার্টে যোগ করুন
-</button>
-
-<button class="wish-btn"
-onclick="addToWishlist('ফ্ল্যাক্স সিড')">
-❤️ Wishlist
-</button>
-
-<a href="https://wa.me/8801400599748?text=আমি ফ্ল্যাক্স সিড অর্ডার করতে চাই"
-class="btn"
-target="_blank">
-অর্ডার করুন
-</a>
-
-</div>
-
-<!-- Product 8 -->
-
-<div class="card product-card" data-category="seed">
-
-<img src="images/sunflower
-  <!-- Newsletter -->
-
-<section class="newsletter">
-
-<h2>📩 অফার ও নতুন পণ্যের খবর পেতে সাবস্ক্রাইব করুন</h2>
-
-<p>
-আপনার ইমেইল দিন, নতুন অফার ও ডিসকাউন্ট সবার আগে পান।
-</p>
-
-<input
-type="email"
-id="newsletterEmail"
-placeholder="আপনার ইমেইল লিখুন">
-
-<button
-onclick="subscribeNewsletter()">
-
-Subscribe
-
-</button>
-
-</section>
-
-<!-- Delivery Information -->
-
-<section class="delivery">
-
-<h2>🚚 আমাদের সেবা</h2>
-
-<div class="delivery-grid">
-
-<div class="delivery-card">
-
-🚛
-
-<h3>সারা বাংলাদেশে ডেলিভারি</h3>
-
-<p>
-
-দ্রুত ও নিরাপদ কুরিয়ার সার্ভিস।
-
-</p>
-
-</div>
-
-<div class="delivery-card">
-
-📦
-
-<h3>নিরাপদ প্যাকেজিং</h3>
-
-<p>
-
-যত্নসহকারে প্রতিটি পণ্য প্যাক করা হয়।
-
-</p>
-
-</div>
-
-<div class="delivery-card">
-
-💬
-
-<h3>২৪/৭ সাপোর্ট</h3>
-
-<p>
-
-WhatsApp-এ যেকোনো সময় যোগাযোগ করুন।
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Payment -->
-
-<section class="payment">
-
-<h2>💳 পেমেন্ট সুবিধা</h2>
-
-<div class="payment-grid">
-
-<div class="payment-item">
-
-💗
-
-<h3>bKash</h3>
-
-</div>
-
-<div class="payment-item">
-
-💙
-
-<h3>Nagad</h3>
-
-</div>
-
-<div class="payment-item">
-
-🚀
-
-<h3>Rocket</h3>
-
-</div>
-
-<div class="payment-item">
-
-💵
-
-<h3>Cash On Delivery</h3>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Bottom Navigation -->
-
-<div class="bottom-nav">
-
-<a href="index.html">
-
-🏠
-
-<span>হোম</span>
-
-</a>
-
-<a href="#products">
-
-🛍️
-
-<span>পণ্য</span>
-
-</a>
-
-<a href="wishlist.html">
-
-❤️
-
-<span>Wishlist</span>
-
-</a>
-
-<a href="cart.html">
-
-🛒
-
-<span>Cart</span>
-
-</a>
-
-<a href="profile.html">
-
-👤
-
-<span>Profile</span>
-
-</a>
-
-</div>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="footer-container">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
-
-<p>
-
-Pure • Natural • Trusted
-
-</p>
-
-<p>
-
-বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ।
-
-</p>
-
-</div>
-
-<div>
-
-<h3>দ্রুত লিংক</h3>
-
-<p><a href="about.html">আমাদের সম্পর্কে</a></p>
-
-<p><a href="contact.html">যোগাযোগ</a></p>
-
-<p><a href="privacy.html">Privacy Policy</a></p>
-
-<p><a href="terms.html">Terms & Conditions</a></p>
-
-<p><a href="refund.html">Refund Policy</a></p>
-
-</div>
-
-<div>
-
-<h3>যোগাযোগ</h3>
-
-<p>📍 খিলগাঁও, ঢাকা</p>
-
-<p>📞 01400599748</p>
-
-<p>📧 support@pickershop.com</p>
-
-<p>
-
-<a
-href="https://wa.me/8801400599748"
-target="_blank">
-
-WhatsApp Support
-
-</a>
-
-</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Picker Shop | All Rights Reserved.
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
