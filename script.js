@@ -1148,3 +1148,50 @@ loadProfile();
 }
 
 });
+// =====================================
+// Profile Edit
+// =====================================
+
+function updateProfile(){
+
+let user = JSON.parse(localStorage.getItem("pickerUser"));
+
+if(!user){
+
+alert("প্রথমে Login করুন");
+
+return;
+
+}
+
+const name=document.getElementById("editName").value.trim();
+
+const email=document.getElementById("editEmail").value.trim();
+
+const password=document.getElementById("newPassword").value.trim();
+
+if(name!==""){
+
+user.name=name;
+
+}
+
+if(email!==""){
+
+user.email=email;
+
+}
+
+if(password!==""){
+
+user.password=password;
+
+}
+
+localStorage.setItem("pickerUser",JSON.stringify(user));
+
+alert("✅ প্রোফাইল সফলভাবে আপডেট হয়েছে");
+
+loadProfile();
+
+}
