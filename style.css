@@ -466,3 +466,21 @@ text-align:center;
 .delivery-card:hover{
 transform:translateY(-5px);
 }
+#topBtn{
+display:none;
+position:fixed;
+bottom:90px;
+right:20px;
+border:none;
+background:#2E7D32;
+color:white;
+padding:15px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+#topBtn:hover{
+background:#1B5E20;
+}
