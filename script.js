@@ -1089,3 +1089,20 @@ alert("আপনি সফলভাবে Logout করেছেন");
 window.location.href="login.html";
 
 }
+// Welcome User
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const user=JSON.parse(localStorage.getItem("pickerUser"));
+
+const login=localStorage.getItem("pickerLogin");
+
+const welcome=document.getElementById("welcomeUser");
+
+if(user && login==="true" && welcome){
+
+welcome.innerHTML="👋 স্বাগতম, "+user.name;
+
+}
+
+});
