@@ -885,3 +885,268 @@ img{
     display:none;
 
 }
+/* ==========================================
+   Responsive Design
+========================================== */
+
+/* Tablet */
+
+@media (max-width:992px){
+
+.hero .container{
+
+grid-template-columns:1fr;
+text-align:center;
+
+}
+
+.hero-content h1{
+
+font-size:34px;
+
+}
+
+.hero-image{
+
+margin-top:30px;
+
+}
+
+.products{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.footer-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.header .container{
+
+padding:12px 0;
+
+}
+
+.navbar{
+
+display:none;
+
+}
+
+.menu-btn{
+
+display:block;
+
+font-size:30px;
+
+color:#198754;
+
+}
+
+.logo span{
+
+font-size:20px;
+
+}
+
+.hero{
+
+padding:50px 0;
+
+}
+
+.hero-content h1{
+
+font-size:28px;
+
+}
+
+.hero-content p{
+
+font-size:16px;
+
+}
+
+.categories{
+
+padding:40px 0;
+
+}
+
+.category-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.products{
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+.product-card img{
+
+height:220px;
+
+}
+
+.newsletter-box{
+
+flex-direction:column;
+
+}
+
+.newsletter-box input{
+
+width:100%;
+
+}
+
+.footer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.social-links{
+
+align-items:center;
+
+}
+
+.bottom-nav{
+
+display:flex;
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#fff;
+justify-content:space-around;
+align-items:center;
+padding:10px 0;
+box-shadow:0 -3px 12px rgba(0,0,0,.12);
+z-index:9999;
+
+}
+
+.bottom-nav a{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:13px;
+color:#198754;
+font-weight:600;
+
+}
+
+.bottom-nav a span{
+
+font-size:12px;
+margin-top:4px;
+
+}
+
+.whatsapp{
+
+bottom:85px;
+
+}
+
+#topBtn{
+
+bottom:155px;
+
+}
+
+body{
+
+padding-bottom:80px;
+
+}
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+.container{
+
+width:94%;
+
+}
+
+.hero-content h1{
+
+font-size:24px;
+
+}
+
+.products-section h2,
+.categories h2,
+.newsletter h2,
+.reviews h2,
+.cta h2{
+
+font-size:26px;
+
+}
+
+.product-card{
+
+padding:15px;
+
+}
+
+.product-card h3{
+
+font-size:18px;
+
+}
+
+.price{
+
+font-size:20px;
+
+}
+
+.btn,
+.cart-btn,
+.wish-btn,
+.order-btn{
+
+font-size:14px;
+
+padding:10px;
+
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea{
+
+font-size:15px;
+
+}
+
+}
+
+/* ==========================================
+   End of Picker Shop V12
+========================================== */
