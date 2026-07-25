@@ -355,7 +355,44 @@ Submit Review
 <hr>
 
 <div id="reviewList"></div>
-  
+  <section class="customer-review">
+
+<h2>⭐ Customer Reviews</h2>
+
+<div class="review-form">
+
+<input
+type="text"
+id="reviewName"
+placeholder="আপনার নাম">
+
+<select id="reviewRating">
+
+<option value="5">⭐⭐⭐⭐⭐ (5)</option>
+<option value="4">⭐⭐⭐⭐ (4)</option>
+<option value="3">⭐⭐⭐ (3)</option>
+<option value="2">⭐⭐ (2)</option>
+<option value="1">⭐ (1)</option>
+
+</select>
+
+<textarea
+id="reviewText"
+placeholder="আপনার মতামত লিখুন"></textarea>
+
+<button
+class="btn"
+onclick="submitReview()">
+
+⭐ Review Submit
+
+</button>
+
+</div>
+
+<div id="reviewList"></div>
+
+</section>
 <!-- ================= CUSTOMER REVIEWS ================= -->
 
 <section class="reviews">
