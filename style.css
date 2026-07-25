@@ -399,3 +399,34 @@ line-height:1.7;
 .review-card h4{
 color:#2E7D32;
 }
+.delivery{
+padding:60px 20px;
+background:#f8fff8;
+text-align:center;
+}
+
+.delivery h2{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:30px;
+}
+
+.delivery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+max-width:1100px;
+margin:auto;
+}
+
+.delivery-card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.delivery-card:hover{
+transform:translateY(-5px);
+}
