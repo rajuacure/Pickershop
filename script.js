@@ -847,9 +847,11 @@ function showOrderSuccess(){
 
 const id = generateOrderID();
 
-localStorage.setItem("lastOrderID", id);
+localStorage.setItem("lastOrderID",id);
 
-window.location.href = "success.html";
+localStorage.setItem("orderStatus",1);
+
+window.location.href="success.html";
 
 }
 
