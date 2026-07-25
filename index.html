@@ -8,25 +8,17 @@
 
 <title>Picker Shop | Pure • Natural • Trusted</title>
 
-<meta name="description" content="Picker Shop - হারবাল, প্রাকৃতিক ও স্বাস্থ্যকর পণ্যের বিশ্বস্ত অনলাইন শপ।">
+<meta name="description" content="Picker Shop - হারবাল, ন্যাচারাল ও স্বাস্থ্যকর পণ্যের বিশ্বস্ত অনলাইন শপ।">
 
-<meta name="keywords" content="Picker Shop, Herbal Powder, Ashwagandha, Moringa, Chia Seed, Honey, Coconut Oil, Bangladesh">
+<meta name="keywords" content="Picker Shop, Herbal Powder, Natural Products, Bangladesh">
 
-<meta name="author" content="Picker Shop">
+<meta property="og:title" content="Picker Shop">
 
-<meta name="robots" content="index,follow">
+<meta property="og:description" content="হারবাল ও প্রাকৃতিক পণ্যের বিশ্বস্ত অনলাইন শপ">
 
-<link rel="canonical" href="https://rajuacure.github.io/Pickershop/">
-
-<meta property="og:title" content="Picker Shop | Premium Natural Products">
-
-<meta property="og:description" content="বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ">
+<meta property="og:image" content="images/logo.png">
 
 <meta property="og:type" content="website">
-
-<meta property="og:url" content="https://rajuacure.github.io/Pickershop/">
-
-<meta property="og:image" content="https://rajuacure.github.io/Pickershop/images/logo.png">
 
 <link rel="icon" href="images/favicon.png">
 
@@ -36,50 +28,57 @@
 
 <body>
 
-<!-- WhatsApp Floating Button -->
+<!-- Loader -->
+
+<div id="loader"></div>
+
+<!-- WhatsApp -->
 
 <a href="https://wa.me/8801400599748?text=আসসালামু আলাইকুম, আমি Picker Shop থেকে একটি পণ্য অর্ডার করতে চাই।"
+
 class="whatsapp"
+
 target="_blank">
 
 💬
 
 </a>
 
-<!-- Back To Top -->
+<!-- Scroll Top -->
 
-<button id="topBtn" onclick="topFunction()">
+<button id="topBtn"
+
+onclick="topFunction()">
 
 ⬆
 
 </button>
 
 <!-- Floating Cart -->
-<div class="floating-wishlist">
-<a href="wishlist.html">
-❤️ <span id="wishlistCount">0</span>
-</a>
-</div>
-  
+
 <div class="floating-cart">
 
 <a href="cart.html">
 
-🛒 <span id="cartCount">0</span>
+🛒
+
+<span id="cartCount">0</span>
 
 </a>
 
 </div>
 
+<!-- Header -->
+
 <header>
-<p id="welcomeUser"></p>
-<div class="header-container">
+
+<div class="container">
 
 <img src="images/logo.png"
-alt="Picker Shop"
-class="logo">
 
-<div>
+class="logo"
+
+alt="Picker Shop">
 
 <h1>Picker Shop</h1>
 
@@ -89,133 +88,143 @@ Pure • Natural • Trusted
 
 </p>
 
-</div>
-
-</div>
-
 <nav>
-<a href="profile.html">👤 Profile</a>
-<a href="index.html">হোম</a>
 
-<a href="#products">পণ্য</a>
+<a href="index.html">
 
-<a href="about.html">আমাদের সম্পর্কে</a>
-
-<a href="contact.html">যোগাযোগ</a>
-
-<a href="wishlist.html">Wishlist</a>
-
-<a href="cart.html">Cart</a>
-
-</nav>
-
-</header>
-<!-- ================= HERO SECTION ================= -->
-
-<section class="hero">
-
-<div class="hero-content">
-
-<h2>🌿 প্রকৃতির ছোঁয়ায় সুস্থ জীবন</h2>
-
-<p>
-১০০% প্রাকৃতিক ও হারবাল পণ্য এখন আপনার হাতের নাগালে।
-</p>
-
-<a href="#products" class="shop-btn">
-
-🛍️ এখনই কেনাকাটা করুন
+🏠 হোম
 
 </a>
 
-</div>
+<a href="#products">
 
-</section>
+🛍️ পণ্য
 
-<!-- ================= SEARCH ================= -->
+</a>
 
-<section class="search-section">
+<a href="wishlist.html">
+
+❤️ Wishlist
+
+</a>
+
+<a href="cart.html">
+
+🛒 Cart
+
+</a>
+
+<a href="profile.html">
+
+👤 Profile
+
+</a>
+
+<a href="contact.html">
+
+☎ যোগাযোগ
+
+</a>
+
+</nav>
+
+<div class="search-section">
 
 <input
+
 type="text"
+
 id="searchInput"
-placeholder="🔍 পণ্যের নাম লিখে খুঁজুন..."
+
+placeholder="🔍 পণ্য খুঁজুন..."
+
 onkeyup="searchProducts()">
 
-</section>
+</div>
 
-<!-- ================= OFFER ================= -->
+</div>
 
-<section class="offer-banner">
+</header>
 
-<h2>🎉 বিশেষ অফার</h2>
+<!-- Hero -->
+
+<section class="hero">
+
+<h2>
+
+🌿 প্রকৃতির ছোঁয়ায় সুস্থ জীবন
+
+</h2>
 
 <p>
 
-৩টি বা তার বেশি পণ্য কিনলে বিশেষ ছাড় ও দ্রুত ডেলিভারি।
+প্রিমিয়াম হারবাল ও ন্যাচারাল পণ্য এখন এক জায়গায়
 
 </p>
 
 <a
-href="https://wa.me/8801400599748?text=আমি অফারের পণ্য সম্পর্কে জানতে চাই"
-class="offer-btn"
-target="_blank">
 
-অফার নিন
+href="#products"
+
+class="shop-btn">
+
+🛒 এখনই কেনাকাটা করুন
 
 </a>
 
 </section>
 
-<!-- ================= CATEGORY ================= -->
+<!-- Offer Banner -->
+
+<section class="offer-banner">
+
+<h2>
+
+🎉 বিশেষ অফার
+
+</h2>
+
+<p>
+
+৩টি বা তার বেশি পণ্য অর্ডার করলে বিশেষ ডিসকাউন্ট।
+
+</p>
+
+<a
+
+href="https://wa.me/8801400599748"
+
+class="offer-btn"
+
+target="_blank">
+
+অর্ডার করুন
+
+</a>
+
+</section>
+
+<!-- Category -->
 
 <section class="categories">
 
-<h2>🌿 আমাদের ক্যাটাগরি</h2>
+<h2>
+
+🌿 আমাদের ক্যাটাগরি
+
+</h2>
 
 <div class="category-grid">
 
-<div class="category-card"
-onclick="filterProducts('all')">
-<div class="product-gallery">
+<div class="category-card">
 
-<img src="images/ashwagandha.jpg"
-onclick="changeImage(this)">
-
-<img src="images/ashwagandha2.jpg"
-onclick="changeImage(this)">
-
-<img src="images/ashwagandha3.jpg"
-onclick="changeImage(this)">
-<img src="images/ashwagandha.jpg"
-alt="অশ্বগন্ধা পাউডার"
-onclick="
-saveRecentlyViewed('অশ্বগন্ধা পাউডার');
-openModal(
-'অশ্বগন্ধা পাউডার',
-'৳220',
-'১০০% প্রাকৃতিক অশ্বগন্ধা পাউডার',
-'images/ashwagandha.jpg',
-220
-)">
-</div>
-🛍️
-
-<h3>সব পণ্য</h3>
-
-</div>
-
-<div class="category-card"
-onclick="filterProducts('powder')">
-
-🌿
+🌱
 
 <h3>হারবাল পাউডার</h3>
 
 </div>
 
-<div class="category-card"
-onclick="filterProducts('seed')">
+<div class="category-card">
 
 🌾
 
@@ -223,8 +232,7 @@ onclick="filterProducts('seed')">
 
 </div>
 
-<div class="category-card"
-onclick="filterProducts('oil')">
+<div class="category-card">
 
 🥥
 
@@ -232,8 +240,15 @@ onclick="filterProducts('oil')">
 
 </div>
 
-<div class="category-card"
-onclick="filterProducts('beauty')">
+<div class="category-card">
+
+🍯
+
+<h3>মধু</h3>
+
+</div>
+
+<div class="category-card">
 
 🌸
 
@@ -241,10 +256,9 @@ onclick="filterProducts('beauty')">
 
 </div>
 
-<div class="category-card"
-onclick="filterProducts('health')">
+<div class="category-card">
 
-💚
+💪
 
 <h3>স্বাস্থ্যসেবা</h3>
 
@@ -253,396 +267,295 @@ onclick="filterProducts('health')">
 </div>
 
 </section>
+<!-- Best Seller -->
 
-<!-- ================= BEST SELLER ================= -->
-<span class="best-badge">
-🏆 Best Seller
-</span>
-  
 <section class="best-seller">
 
 <h2>⭐ Best Seller Products</h2>
 
 <p>
 
-গ্রাহকদের সবচেয়ে বেশি পছন্দের পণ্য
+গ্রাহকদের সবচেয়ে বেশি পছন্দের প্রাকৃতিক পণ্য
 
 </p>
 
 </section>
-<!-- ================= PRODUCTS ================= -->
-<!-- Product Details Modal -->
 
-<div id="productModal" class="modal">
+<!-- Products -->
 
-<div class="modal-content">
+<section class="products"
 
-<span class="close" onclick="closeModal()">&times;</span>
+id="productsContainer">
 
-<img id="modalImage" src="" alt="Product Image">
+<!-- Product 1 -->
 
-<h2 id="modalTitle"></h2>
+<div class="card product-card"
 
-<p id="modalPrice"></p>
+data-category="powder">
 
-<p id="modalDescription"></p>
+<span class="discount-badge">
 
-<button class="cart-btn" id="modalCartBtn">
-🛒 কার্টে যোগ করুন
-</button>
+-10%
 
-</div>
+</span>
 
-</div>
-<section class="products" id="products">
+<img src="images/ashwagandha.jpg"
 
-<div class="card product-card" data-category="powder">
-
-<span class="discount-badge">-10%</span>
-
-<img src="images/ashwagandha.jpg" alt="অশ্বগন্ধা পাউডার">
+alt="অশ্বগন্ধা পাউডার">
 
 <h3>অশ্বগন্ধা পাউডার</h3>
 
-<div class="rating">★★★★★</div>
+<div class="rating">
+
+★★★★★
+
+</div>
 
 <p>৳220</p>
 
-<button class="cart-btn"
+<button
+
+class="cart-btn"
+
 onclick="addToCart('অশ্বগন্ধা পাউডার',220)">
+
+🛒 কার্টে যোগ করুন
+
+</button>
+
+<button
+
+class="wish-btn"
+
+onclick="addToWishlist('অশ্বগন্ধা পাউডার')">
+
+❤️ Wishlist
+
+</button>
+
+<a
+
+href="https://wa.me/8801400599748?text=আমি অশ্বগন্ধা পাউডার অর্ডার করতে চাই"
+
+class="btn"
+
+target="_blank">
+
+অর্ডার করুন
+
+</a>
+
+</div>
+
+</section>
+<!-- More Products -->
+
+<section class="products">
+
+<!-- Product 7 -->
+
+<div class="card product-card" data-category="seed">
+
+<img src="images/flaxseed.jpg" alt="ফ্ল্যাক্স সিড">
+
+<h3>ফ্ল্যাক্স সিড</h3>
+
+<div class="rating">★★★★★</div>
+
+<p>৳280</p>
+
+<button class="cart-btn"
+onclick="addToCart('ফ্ল্যাক্স সিড',280)">
 🛒 কার্টে যোগ করুন
 </button>
 
 <button class="wish-btn"
-onclick="addToWishlist('অশ্বগন্ধা পাউডার')">
+onclick="addToWishlist('ফ্ল্যাক্স সিড')">
 ❤️ Wishlist
 </button>
 
-<a href="https://wa.me/8801400599748?text=আমি অশ্বগন্ধা
-<section class="review-form">
-
-<h3>⭐ আপনার মতামত দিন</h3>
-
-<input
-type="text"
-id="reviewName"
-placeholder="আপনার নাম">
-
-<select id="reviewRating">
-
-<option value="5">⭐⭐⭐⭐⭐ (5)</option>
-<option value="4">⭐⭐⭐⭐ (4)</option>
-<option value="3">⭐⭐⭐ (3)</option>
-<option value="2">⭐⭐ (2)</option>
-<option value="1">⭐ (1)</option>
-
-</select>
-
-<textarea
-id="reviewText"
-placeholder="আপনার মতামত লিখুন"></textarea>
-<input
-type="file"
-id="reviewImage"
-accept="image/*">
-<button
+<a href="https://wa.me/8801400599748?text=আমি ফ্ল্যাক্স সিড অর্ডার করতে চাই"
 class="btn"
-onclick="submitReview()">
-
-Submit Review
-
-</button>
-
-</section>
-
-<hr>
-
-<div id="reviewList"></div>
-  <section class="customer-review">
-
-<h2>⭐ Customer Reviews</h2>
-
-<div class="review-form">
-
-<input
-type="text"
-id="reviewName"
-placeholder="আপনার নাম">
-
-<select id="reviewRating">
-
-<option value="5">⭐⭐⭐⭐⭐ (5)</option>
-<option value="4">⭐⭐⭐⭐ (4)</option>
-<option value="3">⭐⭐⭐ (3)</option>
-<option value="2">⭐⭐ (2)</option>
-<option value="1">⭐ (1)</option>
-
-</select>
-
-<textarea
-id="reviewText"
-placeholder="আপনার মতামত লিখুন"></textarea>
-
-<button
-class="btn"
-onclick="submitReview()">
-
-⭐ Review Submit
-
-</button>
-
-</div>
-<div class="review-summary">
-
-<h3>
-⭐ Average Rating:
-<span id="averageRating">0.0</span>/5
-</h3>
-
-<p>
-মোট রিভিউ:
-<span id="totalReviews">0</span>
-</p>
-
-</div>
-<div id="reviewList"></div>
-
-</section>
-<!-- ================= CUSTOMER REVIEWS ================= -->
-
-<section class="reviews">
-
-<h2>⭐ গ্রাহকদের মতামত</h2>
-
-<div class="review-grid">
-
-<div class="review-card">
-
-<div class="rating">★★★★★</div>
-
-<p>
-"পণ্যের মান অসাধারণ। ডেলিভারিও খুব দ্রুত পেয়েছি।"
-</p>
-
-<h4>— রাকিব, ঢাকা</h4>
+target="_blank">
+অর্ডার করুন
+</a>
 
 </div>
 
-<div class="review-card">
+<!-- Product 8 -->
 
-<div class="rating">★★★★★</div>
+<div class="card product-card" data-category="seed">
 
-<p>
-"অশ্বগন্ধা ও মরিঙ্গা পাউডার দুটোই অনেক ভালো লেগেছে।"
-</p>
-
-<h4>— সুমাইয়া, চট্টগ্রাম</h4>
-
-</div>
-
-<div class="review-card">
-
-<div class="rating">★★★★★</div>
-
-<p>
-"বিশ্বস্ত অনলাইন শপ। আবারও অর্ডার করব ইনশাআল্লাহ।"
-</p>
-
-<h4>— নাঈম, সিলেট</h4>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= DELIVERY ================= -->
-
-<section class="delivery">
-
-<h2>🚚 ডেলিভারি সুবিধা</h2>
-
-<div class="delivery-grid">
-
-<div class="delivery-card">
-
-<h3>🚛 সারা বাংলাদেশে ডেলিভারি</h3>
-
-<p>
-Pathao ও Steadfast Courier-এর মাধ্যমে দ্রুত ডেলিভারি।
-</p>
-
-</div>
-
-<div class="delivery-card">
-
-<h3>📦 নিরাপদ প্যাকেজিং</h3>
-
-<p>
-প্রতিটি পণ্য নিরাপদ ও যত্নসহকারে প্যাক করা হয়।
-</p>
-
-</div>
-
-<div class="delivery-card">
-
-<h3>💬 WhatsApp সাপোর্ট</h3>
-
-<p>
-যেকোনো সময় সরাসরি WhatsApp-এ যোগাযোগ করুন।
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= PAYMENT ================= -->
-
-<section class="payment">
-
-<h2>💳 পেমেন্ট পদ্ধতি</h2>
-
-<div class="delivery-grid">
-
-<div class="delivery-card">
-
-<h3>📱 বিকাশ</h3>
-
-</div>
-
-<div class="delivery-card">
-
-<h3>💵 নগদ</h3>
-
-</div>
-
-<div class="delivery-card">
-
-<h3>🚀 রকেট</h3>
-
-</div>
-
-<div class="delivery-card">
-
-<h3>📦 Cash on Delivery</h3>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= FAQ ================= -->
-
-<section class="faq">
-
-<h2>❓ প্রায় জিজ্ঞাসিত প্রশ্ন</h2>
-
-<details>
-
-<summary>ডেলিভারি কত দিনে পাব?</summary>
-
-<p>ঢাকার ভিতরে ১-২ দিন এবং ঢাকার বাইরে ২-৪ কার্যদিবস।</p>
-
-</details>
-
-<details>
-
-<summary>কিভাবে অর্ডার করব?</summary>
-
-<p>কার্টে যোগ করুন অথবা WhatsApp-এ অর্ডার করুন।</p>
-
-</details>
-
-<details>
-
-<summary>কোন কুরিয়ারে পাঠানো হয়?</summary>
-
-<p>Pathao, Steadfast এবং অন্যান্য বিশ্বস্ত কুরিয়ারে পাঠানো হয়।</p>
-
-</details>
-
-<details>
-
-<summary>পেমেন্ট কীভাবে করব?</summary>
-
-<p>বিকাশ, নগদ, রকেট অথবা Cash on Delivery (যেখানে প্রযোজ্য)।</p>
-
-</details>
-
-</section>
-<!-- ================= NEWSLETTER ================= -->
+<img src="images/sunflower
+  <!-- Newsletter -->
 
 <section class="newsletter">
 
 <h2>📩 অফার ও নতুন পণ্যের খবর পেতে সাবস্ক্রাইব করুন</h2>
 
-<p>আপনার ইমেইল দিন, নতুন অফার ও ডিসকাউন্ট সবার আগে জানতে পারবেন।</p>
-
-<form>
+<p>
+আপনার ইমেইল দিন, নতুন অফার ও ডিসকাউন্ট সবার আগে পান।
+</p>
 
 <input
 type="email"
-placeholder="আপনার ইমেইল লিখুন"
-required>
+id="newsletterEmail"
+placeholder="আপনার ইমেইল লিখুন">
 
-<button type="submit">
+<button
+onclick="subscribeNewsletter()">
 
 Subscribe
 
 </button>
 
-</form>
-
 </section>
 
-<!-- ================= SOCIAL MEDIA ================= -->
+<!-- Delivery Information -->
 
-<section class="social-section">
+<section class="delivery">
 
-<h2>🌐 আমাদের অনুসরণ করুন</h2>
+<h2>🚚 আমাদের সেবা</h2>
 
-<div class="social-links">
+<div class="delivery-grid">
 
-<a href="#" target="_blank">📘 Facebook</a>
+<div class="delivery-card">
 
-<a href="#" target="_blank">▶️ YouTube</a>
+🚛
 
-<a href="#" target="_blank">🎵 TikTok</a>
+<h3>সারা বাংলাদেশে ডেলিভারি</h3>
 
-<a href="https://wa.me/8801400599748" target="_blank">💬 WhatsApp</a>
+<p>
+
+দ্রুত ও নিরাপদ কুরিয়ার সার্ভিস।
+
+</p>
+
+</div>
+
+<div class="delivery-card">
+
+📦
+
+<h3>নিরাপদ প্যাকেজিং</h3>
+
+<p>
+
+যত্নসহকারে প্রতিটি পণ্য প্যাক করা হয়।
+
+</p>
+
+</div>
+
+<div class="delivery-card">
+
+💬
+
+<h3>২৪/৭ সাপোর্ট</h3>
+
+<p>
+
+WhatsApp-এ যেকোনো সময় যোগাযোগ করুন।
+
+</p>
+
+</div>
 
 </div>
 
 </section>
-<section class="extra-info">
 
-<h2>📊 আমাদের তথ্য</h2>
+<!-- Payment -->
 
-<p>আজকের তারিখ: <strong id="todayDate"></strong></p>
+<section class="payment">
 
-<p>মোট পণ্য: <strong id="productCount"></strong></p>
+<h2>💳 পেমেন্ট সুবিধা</h2>
 
-<br>
+<div class="payment-grid">
 
-<button class="btn" onclick="copyCoupon()">
+<div class="payment-item">
 
-🎁 Coupon Copy
+💗
 
-</button>
+<h3>bKash</h3>
 
-<br><br>
+</div>
 
-<button class="btn" onclick="shareWebsite()">
+<div class="payment-item">
 
-📤 Website Share
+💙
 
-</button>
+<h3>Nagad</h3>
+
+</div>
+
+<div class="payment-item">
+
+🚀
+
+<h3>Rocket</h3>
+
+</div>
+
+<div class="payment-item">
+
+💵
+
+<h3>Cash On Delivery</h3>
+
+</div>
+
+</div>
 
 </section>
-<!-- ================= FOOTER ================= -->
+
+<!-- Bottom Navigation -->
+
+<div class="bottom-nav">
+
+<a href="index.html">
+
+🏠
+
+<span>হোম</span>
+
+</a>
+
+<a href="#products">
+
+🛍️
+
+<span>পণ্য</span>
+
+</a>
+
+<a href="wishlist.html">
+
+❤️
+
+<span>Wishlist</span>
+
+</a>
+
+<a href="cart.html">
+
+🛒
+
+<span>Cart</span>
+
+</a>
+
+<a href="profile.html">
+
+👤
+
+<span>Profile</span>
+
+</a>
+
+</div>
+
+<!-- Footer -->
 
 <footer class="footer">
 
@@ -660,7 +573,7 @@ Pure • Natural • Trusted
 
 <p>
 
-বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল অনলাইন শপ।
+বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ।
 
 </p>
 
@@ -670,21 +583,9 @@ Pure • Natural • Trusted
 
 <h3>দ্রুত লিংক</h3>
 
-<p><a href="index.html">🏠 হোম</a></p>
+<p><a href="about.html">আমাদের সম্পর্কে</a></p>
 
-<p><a href="about.html">ℹ️ আমাদের সম্পর্কে</a></p>
-
-<p><a href="contact.html">📞 যোগাযোগ</a></p>
-
-<p><a href="wishlist.html">❤️ Wishlist</a></p>
-
-<p><a href="cart.html">🛒 Cart</a></p>
-
-</div>
-
-<div>
-
-<h3>নীতিমালা</h3>
+<p><a href="contact.html">যোগাযোগ</a></p>
 
 <p><a href="privacy.html">Privacy Policy</a></p>
 
@@ -698,11 +599,23 @@ Pure • Natural • Trusted
 
 <h3>যোগাযোগ</h3>
 
-<p>📍 গোড়ান বাজার, খিলগাঁও, ঢাকা</p>
+<p>📍 খিলগাঁও, ঢাকা</p>
 
 <p>📞 01400599748</p>
 
-<p>📧 info@pickershop.com</p>
+<p>📧 support@pickershop.com</p>
+
+<p>
+
+<a
+href="https://wa.me/8801400599748"
+target="_blank">
+
+WhatsApp Support
+
+</a>
+
+</p>
 
 </div>
 
@@ -718,16 +631,8 @@ Pure • Natural • Trusted
 
 </footer>
 
-<!-- ================= SCRIPT ================= -->
-
 <script src="script.js"></script>
 
 </body>
 
 </html>
-<button onclick="toggleDarkMode()" class="btn">
-🌙 Dark Mode
-</button>
-<a href="login.html">🔐 Login</a>
-
-<a href="#" onclick="logoutUser()">🚪 Logout</a>
