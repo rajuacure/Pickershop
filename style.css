@@ -1356,3 +1356,74 @@ font-size:22px;
 margin-bottom:10px;
 
 }
+/* ==========================
+Review Summary
+========================== */
+
+.review-summary{
+
+max-width:700px;
+
+margin:20px auto;
+
+padding:20px;
+
+background:#ffffff;
+
+border-radius:15px;
+
+text-align:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.review-summary h3{
+
+color:#2E7D32;
+
+margin-bottom:10px;
+
+}
+
+.review-actions{
+
+margin-top:15px;
+
+display:flex;
+
+gap:10px;
+
+}
+
+.review-actions button{
+
+flex:1;
+
+padding:10px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.help-btn{
+
+background:#2E7D32;
+
+color:white;
+
+}
+
+.delete-btn{
+
+background:#d32f2f;
+
+color:white;
+
+}
