@@ -694,3 +694,194 @@ img{
     font-size:18px;
 
 }
+/* ==========================================
+   Footer
+========================================== */
+
+.footer{
+
+    background:#14532d;
+    color:#ffffff;
+    padding:60px 0 20px;
+
+}
+
+.footer-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:35px;
+
+}
+
+.footer h3{
+
+    margin-bottom:15px;
+    font-size:22px;
+
+}
+
+.footer p{
+
+    margin-bottom:10px;
+    color:#d9f3df;
+
+}
+
+.footer ul{
+
+    list-style:none;
+
+}
+
+.footer ul li{
+
+    margin-bottom:10px;
+
+}
+
+.footer ul li a{
+
+    color:#d9f3df;
+    transition:.3s;
+
+}
+
+.footer ul li a:hover{
+
+    color:#ffffff;
+
+}
+
+.social-links{
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:15px;
+
+}
+
+.social-links a{
+
+    color:#d9f3df;
+    transition:.3s;
+
+}
+
+.social-links a:hover{
+
+    color:#ffffff;
+
+}
+
+.footer hr{
+
+    border:none;
+    border-top:1px solid rgba(255,255,255,.2);
+    margin:30px 0 15px;
+
+}
+
+.copyright{
+
+    text-align:center;
+    font-size:15px;
+    color:#cfe9d5;
+
+}
+
+/* ==========================================
+   WhatsApp Floating
+========================================== */
+
+.whatsapp{
+
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#25D366;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    text-decoration:none;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+    z-index:999;
+
+}
+
+.whatsapp:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* ==========================================
+   Scroll Top Button
+========================================== */
+
+#topBtn{
+
+    position:fixed;
+    right:20px;
+    bottom:165px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#198754;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    display:none;
+    z-index:999;
+
+}
+
+#topBtn:hover{
+
+    background:#146c43;
+
+}
+
+/* ==========================================
+   Toast Message
+========================================== */
+
+.toast{
+
+    position:fixed;
+    left:50%;
+    bottom:30px;
+    transform:translateX(-50%) translateY(100px);
+    background:#198754;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:10px;
+    opacity:0;
+    transition:.35s;
+    z-index:99999;
+
+}
+
+.toast.show{
+
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+
+}
+
+/* ==========================================
+   Bottom Navigation
+========================================== */
+
+.bottom-nav{
+
+    display:none;
+
+}
