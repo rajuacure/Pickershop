@@ -835,3 +835,40 @@ document.addEventListener("DOMContentLoaded",function(){
 calculateTotal();
 
 });
+// ==========================
+// Order ID Generator
+// ==========================
+
+function generateOrderID(){
+
+return "PS" + Date.now();
+
+}
+
+function showOrderSuccess(){
+
+const id = generateOrderID();
+
+localStorage.setItem("lastOrderID", id);
+
+window.location.href = "success.html";
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const orderBox = document.getElementById("orderNumber");
+
+if(orderBox){
+
+const id = localStorage.getItem("lastOrderID");
+
+if(id){
+
+orderBox.innerHTML = "🆔 Order ID: " + id;
+
+}
+
+}
+
+});
