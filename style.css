@@ -1015,3 +1015,56 @@ grid-template-columns:1fr;
 }
 
 }
+.product-gallery{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+margin-top:20px;
+
+flex-wrap:wrap;
+
+}
+
+.product-gallery img{
+
+width:80px;
+
+height:80px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+cursor:pointer;
+
+border:2px solid #ddd;
+
+transition:.3s;
+
+}
+
+.product-gallery img:hover{
+
+border-color:#2E7D32;
+
+transform:scale(1.08);
+
+}
+
+.product-image img{
+
+cursor:zoom-in;
+
+transition:.3s;
+
+}
+
+.product-image img:hover{
+
+transform:scale(1.03);
+
+}
