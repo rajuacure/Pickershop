@@ -300,7 +300,11 @@ total+=item.price;
 
 });
 
-message+="%0Aমোট মূল্য: ৳"+total;
+const grandTotal = total - discountAmount + deliveryCharge;
+
+message += "%0A🎁 Discount: ৳" + discountAmount;
+message += "%0A🚚 Delivery: ৳" + deliveryCharge;
+message += "%0A💰 সর্বমোট: ৳" + grandTotal;
 
 window.open(
 
