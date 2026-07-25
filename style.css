@@ -18,6 +18,14 @@ padding:30px 20px;
 box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
+<section class="hero">
+<h2>🌿 প্রকৃতির ছোঁয়ায় সুস্থ জীবন</h2>
+<p>প্রিমিয়াম হারবাল ও ন্যাচারাল পণ্য এখন এক জায়গায়</p>
+
+<a href="#products" class="shop-btn">Shop Now</a>
+
+</section>
+
 .logo{
 width:100px;
 margin-bottom:10px;
