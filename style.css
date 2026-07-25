@@ -1068,3 +1068,20 @@ transition:.3s;
 transform:scale(1.03);
 
 }
+// ===============================
+// Product Image Gallery
+// ===============================
+
+function changeImage(image){
+
+const mainImage=document.getElementById("productImage");
+
+if(mainImage){
+
+mainImage.src=image.src;
+
+mainImage.alt=image.alt;
+
+}
+
+}
