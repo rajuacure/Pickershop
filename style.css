@@ -319,3 +319,43 @@ color:white;
 margin-top:10px;
 font-size:18px;
 }
+.new-arrival{
+padding:60px 20px;
+background:#f8fff8;
+text-align:center;
+}
+
+.new-arrival h2{
+font-size:34px;
+color:#2E7D32;
+margin-bottom:10px;
+}
+
+.new-arrival p{
+color:#666;
+margin-bottom:30px;
+}
+
+.arrival-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
+
+.arrival-item{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+}
+
+.arrival-item:hover{
+background:#2E7D32;
+color:white;
+transform:translateY(-5px);
+}
