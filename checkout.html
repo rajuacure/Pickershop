@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🛒 Checkout</h1>
+
+<p>আপনার অর্ডারের তথ্য পূরণ করুন</p>
+
+</header>
+
+<section class="checkout">
+
+<form id="checkoutForm">
+
+<input
+type="text"
+id="customerName"
+placeholder="আপনার নাম"
+required>
+
+<input
+type="tel"
+id="customerPhone"
+placeholder="মোবাইল নম্বর"
+required>
+
+<textarea
+id="customerAddress"
+placeholder="সম্পূর্ণ ঠিকানা"
+rows="4"
+required></textarea>
+
+<select id="paymentMethod">
+
+<option value="Cash on Delivery">
+Cash on Delivery
+</option>
+
+<option value="bKash">
+bKash
+</option>
+
+<option value="Nagad">
+Nagad
+</option>
+
+<option value="Rocket">
+Rocket
+</option>
+
+</select>
+
+<button
+type="button"
+class="cart-btn"
+onclick="submitOrder()">
+
+✅ অর্ডার নিশ্চিত করুন
+
+</button>
+
+</form>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
