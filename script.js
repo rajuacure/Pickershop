@@ -934,7 +934,7 @@ localStorage.setItem("orderStatus",orderStatus);
 function nextStatus(){
 
 if(orderStatus<4){
-
+loadDeliveryInfo();
 orderStatus++;
 
 updateTrackingUI();
