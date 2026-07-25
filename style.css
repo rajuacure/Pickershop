@@ -886,3 +886,56 @@ resize:vertical;
 min-height:100px;
 
 }
+/* ==========================
+   Success Page
+========================== */
+
+.success-page{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+min-height:100vh;
+
+background:#f5fff6;
+
+padding:20px;
+
+}
+
+.success-box{
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+max-width:500px;
+
+width:100%;
+
+}
+
+.success-box h1{
+
+color:#2E7D32;
+
+margin-bottom:20px;
+
+}
+
+.success-box h2{
+
+margin:20px 0;
+
+color:#FF5722;
+
+}
