@@ -2,60 +2,89 @@
 <html lang="bn">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Picker Shop | Pure • Natural • Trusted</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
-    content="Picker Shop - প্রিমিয়াম হারবাল ও ন্যাচারাল পণ্যের বিশ্বস্ত অনলাইন শপ।">
+<title>Picker Shop | Pure • Natural • Trusted</title>
 
-  <meta name="keywords"
-    content="Picker Shop, Herbal Powder, Ashwagandha, Moringa, Natural Products, Bangladesh">
+<meta name="description" content="Picker Shop - হারবাল, প্রাকৃতিক ও স্বাস্থ্যকর পণ্যের বিশ্বস্ত অনলাইন শপ।">
 
-  <meta property="og:title" content="Picker Shop">
-  <meta property="og:description" content="Pure • Natural • Trusted">
-  <meta property="og:image"
-    content="https://rajuacure.github.io/Pickershop/images/logo.png">
-  <meta property="og:type" content="website">
-  <meta property="og:url"
-    content="https://rajuacure.github.io/Pickershop/">
+<meta name="keywords" content="Picker Shop, Herbal Powder, Ashwagandha, Moringa, Chia Seed, Honey, Coconut Oil, Bangladesh">
 
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="stylesheet" href="style.css">
+<meta name="author" content="Picker Shop">
+
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://rajuacure.github.io/Pickershop/">
+
+<meta property="og:title" content="Picker Shop | Premium Natural Products">
+
+<meta property="og:description" content="বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="https://rajuacure.github.io/Pickershop/">
+
+<meta property="og:image" content="https://rajuacure.github.io/Pickershop/images/logo.png">
+
+<link rel="icon" href="images/favicon.png">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-<div id="loader"></div>
-<!-- <div id="loader"></div> -->
-<a href="https://wa.me/8801400599748"
-class="whatsapp-float"
+
+<!-- WhatsApp Floating Button -->
+
+<a href="https://wa.me/8801400599748?text=আসসালামু আলাইকুম, আমি Picker Shop থেকে একটি পণ্য অর্ডার করতে চাই।"
+class="whatsapp"
 target="_blank">
+
 💬
+
 </a>
+
+<!-- Back To Top -->
+
+<button id="topBtn" onclick="topFunction()">
+
+⬆
+
+</button>
+
+<!-- Floating Cart -->
 
 <div class="floating-cart">
-<a href="cart.html">
-🛒 <span id="cartCount">0</span>
-</a>
-</div>
 
-<button onclick="topFunction()" id="topBtn">
-⬆
-</button>
+<a href="cart.html">
+
+🛒 <span id="cartCount">0</span>
+
+</a>
+
+</div>
 
 <header>
 
-<div class="logo-area">
+<div class="header-container">
 
 <img src="images/logo.png"
-class="logo"
-alt="Picker Shop">
+alt="Picker Shop"
+class="logo">
+
+<div>
 
 <h1>Picker Shop</h1>
 
-<p>Pure • Natural • Trusted</p>
+<p>
+
+Pure • Natural • Trusted
+
+</p>
+
+</div>
 
 </div>
 
@@ -69,517 +98,10 @@ alt="Picker Shop">
 
 <a href="contact.html">যোগাযোগ</a>
 
-<a href="cart.html">কার্ট</a>
-
 <a href="wishlist.html">Wishlist</a>
+
+<a href="cart.html">Cart</a>
 
 </nav>
 
 </header>
-
-<section class="hero">
-
-<h2>
-🌿 প্রকৃতির ছোঁয়ায় সুস্থ জীবন
-</h2>
-
-<p>
-
-বিশুদ্ধ হারবাল ও ন্যাচারাল পণ্যের বিশ্বস্ত অনলাইন শপ
-
-</p>
-
-<a href="#products" class="shop-btn">
-
-এখনই কেনাকাটা করুন
-
-</a>
-
-</section>
-
-<section class="offer-banner">
-
-<h2>
-🎉 বিশেষ অফার
-</h2>
-
-<p>
-
-৩টি বা তার বেশি পণ্য অর্ডার করলে বিশেষ ছাড়।
-
-</p>
-
-<a href="https://wa.me/8801400599748?text=আমি অফার সম্পর্কে জানতে চাই"
-class="offer-btn">
-
-এখনই অর্ডার করুন
-
-</a>
-
-</section>
-
-<section class="search-section">
-
-<input
-type="text"
-id="searchInput"
-placeholder="🔍 পণ্য খুঁজুন..."
-onkeyup="searchProducts()">
-
-</section>
-
-<section class="filter-section">
-
-<button onclick="filterProducts('all')">
-সব
-</button>
-
-<button onclick="filterProducts('powder')">
-হারবাল পাউডার
-</button>
-
-<button onclick="filterProducts('seed')">
-বীজ
-</button>
-
-<button onclick="filterProducts('oil')">
-তেল
-</button>
-
-<button onclick="filterProducts('beauty')">
-বিউটি কেয়ার
-</button>
-
-</section>
-
-<section class="categories">
-
-<h2>
-🌿 আমাদের ক্যাটাগরি
-</h2>
-
-<div class="category-grid">
-
-<div class="category-card">
-🌱
-<h3>হারবাল পাউডার</h3>
-</div>
-
-<div class="category-card">
-🌰
-<h3>বীজ</h3>
-</div>
-
-<div class="category-card">
-🥥
-<h3>প্রাকৃতিক তেল</h3>
-</div>
-
-<div class="category-card">
-🌸
-<h3>বিউটি কেয়ার</h3>
-</div>
-
-<div class="category-card">
-🍯
-<h3>মধু</h3>
-</div>
-
-<div class="category-card">
-💪
-<h3>স্বাস্থ্যসেবা</h3>
-</div>
-
-</div>
-
-</section>
-
-<section class="products" id="productsContainer">
-  <!-- Best Seller Products -->
-
-<div class="card product-card" data-category="powder">
-
-<span class="discount-badge">-10%</span>
-
-<img src="images/ashwagandha.jpg" alt="অশ্বগন্ধা পাউডার">
-
-<h3>অশ্বগন্ধা পাউডার</h3>
-
-<p>৳220</p>
-
-<div class="rating">★★★★★</div>
-
-<button class="wish-btn"
-onclick="addToWishlist('অশ্বগন্ধা পাউডার')">
-❤️ Wishlist
-</button>
-
-<button class="cart-btn"
-onclick="addToCart('অশ্বগন্ধা পাউডার',220)">
-🛒 কার্টে যোগ করুন
-</button>
-
-<a href="https://wa.me/8801400599748?text=আমি অশ্বগন্ধা পাউডার অর্ডার করতে চাই"
-class="btn">
-অর্ডার করুন
-</a>
-
-</div>
-
-<div class="card product-card" data-category="powder">
-
-<span class="discount-badge">-10%</span>
-
-<img src="images/moringa.jpg" alt="মরিঙ্গা পাউডার">
-
-<h3>মরিঙ্গা পাউডার</h3>
-
-<p>৳220</p>
-
-<div class="rating">★★★★★</div>
-
-<button class="wish-btn"
-onclick="addToWishlist('মরিঙ্গা পাউডার')">
-❤️ Wishlist
-</button>
-
-<button class="cart-btn"
-onclick="addToCart('মরিঙ্গা পাউডার',220)">
-🛒 কার্টে যোগ করুন
-</button>
-
-<a href="https://wa.me/8801400599748?text=আমি মরিঙ্গা পাউডার অর্ডার করতে চাই"
-class="btn">
-অর্ডার করুন
-</a>
-</section>
-
-<!-- Customer Reviews -->
-<section class="reviews">
-
-<h2>⭐ গ্রাহকদের মতামত</h2>
-
-<div class="review-grid">
-
-<div class="review-card">
-<div class="rating">★★★★★</div>
-<p>"পণ্যের মান খুব ভালো। আবারও অর্ডার করব।"</p>
-<h4>— রাকিব, ঢাকা</h4>
-</div>
-
-<div class="review-card">
-<div class="rating">★★★★★</div>
-<p>"ডেলিভারি দ্রুত পেয়েছি এবং প্যাকেজিংও চমৎকার ছিল।"</p>
-<h4>— সুমাইয়া, চট্টগ্রাম</h4>
-</div>
-
-<div class="review-card">
-<div class="rating">★★★★★</div>
-<p>"বিশ্বস্ত একটি অনলাইন শপ।"</p>
-<h4>— নাঈম, সিলেট</h4>
-</div>
-
-</div>
-
-</section>
-
-<!-- Delivery -->
-<section class="delivery">
-
-<h2>🚚 ডেলিভারি সুবিধা</h2>
-
-<div class="delivery-grid">
-
-<div class="delivery-card">
-<h3>🚛 সারা বাংলাদেশে ডেলিভারি</h3>
-<p>দ্রুত ও নিরাপদ কুরিয়ার সার্ভিস।</p>
-</div>
-
-<div class="delivery-card">
-<h3>📦 নিরাপদ প্যাকেজিং</h3>
-<p>প্রতিটি পণ্য যত্নসহকারে প্যাক করা হয়।</p>
-</div>
-
-<div class="delivery-card">
-<h3>💬 WhatsApp Support</h3>
-<p>যেকোনো সময় আমাদের সাথে যোগাযোগ করুন।</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-
-<h2>❓ সচরাচর জিজ্ঞাসা</h2>
-
-<div class="faq-item">
-<h3>ডেলিভারি কত দিনে পাব?</h3>
-<p>ঢাকার ভিতরে সাধারণত ১–২ দিন এবং ঢাকার বাইরে ২–৪ দিন।</p>
-</div>
-
-<div class="faq-item">
-<h3>ক্যাশ অন ডেলিভারি আছে?</h3>
-<p>হ্যাঁ, নির্দিষ্ট এলাকায় ক্যাশ অন ডেলিভারি পাওয়া যায়।</p>
-</div>
-
-<div class="faq-item">
-<h3>অর্ডার কিভাবে করব?</h3>
-<p>কার্ট অথবা WhatsApp-এর মাধ্যমে অর্ডার করতে পারবেন।</p>
-</div>
-
-</section>
-
-<!-- Newsletter -->
-<section class="newsletter">
-
-<h2>📩 অফার পেতে সাবস্ক্রাইব করুন</h2>
-
-<p>নতুন অফার ও আপডেট পেতে আপনার ইমেইল লিখুন।</p>
-
-<input type="email" placeholder="আপনার ইমেইল">
-
-<button>Subscribe</button>
-
-</section>
-
-<!-- Payment -->
-<section class="payment">
-
-<h2>💳 পেমেন্ট</h2>
-
-<p>✔ বিকাশ</p>
-<p>✔ নগদ</p>
-<p>✔ রকেট</p>
-<p>✔ Cash on Delivery (যেখানে প্রযোজ্য)</p>
-
-</section>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="footer-container">
-
-<div>
-
-<h3
-<!DOCTYPE html>
-<html lang="bn">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Product Details | Picker Shop</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<header>
-
-<h1>🌿 Picker Shop</h1>
-
-<nav>
-
-<a href="index.html">হোম</a>
-
-<a href="cart.html">কার্ট</a>
-
-<a href="wishlist.html">Wishlist</a>
-
-</nav>
-
-</header>
-
-<section class="product-details">
-
-<div class="product-image">
-<div class="product-gallery">
-
-<img src="images/moringa.jpg"
-alt="মরিঙ্গা পাউডার"
-onclick="changeImage(this)">
-
-<img src="images/ashwagandha.jpg"
-alt="অশ্বগন্ধা"
-onclick="changeImage(this)">
-
-<img src="images/chia.jpg"
-alt="চিয়া সিড"
-onclick="changeImage(this)">
-
-<img src="images/coconut-oil.jpg"
-alt="Coconut Oil"
-onclick="changeImage(this)">
-
-</div>
-<img id="productImage"
-src="images/moringa.jpg"
-alt="Product">
-
-</div>
-
-<div class="product-info">
-
-<h2 id="productName">
-
-মরিঙ্গা পাউডার
-
-</h2>
-
-<h3 id="productPrice">
-
-৳220
-
-</h3>
-
-<p id="productDescription">
-
-প্রিমিয়াম মানের ১০০% বিশুদ্ধ মরিঙ্গা পাউডার।
-স্বাস্থ্যকর জীবনযাপনের জন্য প্রতিদিন ব্যবহার করতে পারেন।
-
-</p>
-
-<ul>
-
-<li>✅ ১০০% প্রাকৃতিক</li>
-
-<li>✅ কোনো কেমিক্যাল নেই</li>
-
-<li>✅ স্বাস্থ্যসম্মত প্যাকেজিং</li>
-
-<li>✅ সারা বাংলাদেশে ডেলিভারি</li>
-
-</ul>
-
-<button class="cart-btn"
-onclick="addToCart('মরিঙ্গা পাউডার',220)">
-🛒 কার্টে যোগ করুন
-</button>
-
-<button class="wish-btn"
-onclick="addToWishlist('মরিঙ্গা পাউডার')">
-❤️ Wishlist
-</button>
-
-<a class="btn"
-href="https://wa.me/8801400599748?text=আমি মরিঙ্গা পাউডার অর্ডার করতে চাই">
-
-WhatsApp Order
-
-</a>
-
-</div>
-
-</section>
-<section class="product-review">
-
-<h2>⭐ Customer Rating</h2>
-
-<div class="rating-big">
-
-★★★★★
-
-<span>(4.9/5)</span>
-
-</div>
-
-<h3>📝 আপনার মতামত লিখুন</h3>
-
-<input
-type="text"
-id="reviewName"
-placeholder="আপনার নাম">
-
-<textarea
-id="reviewText"
-placeholder="আপনার মতামত লিখুন..."></textarea>
-
-<button class="btn"
-onclick="submitReview()">
-
-রিভিউ সাবমিট করুন
-
-</button>
-
-<div id="reviewList">
-
-</div>
-
-</section>
-
-<section class="share-box">
-
-<h2>📤 শেয়ার করুন</h2>
-
-<button class="wish-btn"
-onclick="likeProduct()">
-
-❤️ Like
-
-<span id="likeCount">
-
-0
-
-</span>
-
-</button>
-
-<button class="cart-btn"
-onclick="shareWhatsApp()">
-
-💬 WhatsApp
-
-</button>
-
-<button class="btn"
-onclick="copyLink()">
-
-🔗 Copy Link
-
-</button>
-
-</section>
-<section class="related-products">
-
-<h2>🌿 Related Products</h2>
-
-<div class="arrival-box">
-
-<div class="arrival-item">
-অশ্বগন্ধা পাউডার
-</div>
-
-<div class="arrival-item">
-চিয়া সিড
-</div>
-
-<div class="arrival-item">
-কস্তুরি হলুদ
-</div>
-
-</div>
-
-</section>
-
-<footer class="footer">
-
-<p>
-
-© 2026 Picker Shop
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
