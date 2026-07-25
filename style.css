@@ -883,3 +883,58 @@ text-align:center;
 margin:20px 0;
 
 }
+.wish-item{
+
+background:#ffffff;
+
+padding:20px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.wish-item h3{
+
+margin:0;
+
+font-size:20px;
+
+color:#2E7D32;
+
+}
+
+.wish-item button{
+
+background:#e53935;
+
+color:#fff;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.wish-item button:hover{
+
+background:#c62828;
+
+}
