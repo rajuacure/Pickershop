@@ -822,3 +822,64 @@ margin-left:10px;
 cursor:pointer;
 
 }
+.cart-page{
+
+max-width:900px;
+
+margin:auto;
+
+padding:30px 20px;
+
+}
+
+.cart-item{
+
+background:#fff;
+
+padding:20px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+
+}
+
+.payment{
+
+padding:50px 20px;
+
+text-align:center;
+
+}
+
+.payment-box{
+
+background:#fff;
+
+padding:25px;
+
+border-radius:15px;
+
+max-width:500px;
+
+margin:auto;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.help{
+
+padding:50px 20px;
+
+text-align:center;
+
+}
+
+.help p{
+
+margin:20px 0;
+
+}
