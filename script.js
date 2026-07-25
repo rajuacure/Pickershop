@@ -79,3 +79,22 @@ window.open("https://wa.me/8801400599748?text="+text);
 }
 
 loadCart();
+function addToWishlist(product){
+
+let wishlist=JSON.parse(localStorage.getItem("wishlist"))||[];
+
+if(!wishlist.includes(product)){
+
+wishlist.push(product);
+
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+alert(product+" Wishlist-এ যোগ হয়েছে ❤️");
+
+}else{
+
+alert("এই পণ্যটি আগে থেকেই Wishlist-এ আছে");
+
+}
+
+}
