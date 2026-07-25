@@ -958,3 +958,50 @@ updateTrackingUI();
 }
 
 });
+// =====================================
+// Delivery Information
+// =====================================
+
+function loadDeliveryInfo(){
+
+const dateBox=document.getElementById("deliveryDate");
+
+const rider=document.getElementById("riderName");
+
+const phone=document.getElementById("riderPhone");
+
+if(dateBox){
+
+let today=new Date();
+
+today.setDate(today.getDate()+3);
+
+dateBox.innerHTML=today.toLocaleDateString("bn-BD");
+
+}
+
+if(orderStatus>=3){
+
+rider.innerHTML="মোঃ করিম";
+
+phone.innerHTML="017XXXXXXXX";
+
+}else{
+
+rider.innerHTML="Assigned Soon";
+
+phone.innerHTML="Updating...";
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+if(document.getElementById("deliveryDate")){
+
+loadDeliveryInfo();
+
+}
+
+});
