@@ -1307,16 +1307,17 @@ let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
 box.innerHTML="";
 
 let total=0;
-
-reviews.forEach((item,index)=>{
-
-total+=Number(item.rating);
-
 box.innerHTML+=`
 
 <div class="review-item">
 
-<h4>${item.name}</h4>
+<h4>
+
+${item.name}
+
+${item.verified ? '<span class="verified">✔ Verified Buyer</span>' : ''}
+
+</h4>
 
 <div class="review-stars">
 
@@ -1326,20 +1327,22 @@ ${"⭐".repeat(Number(item.rating))}
 
 <p>${item.review}</p>
 
+${item.image ? `<img src="${item.image}" class="review-photo">` : ""}
+
 <small>📅 ${item.date}</small>
 
 <div class="review-actions">
 
-<button class="help-btn"
+<button
+class="like-btn"
+onclick="likeReview(${index})">
 
-onclick="helpReview(${index})">
-
-👍 Helpful
+❤️ ${item.likes}
 
 </button>
 
-<button class="delete-btn"
-
+<button
+class="delete-btn"
 onclick="deleteReview(${index})">
 
 🗑 Delete
@@ -1351,28 +1354,6 @@ onclick="deleteReview(${index})">
 </div>
 
 `;
-
-});
-
-const avg=document.getElementById("averageRating");
-
-const totalReview=document.getElementById("totalReviews");
-
-if(avg){
-
-avg.innerHTML=reviews.length?
-
-(total/reviews.length).toFixed(1):"0.0";
-
-}
-
-if(totalReview){
-
-totalReview.innerHTML=reviews.length;
-
-}
-
-}
 // ==========================
 // Review Actions
 // ==========================
