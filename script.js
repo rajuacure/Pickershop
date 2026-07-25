@@ -761,3 +761,73 @@ alert("আপনার অর্ডার সফলভাবে প্রস্�
 window.location.href="index.html";
 
 }
+// =====================================
+// Coupon + Total Calculation
+// =====================================
+
+let discountAmount = 0;
+const deliveryCharge = 80;
+
+function calculateTotal(){
+
+let cart = JSON.parse(localStorage.getItem("pickerCart")) || [];
+
+let subtotal = 0;
+
+cart.forEach(item => {
+
+subtotal += item.price;
+
+});
+
+let final = subtotal - discountAmount + deliveryCharge;
+
+const sub = document.getElementById("subTotal");
+const dis = document.getElementById("discount");
+const del = document.getElementById("deliveryCharge");
+const total = document.getElementById("finalTotal");
+
+if(sub) sub.innerHTML = "Subtotal: ৳" + subtotal;
+if(dis) dis.innerHTML = "Discount: ৳" + discountAmount;
+if(del) del.innerHTML = "Delivery: ৳" + deliveryCharge;
+if(total) total.innerHTML = "Total: ৳" + final;
+
+}
+
+function applyCoupon(){
+
+const input = document.getElementById("couponCode");
+
+if(!input) return;
+
+const code = input.value.trim().toUpperCase();
+
+let cart = JSON.parse(localStorage.getItem("pickerCart")) || [];
+
+let subtotal = 0;
+
+cart.forEach(item => subtotal += item.price);
+
+if(code === "PICKER10"){
+
+discountAmount = Math.round(subtotal * 0.10);
+
+showToast("🎉 ১০% ডিসকাউন্ট প্রয়োগ হয়েছে");
+
+}else{
+
+discountAmount = 0;
+
+alert("❌ Coupon Code সঠিক নয়");
+
+}
+
+calculateTotal();
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+calculateTotal();
+
+});
