@@ -1296,50 +1296,6 @@ loadReviews();
 // Picker Shop Review System
 // =====================================
 
-function submitReview(){
-
-const name=document.getElementById("reviewName").value.trim();
-
-const rating=document.getElementById("reviewRating").value;
-
-const review=document.getElementById("reviewText").value.trim();
-
-if(name==="" || review===""){
-
-alert("সব তথ্য পূরণ করুন");
-
-return;
-
-}
-
-let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
-
-reviews.unshift({
-
-name:name,
-
-rating:rating,
-
-review:review,
-
-date:new Date().toLocaleDateString("bn-BD")
-
-});
-
-localStorage.setItem("pickerReviews",JSON.stringify(reviews));
-
-document.getElementById("reviewName").value="";
-
-document.getElementById("reviewText").value="";
-
-document.getElementById("reviewRating").value="5";
-
-loadReviews();
-
-showToast("⭐ ধন্যবাদ! আপনার রিভিউ সফলভাবে জমা হয়েছে");
-
-}
-
 function loadReviews(){
 
 const box=document.getElementById("reviewList");
@@ -1350,7 +1306,11 @@ let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
 
 box.innerHTML="";
 
-reviews.forEach(item=>{
+let total=0;
+
+reviews.forEach((item,index)=>{
+
+total+=Number(item.rating);
 
 box.innerHTML+=`
 
@@ -1368,16 +1328,48 @@ ${"⭐".repeat(Number(item.rating))}
 
 <small>📅 ${item.date}</small>
 
+<div class="review-actions">
+
+<button class="help-btn"
+
+onclick="helpReview(${index})">
+
+👍 Helpful
+
+</button>
+
+<button class="delete-btn"
+
+onclick="deleteReview(${index})">
+
+🗑 Delete
+
+</button>
+
+</div>
+
 </div>
 
 `;
 
 });
 
+const avg=document.getElementById("averageRating");
+
+const totalReview=document.getElementById("totalReviews");
+
+if(avg){
+
+avg.innerHTML=reviews.length?
+
+(total/reviews.length).toFixed(1):"0.0";
+
 }
 
-document.addEventListener("DOMContentLoaded",function(){
+if(totalReview){
 
-loadReviews();
+totalReview.innerHTML=reviews.length;
 
-});
+}
+
+}
