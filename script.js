@@ -1106,3 +1106,45 @@ welcome.innerHTML="👋 স্বাগতম, "+user.name;
 }
 
 });
+// =====================================
+// User Profile
+// =====================================
+
+function loadProfile(){
+
+const user=JSON.parse(localStorage.getItem("pickerUser"));
+
+if(!user){
+
+window.location.href="login.html";
+
+return;
+
+}
+
+const name=document.getElementById("profileName");
+const email=document.getElementById("profileEmail");
+
+if(name){
+
+name.innerHTML=user.name;
+
+}
+
+if(email){
+
+email.innerHTML="📧 "+user.email;
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+if(document.getElementById("profileName")){
+
+loadProfile();
+
+}
+
+});
