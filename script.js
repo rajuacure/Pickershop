@@ -566,3 +566,63 @@ setTimeout(function(){
 showToast("🌿 Picker Shop-এ আপনাকে স্বাগতম");
 
 },1500);
+// =====================================
+// Picker Shop V4
+// Product Modal
+// =====================================
+
+function openModal(title, price, description, image, realPrice){
+
+const modal=document.getElementById("productModal");
+
+document.getElementById("modalTitle").innerText=title;
+
+document.getElementById("modalPrice").innerText=price;
+
+document.getElementById("modalDescription").innerText=description;
+
+document.getElementById("modalImage").src=image;
+
+document.getElementById("modalCartBtn").onclick=function(){
+
+addToCart(title, realPrice);
+
+closeModal();
+
+};
+
+modal.style.display="flex";
+
+}
+
+function closeModal(){
+
+document.getElementById("productModal").style.display="none";
+
+}
+
+// Modal-এর বাইরে ক্লিক করলে বন্ধ হবে
+
+window.onclick=function(event){
+
+const modal=document.getElementById("productModal");
+
+if(event.target===modal){
+
+closeModal();
+
+}
+
+}
+
+// ESC চাপলে বন্ধ হবে
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+closeModal();
+
+}
+
+});
