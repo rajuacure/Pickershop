@@ -209,8 +209,160 @@ onclick="removeItem(${index})">
 
     }
 
-    cartBox.innerHTML=
-        /* =====================================
+    cartBox.innerHTML=html;
+
+    totalPrice.innerHTML="মোট: ৳"+total;
+
+}
+
+// ==========================
+// Remove Item
+// ==========================
+
+function removeItem(index){
+
+    let cart=getCart();
+
+    cart.splice(index,1);
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    loadCart();
+
+    showToast("❌ পণ্য সরানো হয়েছে");
+
+}
+
+// ==========================
+// WhatsApp Checkout
+// ==========================
+
+function checkoutWhatsApp(){
+
+    let cart=getCart();
+
+    if(cart.length===0){
+
+        alert("কার্ট খালি");
+
+        return;
+
+    }
+
+    let text="আসসালামু আলাইকুম,%0Aআমি নিচের পণ্যগুলো অর্ডার করতে চাই:%0A%0A";
+
+    let total=0;
+
+    cart.forEach(function(item){
+
+        text+=item.name+" - ৳"+item.price+"%0A";
+
+        total+=Number(item.price);
+
+    });
+
+    text+="%0Aমোট = ৳"+total;
+
+    window.open(
+
+"https://wa.me/8801400599748?text="+text,
+
+"_blank"
+
+);
+
+}
+
+// ==========================
+// Wishlist
+// ==========================
+
+function addToWishlist(product){
+
+    let wishlist=getWishlist();
+
+    if(!wishlist.includes(product)){
+
+        wishlist.push(product);
+
+        saveWishlist(wishlist);
+
+        showToast("❤️ Wishlist-এ যোগ হয়েছে");
+
+    }else{
+
+        showToast("✔ আগে থেকেই Wishlist-এ আছে");
+
+    }
+
+}
+
+// ==========================
+// Load Wishlist
+// ==========================
+
+function loadWishlist(){
+
+    const box=document.getElementById("wishlistItems");
+
+    if(!box) return;
+
+    let wishlist=getWishlist();
+
+    let html="";
+
+    wishlist.forEach(function(item,index){
+
+        html+=`
+
+<div class="card" style="padding:20px;margin-bottom:15px;">
+
+<h3>${item}</h3>
+
+<button class="wish-btn"
+
+onclick="removeWishlist(${index})">
+
+🗑 Remove
+
+</button>
+
+</div>
+
+`;
+
+    });
+
+    if(wishlist.length===0){
+
+        html="<h3>❤️ Wishlist খালি</h3>";
+
+    }
+
+    box.innerHTML=html;
+
+}
+
+// ==========================
+// Remove Wishlist
+// ==========================
+
+function removeWishlist(index){
+
+    let wishlist=getWishlist();
+
+    wishlist.splice(index,1);
+
+    saveWishlist(wishlist);
+
+    loadWishlist();
+
+    showToast("🗑 Wishlist থেকে সরানো হয়েছে");
+
+}
+/* =====================================
 script.js - Part 3
 Search, Filter & Reviews
 ===================================== */
@@ -265,8 +417,226 @@ function filterProducts(category){
 
             card.style.display="block";
 
+        }else{
+
+            card.style.display="none";
+
         }
-        /* =====================================
+
+    });
+
+}
+
+// ==========================
+// Review Submit
+// ==========================
+
+function submitReview(){
+
+    const name=document.getElementById("reviewName");
+
+    const rating=document.getElementById("reviewRating");
+
+    const review=document.getElementById("reviewText");
+
+    const image=document.getElementById("reviewImage");
+
+    if(!name || !rating || !review){
+
+        return;
+
+    }
+
+    if(name.value.trim()==="" || review.value.trim()===""){
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=function(){
+
+        let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+        reviews.unshift({
+
+            name:name.value,
+
+            rating:Number(rating.value),
+
+            review:review.value,
+
+            image:image.files[0] ? reader.result : "",
+
+            likes:0,
+
+            verified:true,
+
+            date:new Date().toLocaleDateString("bn-BD")
+
+        });
+
+        localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+        name.value="";
+        review.value="";
+        rating.value="5";
+
+        if(image){
+
+            image.value="";
+        }
+
+        loadReviews();
+
+        showToast("⭐ রিভিউ সফলভাবে যোগ হয়েছে");
+
+    };
+
+    if(image && image.files.length>0){
+
+        reader.readAsDataURL(image.files[0]);
+
+    }else{
+
+        reader.onload();
+
+    }
+
+}
+
+// ==========================
+// Load Reviews
+// ==========================
+
+function loadReviews(){
+
+    const box=document.getElementById("reviewList");
+
+    if(!box) return;
+
+    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+    box.innerHTML="";
+
+    let total=0;
+
+    reviews.forEach(function(item,index){
+
+        total+=Number(item.rating);
+
+        box.innerHTML+=`
+
+<div class="review-item">
+
+<h4>
+
+${item.name}
+
+${item.verified ? '<span class="verified">✔ Verified Buyer</span>' : ''}
+
+</h4>
+
+<div class="review-stars">
+
+${"⭐".repeat(item.rating)}
+
+</div>
+
+<p>${item.review}</p>
+
+${item.image ? `<img src="${item.image}" class="review-photo">` : ""}
+
+<small>📅 ${item.date}</small>
+
+<div class="review-actions">
+
+<button class="like-btn"
+
+onclick="likeReview(${index})">
+
+❤️ ${item.likes}
+
+</button>
+
+<button class="delete-btn"
+
+onclick="deleteReview(${index})">
+
+🗑 Delete
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+    });
+
+    const avg=document.getElementById("averageRating");
+
+    const totalReview=document.getElementById("totalReviews");
+
+    if(avg){
+
+        avg.innerHTML=reviews.length ?
+
+        (total/reviews.length).toFixed(1) : "0.0";
+
+    }
+
+    if(totalReview){
+
+        totalReview.innerHTML=reviews.length;
+
+    }
+
+}
+
+// ==========================
+// Like Review
+// ==========================
+
+function likeReview(index){
+
+    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+    reviews[index].likes++;
+
+    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+    loadReviews();
+
+}
+
+// ==========================
+// Delete Review
+// ==========================
+
+function deleteReview(index){
+
+    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+    reviews.splice(index,1);
+
+    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+    loadReviews();
+
+    showToast("🗑 রিভিউ মুছে ফেলা হয়েছে");
+
+}
+
+// Auto Load Reviews
+
+loadReviews();
+
+/* =====================================
 script.js - Part 4 (Final)
 Newsletter, Login, Tracking
 ===================================== */
@@ -456,3 +826,6 @@ document.addEventListener("DOMContentLoaded",function(){
     loadProfile();
 
 });
+
+
+
