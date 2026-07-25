@@ -1377,22 +1377,70 @@ totalReview.innerHTML=reviews.length;
 // Review Actions
 // ==========================
 
-function deleteReview(index){
+function submitReview(){
 
-let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+const name=document.getElementById("reviewName").value.trim();
 
-reviews.splice(index,1);
+const rating=document.getElementById("reviewRating").value;
 
-localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+const review=document.getElementById("reviewText").value.trim();
 
-loadReviews();
+const file=document.getElementById("reviewImage").files[0];
 
-showToast("🗑 Review Delete হয়েছে");
+if(name==="" || review===""){
+
+alert("সব তথ্য পূরণ করুন");
+
+return;
 
 }
 
-function helpReview(index){
+const reader=new FileReader();
 
-showToast("👍 ধন্যবাদ! আপনার Feedback গ্রহণ করা হয়েছে");
+reader.onload=function(){
+
+let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+
+reviews.unshift({
+
+name:name,
+
+rating:rating,
+
+review:review,
+
+date:new Date().toLocaleDateString("bn-BD"),
+
+image:reader.result,
+
+likes:0,
+
+verified:true
+
+});
+
+localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+document.getElementById("reviewName").value="";
+
+document.getElementById("reviewText").value="";
+
+document.getElementById("reviewImage").value="";
+
+loadReviews();
+
+showToast("⭐ ধন্যবাদ! আপনার রিভিউ সংরক্ষণ হয়েছে");
+
+};
+
+if(file){
+
+reader.readAsDataURL(file);
+
+}else{
+
+reader.onload();
+
+}
 
 }
