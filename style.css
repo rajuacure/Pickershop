@@ -549,3 +549,25 @@ z-index:999;
 .whatsapp:hover{
 transform:scale(1.1);
 }
+/* ===========================
+   Dark Mode
+=========================== */
+
+.dark-mode{
+background:#121212;
+color:#fff;
+}
+
+.dark-mode header,
+.dark-mode .card,
+.dark-mode .footer,
+.dark-mode .category-card,
+.dark-mode .review-card,
+.dark-mode .delivery-card{
+background:#1f1f1f;
+color:#fff;
+}
+
+.dark-mode a{
+color:#90EE90;
+}
