@@ -98,3 +98,26 @@ alert("এই পণ্যটি আগে থেকেই Wishlist-এ আছ�
 }
 
 }
+function searchProducts(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+
+let cards=document.querySelectorAll(".product-card");
+
+cards.forEach(function(card){
+
+let name=card.querySelector("h3").innerText.toLowerCase();
+
+if(name.includes(input)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
