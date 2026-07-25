@@ -339,3 +339,166 @@ img{
     color:#198754;
 
 }
+/* ==========================================
+   Products Section
+========================================== */
+
+.products-section{
+
+    padding:70px 0;
+    background:#f8faf7;
+
+}
+
+.products-section h2{
+
+    text-align:center;
+    color:#198754;
+    margin-bottom:25px;
+    font-size:32px;
+
+}
+
+/* Search Box */
+
+#searchInput{
+
+    width:100%;
+    max-width:500px;
+    display:block;
+    margin:0 auto 35px;
+    padding:14px 18px;
+    border:2px solid #198754;
+    border-radius:12px;
+    outline:none;
+    font-size:16px;
+
+}
+
+#searchInput:focus{
+
+    box-shadow:0 0 8px rgba(25,135,84,.25);
+
+}
+
+/* Product Grid */
+
+.products{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+
+}
+
+/* Product Card */
+
+.product-card{
+
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+    transition:.35s;
+    padding:18px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+
+}
+
+.product-card:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 12px 28px rgba(0,0,0,.15);
+
+}
+
+.product-card img{
+
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+
+}
+
+.product-card h3{
+
+    margin:15px 0 8px;
+    font-size:22px;
+    color:#222;
+
+}
+
+/* Rating */
+
+.rating{
+
+    color:#FFC107;
+    font-size:18px;
+    margin-bottom:8px;
+
+}
+
+/* Price */
+
+.price{
+
+    font-size:24px;
+    font-weight:700;
+    color:#198754;
+    margin-bottom:10px;
+
+}
+
+/* Badge */
+
+.badge{
+
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#198754;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+
+}
+
+.badge.discount{
+
+    background:#dc3545;
+
+}
+
+.badge.stock{
+
+    background:#0d6efd;
+
+}
+
+/* Order Button */
+
+.order-btn{
+
+    margin-top:12px;
+    display:block;
+    width:100%;
+    text-align:center;
+    background:#25D366;
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.order-btn:hover{
+
+    background:#1ebe5d;
+
+}
