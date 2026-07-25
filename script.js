@@ -1,65 +1,27 @@
-/* =====================================
-Picker Shop V10 Final
-script.js - Part 1
-===================================== */
+/* ==========================================
+   Picker Shop V11
+   script.js - Part 1
+========================================== */
 
-// ==========================
-// Loader
-// ==========================
-
-window.addEventListener("load", function () {
-
+// ---------- Loader ----------
+window.addEventListener("load", () => {
     const loader = document.getElementById("loader");
-
     if (loader) {
-
         loader.style.display = "none";
-
     }
 
+    updateCartCount();
+
+    if (typeof loadCart === "function") loadCart();
+    if (typeof loadWishlist === "function") loadWishlist();
+    if (typeof loadReviews === "function") loadReviews();
+    if (typeof loadProfile === "function") loadProfile();
 });
 
-// ==========================
-// Scroll To Top
-// ==========================
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", function () {
-
-    if (!topBtn) return;
-
-    if (window.scrollY > 300) {
-
-        topBtn.style.display = "block";
-
-    } else {
-
-        topBtn.style.display = "none";
-
-    }
-
-});
-
-function topFunction() {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-// ==========================
-// Toast Message
-// ==========================
-
+// ---------- Toast ----------
 function showToast(message) {
 
-    let toast = document.createElement("div");
+    const toast = document.createElement("div");
 
     toast.className = "toast";
 
@@ -71,157 +33,138 @@ function showToast(message) {
 
         toast.classList.add("show");
 
-    }, 100);
+    },100);
 
     setTimeout(() => {
 
         toast.classList.remove("show");
 
-        setTimeout(() => {
+        setTimeout(()=>{
 
             toast.remove();
 
-        }, 300);
+        },300);
 
-    }, 2500);
+    },2500);
 
 }
 
-// ==========================
-// Local Storage
-// ==========================
+// ---------- Local Storage ----------
 
-function getCart() {
+function getCart(){
 
     return JSON.parse(localStorage.getItem("pickerCart")) || [];
 
 }
 
-function saveCart(cart) {
+function saveCart(cart){
 
-    localStorage.setItem("pickerCart", JSON.stringify(cart));
+    localStorage.setItem("pickerCart",JSON.stringify(cart));
 
 }
 
-function getWishlist() {
+function getWishlist(){
 
     return JSON.parse(localStorage.getItem("wishlist")) || [];
 
 }
 
-function saveWishlist(list) {
+function saveWishlist(list){
 
-    localStorage.setItem("wishlist", JSON.stringify(list));
-
-}
-
-// ==========================
-// Cart Counter
-// ==========================
-
-function updateCartCount() {
-
-    const count = document.getElementById("cartCount");
-
-    if (!count) return;
-
-    count.innerHTML = getCart().length;
+    localStorage.setItem("wishlist",JSON.stringify(list));
 
 }
 
-updateCartCount();
-/* =====================================
-script.js - Part 2
-Cart & Wishlist
-===================================== */
+// ---------- Cart Counter ----------
 
-// ==========================
-// Add To Cart
-// ==========================
+function updateCartCount(){
 
-function addToCart(name, price) {
+    const count=document.getElementById("cartCount");
+
+    if(count){
+
+        count.innerHTML=getCart().length;
+
+    }
+
+}
+
+// ---------- Scroll To Top ----------
+
+window.addEventListener("scroll",()=>{
+
+    const btn=document.getElementById("topBtn");
+
+    if(!btn) return;
+
+    if(window.scrollY>300){
+
+        btn.style.display="block";
+
+    }else{
+
+        btn.style.display="none";
+
+    }
+
+});
+
+function topFunction(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+/* ==========================================
+   Picker Shop V11
+   script.js - Part 2
+   Cart & Wishlist
+========================================== */
+
+// ---------- Add To Cart ----------
+
+function addToCart(name, price){
 
     let cart = getCart();
 
-    cart.push({
+    const found = cart.find(item => item.name === name);
 
-        name: name,
+    if(found){
 
-        price: price
+        found.qty += 1;
 
-    });
+    }else{
+
+        cart.push({
+
+            name:name,
+
+            price:Number(price),
+
+            qty:1
+
+        });
+
+    }
 
     saveCart(cart);
 
     updateCartCount();
 
-    showToast("🛒 " + name + " কার্টে যোগ হয়েছে");
+    showToast("🛒 কার্টে যোগ হয়েছে");
 
 }
 
-// ==========================
-// Load Cart
-// ==========================
-
-function loadCart() {
-
-    const cartBox = document.getElementById("cartItems");
-
-    const totalPrice = document.getElementById("totalPrice");
-
-    if (!cartBox || !totalPrice) return;
-
-    let cart = getCart();
-
-    let html = "";
-
-    let total = 0;
-
-    cart.forEach(function(item, index){
-
-        total += Number(item.price);
-
-        html += `
-
-<div class="card" style="padding:20px;margin-bottom:15px;">
-
-<h3>${item.name}</h3>
-
-<p>৳${item.price}</p>
-
-<button class="wish-btn"
-
-onclick="removeItem(${index})">
-
-❌ Remove
-
-</button>
-
-</div>
-
-`;
-
-    });
-
-    if(cart.length===0){
-
-        html="<h3>🛒 আপনার কার্ট খালি</h3>";
-
-    }
-
-    cartBox.innerHTML=html;
-
-    totalPrice.innerHTML="মোট: ৳"+total;
-
-}
-
-// ==========================
-// Remove Item
-// ==========================
+// ---------- Remove Cart Item ----------
 
 function removeItem(index){
 
-    let cart=getCart();
+    let cart = getCart();
 
     cart.splice(index,1);
 
@@ -235,59 +178,113 @@ function removeItem(index){
 
 }
 
-// ==========================
-// WhatsApp Checkout
-// ==========================
+// ---------- Load Cart ----------
 
-function checkoutWhatsApp(){
+function loadCart(){
 
-    let cart=getCart();
+    const cartBox = document.getElementById("cartItems");
+
+    const totalBox = document.getElementById("totalPrice");
+
+    if(!cartBox || !totalBox) return;
+
+    let cart = getCart();
+
+    let html = "";
+
+    let total = 0;
 
     if(cart.length===0){
 
-        alert("কার্ট খালি");
+        cartBox.innerHTML="<h3>🛒 আপনার কার্ট খালি</h3>";
+
+        totalBox.innerHTML="মোট: ৳0";
 
         return;
 
     }
 
-    let text="আসসালামু আলাইকুম,%0Aআমি নিচের পণ্যগুলো অর্ডার করতে চাই:%0A%0A";
+    cart.forEach((item,index)=>{
 
-    let total=0;
+        total += item.price * item.qty;
 
-    cart.forEach(function(item){
+        html += `
 
-        text+=item.name+" - ৳"+item.price+"%0A";
+<div class="card" style="padding:20px;margin-bottom:15px;">
 
-        total+=Number(item.price);
+<h3>${item.name}</h3>
+
+<p>দাম: ৳${item.price}</p>
+
+<p>পরিমাণ: ${item.qty}</p>
+
+<button class="wish-btn"
+onclick="removeItem(${index})">
+
+❌ Remove
+
+</button>
+
+</div>
+
+`;
 
     });
 
-    text+="%0Aমোট = ৳"+total;
+    cartBox.innerHTML = html;
 
-    window.open(
-
-"https://wa.me/8801400599748?text="+text,
-
-"_blank"
-
-);
+    totalBox.innerHTML = "মোট: ৳" + total;
 
 }
 
-// ==========================
-// Wishlist
-// ==========================
+// ---------- WhatsApp Checkout ----------
 
-function addToWishlist(product){
+function checkoutWhatsApp(){
 
-    let wishlist=getWishlist();
+    let cart = getCart();
 
-    if(!wishlist.includes(product)){
+    if(cart.length===0){
 
-        wishlist.push(product);
+        alert("কার্ট খালি");
+              return;
 
-        saveWishlist(wishlist);
+    }
+
+    let message="আসসালামু আলাইকুম,%0Aআমি নিচের পণ্যগুলো অর্ডার করতে চাই:%0A%0A";
+
+    let total=0;
+
+    cart.forEach(item=>{
+
+        message += `${item.name} (${item.qty}টি) - ৳${item.price * item.qty}%0A`;
+
+        total += item.price * item.qty;
+
+    });
+
+    message += `%0Aমোট মূল্য: ৳${total}`;
+
+    window.open(
+
+"https://wa.me/8801400599748?text="+message,
+
+"_blank"
+
+    );
+
+}
+
+// ---------- Wishlist ----------
+
+function addToWishlist(name){
+
+    let list = getWishlist();
+
+    if(!list.includes(name)){
+
+        list.push(name);
+
+        saveWishlist(list);
 
         showToast("❤️ Wishlist-এ যোগ হয়েছে");
 
@@ -299,30 +296,35 @@ function addToWishlist(product){
 
 }
 
-// ==========================
-// Load Wishlist
-// ==========================
+// ---------- Load Wishlist ----------
 
 function loadWishlist(){
 
-    const box=document.getElementById("wishlistItems");
+    const box = document.getElementById("wishlistItems");
 
     if(!box) return;
 
-    let wishlist=getWishlist();
+    let list = getWishlist();
+
+    if(list.length===0){
+
+        box.innerHTML="<h3>❤️ Wishlist খালি</h3>";
+
+        return;
+
+    }
 
     let html="";
 
-    wishlist.forEach(function(item,index){
+    list.forEach((item,index)=>{
 
-        html+=`
+        html += `
 
 <div class="card" style="padding:20px;margin-bottom:15px;">
 
 <h3>${item}</h3>
 
 <button class="wish-btn"
-
 onclick="removeWishlist(${index})">
 
 🗑 Remove
@@ -335,41 +337,32 @@ onclick="removeWishlist(${index})">
 
     });
 
-    if(wishlist.length===0){
-
-        html="<h3>❤️ Wishlist খালি</h3>";
-
-    }
-
-    box.innerHTML=html;
+    box.innerHTML = html;
 
 }
 
-// ==========================
-// Remove Wishlist
-// ==========================
+// ---------- Remove Wishlist ----------
 
 function removeWishlist(index){
 
-    let wishlist=getWishlist();
+    let list = getWishlist();
 
-    wishlist.splice(index,1);
+    list.splice(index,1);
 
-    saveWishlist(wishlist);
+    saveWishlist(list);
 
     loadWishlist();
 
     showToast("🗑 Wishlist থেকে সরানো হয়েছে");
 
 }
-/* =====================================
-script.js - Part 3
-Search, Filter & Reviews
-===================================== */
+/* ==========================================
+   Picker Shop V11
+   script.js - Part 3
+   Search, Filter & Reviews
+========================================== */
 
-// ==========================
-// Product Search
-// ==========================
+// ---------- Product Search ----------
 
 function searchProducts(){
 
@@ -377,15 +370,15 @@ function searchProducts(){
 
     if(!input) return;
 
-    const value=input.value.toLowerCase();
+    const keyword=input.value.toLowerCase();
 
     const cards=document.querySelectorAll(".product-card");
 
-    cards.forEach(function(card){
+    cards.forEach(card=>{
 
         const title=card.querySelector("h3").innerText.toLowerCase();
 
-        if(title.includes(value)){
+        if(title.indexOf(keyword)>-1){
 
             card.style.display="block";
 
@@ -399,25 +392,27 @@ function searchProducts(){
 
 }
 
-// ==========================
-// Product Filter
-// ==========================
+// ---------- Category Filter ----------
 
 function filterProducts(category){
 
     const cards=document.querySelectorAll(".product-card");
 
-    cards.forEach(function(card){
+    cards.forEach(card=>{
 
         if(category==="all"){
 
             card.style.display="block";
 
-        }else if(card.dataset.category===category){
+        }
+
+        else if(card.dataset.category===category){
 
             card.style.display="block";
 
-        }else{
+        }
+
+        else{
 
             card.style.display="none";
 
@@ -427,9 +422,21 @@ function filterProducts(category){
 
 }
 
-// ==========================
-// Review Submit
-// ==========================
+// ---------- Reviews ----------
+
+function getReviews(){
+
+    return JSON.parse(localStorage.getItem("pickerReviews")) || [];
+
+}
+
+function saveReviews(reviews){
+
+    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+
+}
+
+// ---------- Submit Review ----------
 
 function submitReview(){
 
@@ -438,8 +445,6 @@ function submitReview(){
     const rating=document.getElementById("reviewRating");
 
     const review=document.getElementById("reviewText");
-
-    const image=document.getElementById("reviewImage");
 
     if(!name || !rating || !review){
 
@@ -455,90 +460,59 @@ function submitReview(){
 
     }
 
-    const reader=new FileReader();
+    let reviews=getReviews();
 
-    reader.onload=function(){
+    reviews.unshift({
 
-        let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+        name:name.value,
 
-        reviews.unshift({
+        rating:Number(rating.value),
 
-            name:name.value,
+        review:review.value,
 
-            rating:Number(rating.value),
+        likes:0,
 
-            review:review.value,
+        date:new Date().toLocaleDateString("bn-BD")
 
-            image:image.files[0] ? reader.result : "",
+    });
 
-            likes:0,
+    saveReviews(reviews);
 
-            verified:true,
+    name.value="";
 
-            date:new Date().toLocaleDateString("bn-BD")
+    review.value="";
 
-        });
+    rating.value="5";
 
-        localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+    loadReviews();
 
-        name.value="";
-        review.value="";
-        rating.value="5";
-
-        if(image){
-
-            image.value="";
-        }
-
-        loadReviews();
-
-        showToast("⭐ রিভিউ সফলভাবে যোগ হয়েছে");
-
-    };
-
-    if(image && image.files.length>0){
-
-        reader.readAsDataURL(image.files[0]);
-
-    }else{
-
-        reader.onload();
-
-    }
+    showToast("⭐ রিভিউ সফলভাবে যোগ হয়েছে");
 
 }
 
-// ==========================
-// Load Reviews
-// ==========================
+// ---------- Load Reviews ----------
 
 function loadReviews(){
 
-    const box=document.getElementById("reviewList");
+    const list=document.getElementById("reviewList");
 
-    if(!box) return;
+    if(!list) return;
 
-    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+    const reviews=getReviews();
 
-    box.innerHTML="";
+    let html="";
 
     let total=0;
 
-    reviews.forEach(function(item,index){
+    reviews.forEach((item,index)=>{
 
-        total+=Number(item.rating);
+        total+=item.rating;
 
-        box.innerHTML+=`
+        html+=`
 
 <div class="review-item">
 
-<h4>
-
-${item.name}
-
-${item.verified ? '<span class="verified">✔ Verified Buyer</span>' : ''}
-
-</h4>
+<h4>${item.name}</h4>
 
 <div class="review-stars">
 
@@ -548,9 +522,7 @@ ${"⭐".repeat(item.rating)}
 
 <p>${item.review}</p>
 
-${item.image ? `<img src="${item.image}" class="review-photo">` : ""}
-
-<small>📅 ${item.date}</small>
+<small>${item.date}</small>
 
 <div class="review-actions">
 
@@ -578,15 +550,15 @@ onclick="deleteReview(${index})">
 
     });
 
+    list.innerHTML=html;
+
     const avg=document.getElementById("averageRating");
 
     const totalReview=document.getElementById("totalReviews");
 
     if(avg){
 
-        avg.innerHTML=reviews.length ?
-
-        (total/reviews.length).toFixed(1) : "0.0";
+        avg.innerHTML=reviews.length ? (total/reviews.length).toFixed(1) : "0.0";
 
     }
 
@@ -598,52 +570,41 @@ onclick="deleteReview(${index})">
 
 }
 
-// ==========================
-// Like Review
-// ==========================
+// ---------- Like Review ----------
 
 function likeReview(index){
 
-    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+    let reviews=getReviews();
 
     reviews[index].likes++;
 
-    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+    saveReviews(reviews);
 
     loadReviews();
 
 }
 
-// ==========================
-// Delete Review
-// ==========================
+// ---------- Delete Review ----------
 
 function deleteReview(index){
 
-    let reviews=JSON.parse(localStorage.getItem("pickerReviews"))||[];
+    let reviews=getReviews();
 
     reviews.splice(index,1);
 
-    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
+    saveReviews(reviews);
 
     loadReviews();
 
     showToast("🗑 রিভিউ মুছে ফেলা হয়েছে");
 
 }
+/* ==========================================
+   Picker Shop V11
+   script.js - Part 4 (Final)
+========================================== */
 
-// Auto Load Reviews
-
-loadReviews();
-
-/* =====================================
-script.js - Part 4 (Final)
-Newsletter, Login, Tracking
-===================================== */
-
-// ==========================
-// Newsletter
-// ==========================
+// ---------- Newsletter ----------
 
 function subscribeNewsletter(){
 
@@ -659,13 +620,7 @@ function subscribeNewsletter(){
 
     }
 
-    localStorage.setItem(
-
-        "newsletterEmail",
-
-        email.value
-
-    );
+    localStorage.setItem("newsletterEmail",email.value);
 
     showToast("📩 সাবস্ক্রাইব সফল হয়েছে");
 
@@ -673,9 +628,7 @@ function subscribeNewsletter(){
 
 }
 
-// ==========================
-// Login
-// ==========================
+// ---------- Login ----------
 
 function loginUser(){
 
@@ -685,9 +638,9 @@ function loginUser(){
 
     if(!email || !password) return;
 
-    if(email.value==="" || password.value===""){
+    if(email.value.trim()==="" || password.value.trim()===""){
 
-        alert("সব তথ্য পূরণ করুন");
+        alert("ইমেইল ও পাসওয়ার্ড দিন");
 
         return;
 
@@ -699,17 +652,15 @@ function loginUser(){
 
     showToast("✅ লগইন সফল");
 
-    setTimeout(function(){
+    setTimeout(()=>{
 
-        window.location="profile.html";
+        window.location.href="profile.html";
 
     },800);
 
 }
 
-// ==========================
-// Register
-// ==========================
+// ---------- Register ----------
 
 function registerUser(){
 
@@ -719,7 +670,25 @@ function registerUser(){
 
     const password=document.getElementById("registerPassword");
 
-    if(!name || !email || !password) return;
+    const confirm=document.getElementById("confirmPassword");
+
+    if(!name || !email || !password || !confirm) return;
+
+    if(name.value==="" || email.value==="" || password.value===""){
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    if(password.value!==confirm.value){
+
+        alert("পাসওয়ার্ড মিলছে না");
+
+        return;
+
+    }
 
     localStorage.setItem("pickerName",name.value);
 
@@ -729,17 +698,15 @@ function registerUser(){
 
     showToast("🎉 রেজিস্ট্রেশন সফল");
 
-    setTimeout(function(){
+    setTimeout(()=>{
 
-        window.location="login.html";
+        window.location.href="login.html";
 
     },1000);
 
 }
 
-// ==========================
-// Logout
-// ==========================
+// ---------- Logout ----------
 
 function logoutUser(){
 
@@ -747,39 +714,37 @@ function logoutUser(){
 
     showToast("👋 লগআউট সফল");
 
-    setTimeout(function(){
+    setTimeout(()=>{
 
-        window.location="login.html";
+        window.location.href="login.html";
 
     },800);
 
 }
 
-// ==========================
-// Profile
-// ==========================
+// ---------- Load Profile ----------
 
 function loadProfile(){
 
     const profile=document.getElementById("profileName");
 
+    const email=document.getElementById("profileEmail");
+
     if(profile){
 
-        profile.innerHTML=
+        profile.innerHTML=localStorage.getItem("pickerName") || "Guest User";
 
-        localStorage.getItem("pickerName")
+    }
 
-        ||
+    if(email){
 
-        "Guest User";
+        email.innerHTML=localStorage.getItem("pickerUser") || "-";
 
     }
 
 }
 
-// ==========================
-// Order Tracking
-// ==========================
+// ---------- Order Tracking ----------
 
 function trackOrder(){
 
@@ -791,7 +756,7 @@ function trackOrder(){
 
     if(input.value.trim()===""){
 
-        result.innerHTML="অর্ডার নম্বর লিখুন";
+        result.innerHTML="<p>অর্ডার নম্বর লিখুন</p>";
 
         return;
 
@@ -799,33 +764,48 @@ function trackOrder(){
 
     result.innerHTML=`
 
-    <h3>📦 Order Found</h3>
+        <div class="card" style="padding:20px;">
 
-    <p>Tracking ID : ${input.value}</p>
+            <h3>📦 Order Found</h3>
 
-    <p>স্ট্যাটাস : 🚚 ডেলিভারির পথে</p>
+            <p><strong>Tracking ID:</strong> ${input.value}</p>
+
+            <p><strong>Status:</strong> 🚚 ডেলিভারির পথে</p>
+
+        </div>
 
     `;
 
 }
 
-// ==========================
-// Auto Load
-// ==========================
+// ---------- Auto Initialize ----------
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded",()=>{
 
     updateCartCount();
 
-    loadCart();
+    if(document.getElementById("cartItems")){
 
-    loadWishlist();
+        loadCart();
 
-    loadReviews();
+    }
 
-    loadProfile();
+    if(document.getElementById("wishlistItems")){
+
+        loadWishlist();
+
+    }
+
+    if(document.getElementById("reviewList")){
+
+        loadReviews();
+
+    }
+
+    if(document.getElementById("profileName")){
+
+        loadProfile();
+
+    }
 
 });
-
-
-
