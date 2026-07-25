@@ -769,16 +769,6 @@ align-items:center;
 }
 
 
-#loader::after{
-content:"";
-width:60px;
-height:60px;
-border:6px solid #ddd;
-border-top:6px solid #2E7D32;
-border-radius:50%;
-animation:spin 1s linear infinite;
-}
-
 @keyframes spin{
 100%{
 transform:rotate(360deg);
