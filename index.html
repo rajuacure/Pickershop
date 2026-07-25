@@ -319,6 +319,43 @@ onclick="addToWishlist('অশ্বগন্ধা পাউডার')">
 </button>
 
 <a href="https://wa.me/8801400599748?text=আমি অশ্বগন্ধা
+<section class="review-form">
+
+<h3>⭐ আপনার মতামত দিন</h3>
+
+<input
+type="text"
+id="reviewName"
+placeholder="আপনার নাম">
+
+<select id="reviewRating">
+
+<option value="5">⭐⭐⭐⭐⭐ (5)</option>
+<option value="4">⭐⭐⭐⭐ (4)</option>
+<option value="3">⭐⭐⭐ (3)</option>
+<option value="2">⭐⭐ (2)</option>
+<option value="1">⭐ (1)</option>
+
+</select>
+
+<textarea
+id="reviewText"
+placeholder="আপনার মতামত লিখুন"></textarea>
+
+<button
+class="btn"
+onclick="submitReview()">
+
+Submit Review
+
+</button>
+
+</section>
+
+<hr>
+
+<div id="reviewList"></div>
+  
 <!-- ================= CUSTOMER REVIEWS ================= -->
 
 <section class="reviews">
