@@ -1085,3 +1085,67 @@ mainImage.alt=image.alt;
 }
 
 }
+.product-review{
+
+max-width:900px;
+
+margin:50px auto;
+
+padding:30px;
+
+background:#fff;
+
+border-radius:20px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.product-review input,
+.product-review textarea{
+
+width:100%;
+
+padding:15px;
+
+margin:15px 0;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+}
+
+.product-review textarea{
+
+height:120px;
+
+resize:vertical;
+
+}
+
+.rating-big{
+
+font-size:32px;
+
+color:#FFC107;
+
+margin:20px 0;
+
+}
+
+.share-box{
+
+text-align:center;
+
+padding:50px 20px;
+
+}
+
+.share-box button{
+
+margin:10px;
+
+}
