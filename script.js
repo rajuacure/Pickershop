@@ -1195,3 +1195,17 @@ alert("✅ প্রোফাইল সফলভাবে আপডেট হয
 loadProfile();
 
 }
+const editName=document.getElementById("editName");
+const editEmail=document.getElementById("editEmail");
+
+if(editName){
+
+editName.value=user.name;
+
+}
+
+if(editEmail){
+
+editEmail.value=user.email;
+
+}
