@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Tracking | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📦 Order Tracking</h1>
+
+<p>আপনার অর্ডারের বর্তমান অবস্থা দেখুন</p>
+
+</header>
+
+<section class="tracking">
+
+<div class="tracking-box">
+
+<h2>🆔 Order ID</h2>
+
+<h3 id="trackOrderID">লোড হচ্ছে...</h3>
+
+<div class="progress">
+
+<div id="progressBar" class="progress-bar"></div>
+
+</div>
+
+<div class="status-list">
+
+<div class="status active">
+✅ Order Received
+</div>
+
+<div class="status" id="status2">
+📞 Confirmed
+</div>
+
+<div class="status" id="status3">
+🚚 Shipped
+</div>
+
+<div class="status" id="status4">
+📦 Delivered
+</div>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="nextStatus()">
+পরবর্তী স্ট্যাটাস
+</button>
+
+<br><br>
+
+<a href="index.html" class="btn">
+🏠 হোমে ফিরে যান
+</a>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
