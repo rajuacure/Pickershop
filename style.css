@@ -21,7 +21,39 @@ text-decoration:none;
 box-shadow:0 5px 15px rgba(0,0,0,.3);
 z-index:9999;
 }
+.hero{
+background:linear-gradient(135deg,#e8f5e9,#ffffff);
+text-align:center;
+padding:70px 20px;
+}
 
+.hero h2{
+font-size:42px;
+color:#1B5E20;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+color:#555;
+margin-bottom:30px;
+}
+
+.shop-btn{
+display:inline-block;
+background:#2E7D32;
+color:#fff;
+padding:15px 35px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.shop-btn:hover{
+background:#1B5E20;
+transform:translateY(-3px);
+}
 .whatsapp-float:hover{
 transform:scale(1.1);
 }
