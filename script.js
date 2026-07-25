@@ -478,3 +478,91 @@ subscribeNewsletter();
 }
 
 });
+// =====================================
+// Picker Shop V3
+// script.js - Part 5
+// =====================================
+
+// ---------- Copy Coupon ----------
+
+function copyCoupon(){
+
+const coupon="PICKER10";
+
+navigator.clipboard.writeText(coupon);
+
+showToast("🎉 Coupon Code কপি হয়েছে: " + coupon);
+
+}
+
+// ---------- Share Website ----------
+
+function shareWebsite(){
+
+const url=window.location.href;
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Picker Shop",
+
+text:"হারবাল ও প্রাকৃতিক পণ্যের বিশ্বস্ত অনলাইন শপ",
+
+url:url
+
+});
+
+}else{
+
+navigator.clipboard.writeText(url);
+
+showToast("🔗 Website Link কপি হয়েছে");
+
+}
+
+}
+
+// ---------- Live Date ----------
+
+function updateDate(){
+
+const box=document.getElementById("todayDate");
+
+if(box){
+
+const d=new Date();
+
+box.innerHTML=d.toLocaleDateString("bn-BD");
+
+}
+
+}
+
+updateDate();
+
+// ---------- Product Counter ----------
+
+function productCounter(){
+
+const count=document.querySelectorAll(".product-card").length;
+
+const box=document.getElementById("productCount");
+
+if(box){
+
+box.innerHTML=count;
+
+}
+
+}
+
+productCounter();
+
+// ---------- Welcome Message ----------
+
+setTimeout(function(){
+
+showToast("🌿 Picker Shop-এ আপনাকে স্বাগতম");
+
+},1500);
