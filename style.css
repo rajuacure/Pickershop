@@ -531,3 +531,18 @@ margin-bottom:10px;
 .cart-btn:hover{
 background:#f57c00;
 }
+.wish-btn{
+width:100%;
+background:#e91e63;
+color:white;
+border:none;
+padding:10px;
+border-radius:8px;
+cursor:pointer;
+margin:10px 0;
+font-weight:bold;
+}
+
+.wish-btn:hover{
+background:#c2185b;
+}
