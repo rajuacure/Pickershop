@@ -858,3 +858,24 @@ document.getElementById("grandTotal").innerHTML = "৳" + (total + 80);
     }
 
 });
+// ==========================
+// Show / Hide Password
+// ==========================
+
+function togglePassword(){
+
+    const pass = document.getElementById("loginPassword");
+
+    if(!pass) return;
+
+    if(pass.type === "password"){
+
+        pass.type = "text";
+
+    }else{
+
+        pass.type = "password";
+
+    }
+
+}
