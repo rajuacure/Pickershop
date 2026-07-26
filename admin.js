@@ -7,7 +7,11 @@ admin.js
 // ==========================
 // Admin Login
 // ==========================
-
+import {
+  auth,
+  db,
+  signInWithEmailAndPassword
+} from "./firebase.js";
 async function adminLogin(){
 
     const email =
