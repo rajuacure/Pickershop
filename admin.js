@@ -164,3 +164,61 @@ function addProduct(){
     description.value="";
 
 }
+// ==========================================
+// Firebase Product Add
+// ==========================================
+
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+async function addProduct() {
+
+    const name = document.getElementById("productName").value.trim();
+    const price = document.getElementById("productPrice").value.trim();
+    const category = document.getElementById("productCategory").value.trim();
+    const image = document.getElementById("productImage").value.trim();
+    const description = document.getElementById("productDescription").value.trim();
+
+    if (!name || !price || !category || !image) {
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    try {
+
+        await addDoc(collection(db, "products"), {
+
+            name: name,
+            price: Number(price),
+            category: category,
+            image: image,
+            description: description,
+            stock: 100,
+            createdAt: new Date()
+
+        });
+
+        alert("✅ Product সফলভাবে যোগ হয়েছে");
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productCategory").value = "";
+        document.getElementById("productImage").value = "";
+        document.getElementById("productDescription").value = "";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Save করতে সমস্যা হয়েছে");
+
+    }
+
+}
