@@ -789,7 +789,9 @@ document.addEventListener("DOMContentLoaded",()=>{
         loadCart();
 
     }
-
+document.getElementById("cartItemCount").innerHTML = cart.length;
+document.getElementById("subTotal").innerHTML = "৳" + total;
+document.getElementById("grandTotal").innerHTML = "৳" + (total + 80);
     if(document.getElementById("wishlistItems")){
 
         loadWishlist();
@@ -809,6 +811,3 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 });
-document.getElementById("cartItemCount").innerHTML = cart.length;
-document.getElementById("subTotal").innerHTML = "৳" + total;
-document.getElementById("grandTotal").innerHTML = "৳" + (total + 80);
