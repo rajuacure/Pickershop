@@ -1,4 +1,174 @@
 /* ==========================================
+Picker Shop V13
+script.js
+========================================== */
+
+"use strict";
+
+console.log("✅ Picker Shop V13 Loaded");
+
+// ==========================================
+// Loader
+// ==========================================
+
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+
+        loader.style.opacity = "0";
+
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        }, 300);
+
+    }
+
+});
+
+// ==========================================
+// Scroll To Top
+// ==========================================
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+
+    if (!topBtn) return;
+
+    topBtn.style.display =
+        window.scrollY > 300
+            ? "block"
+            : "none";
+
+});
+
+function topFunction() {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+// ==========================================
+// Toast
+// ==========================================
+
+function showToast(message){
+
+    let toast=document.createElement("div");
+
+    toast.className="toast";
+
+    toast.innerHTML=message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(()=>{
+
+        toast.classList.add("show");
+
+    },100);
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+        setTimeout(()=>{
+
+            toast.remove();
+
+        },300);
+
+    },2500);
+
+}
+
+// ==========================================
+// Local Storage
+// ==========================================
+
+const STORAGE={
+
+cart:"pickerCart",
+
+wishlist:"pickerWishlist",
+
+orders:"pickerOrders",
+
+users:"pickerUsers"
+
+};
+
+function readStorage(key){
+
+    return JSON.parse(
+
+        localStorage.getItem(key)
+
+    ) || [];
+
+}
+
+function saveStorage(key,data){
+
+    localStorage.setItem(
+
+        key,
+
+        JSON.stringify(data)
+
+    );
+
+}
+
+function getCart(){
+
+    return readStorage(STORAGE.cart);
+
+}
+
+function saveCart(cart){
+
+    saveStorage(STORAGE.cart,cart);
+
+}
+
+function getWishlist(){
+
+    return readStorage(STORAGE.wishlist);
+
+}
+
+function saveWishlist(list){
+
+    saveStorage(STORAGE.wishlist,list);
+
+}
+
+// ==========================================
+// Cart Counter
+// ==========================================
+
+function updateCartCount(){
+
+    const count=document.getElementById("cartCount");
+
+    if(!count) return;
+
+    count.innerHTML=getCart().length;
+
+}
+
+updateCartCount();/* ==========================================
    Picker Shop V11
    script.js - Part 1
 ========================================== */
