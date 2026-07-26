@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My Profile | Picker Shop</title>
@@ -14,73 +15,138 @@
 
 <body>
 
-<header>
+<!-- Header -->
 
-<h1>👤 আমার প্রোফাইল</h1>
+<header class="header">
 
-<p>Picker Shop User Dashboard</p>
+<div class="container">
+
+<a href="index.html" class="logo">
+
+<img src="images/logo.png" alt="Picker Shop">
+
+<span>Picker Shop</span>
+
+</a>
+
+<nav class="navbar">
+
+<a href="index.html">🏠 হোম</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="wishlist.html">❤️ Wishlist</a>
+
+<a href="profile.html">👤 Profile</a>
+
+</nav>
+
+</div>
 
 </header>
 
-<section class="profile-box">
+<!-- Profile -->
 
-<img src="images/user.png"
-id="profileImage"
-class="profile-image"
-alt="Profile">
+<section class="products-section">
 
-<h2 id="profileName">Loading...</h2>
+<div class="container">
 
-<p id="profileEmail"></p>
-<hr>
+<div class="card" style="max-width:700px;margin:auto;padding:35px;">
 
-<h3>✏️ প্রোফাইল সম্পাদনা</h3>
+<div style="text-align:center;">
 
-<input
-type="text"
-id="editName"
-placeholder="নতুন নাম">
+<img
+src="images/user.png"
+alt="User"
+style="width:120px;height:120px;border-radius:50%;margin:auto;">
 
-<input
-type="email"
-id="editEmail"
-placeholder="নতুন ইমেইল">
+<h2 id="profileName" style="margin-top:20px;">
 
-<input
-type="password"
-id="newPassword"
-placeholder="নতুন পাসওয়ার্ড">
+Guest User
+
+</h2>
+
+<p id="profileEmail">
+
+guest@example.com
+
+</p>
+
+</div>
+
+<hr style="margin:25px 0;">
+
+<div class="profile-info">
+
+<p>
+
+<strong>👤 নাম :</strong>
+
+<span id="userName">
+
+Guest User
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>📧 ইমেইল :</strong>
+
+<span id="userEmail">
+
+guest@example.com
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>🛒 মোট অর্ডার :</strong>
+
+<span id="totalOrders">
+
+0
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>❤️ Wishlist :</strong>
+
+<span id="wishlistTotal">
+
+0
+
+</span>
+
+</p>
+
+</div>
+
+<br>
 
 <button
-class="cart-btn"
-onclick="updateProfile()">
+class="btn"
+style="width:100%;"
+onclick="logoutUser()">
 
-💾 Save Changes
+🚪 Logout
 
 </button>
-<hr>
 
-<a href="cart.html" class="btn">
-🛒 My Cart
-</a>
+</div>
 
-<a href="wishlist.html" class="btn">
-❤️ Wishlist
-</a>
-
-<a href="tracking.html" class="btn">
-📦 Track Order
-</a>
-
-<a href="#" class="btn"
-onclick="logoutUser()">
-🚪 Logout
-</a>
+</div>
 
 </section>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
