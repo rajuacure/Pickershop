@@ -293,6 +293,144 @@ function loadCart(){
     }
 
 }
+// ==========================================
+// Wishlist System
+// ==========================================
+
+function addToWishlist(id, name, price, image = "") {
+
+    let wishlist = getWishlist();
+
+    const exists = wishlist.find(item => item.id === id);
+
+    if (exists) {
+
+        showToast("❤️ ইতিমধ্যে Wishlist-এ আছে");
+
+        return;
+
+    }
+
+    wishlist.push({
+
+        id: id,
+        name: name,
+        price: Number(price),
+        image: image
+
+    });
+
+    saveWishlist(wishlist);
+
+    updateWishlistCount();
+
+    showToast("❤️ Wishlist-এ যোগ হয়েছে");
+
+}
+
+// ==========================================
+// Wishlist Counter
+// ==========================================
+
+function updateWishlistCount(){
+
+    const count = document.getElementById("wishlistCount");
+
+    if(!count) return;
+
+    count.innerHTML = getWishlist().length;
+
+}
+
+// ==========================================
+// Remove Wishlist Item
+// ==========================================
+
+function removeWishlistItem(id){
+
+    let wishlist = getWishlist();
+
+    wishlist = wishlist.filter(item => item.id !== id);
+
+    saveWishlist(wishlist);
+
+    updateWishlistCount();
+
+    loadWishlist();
+
+}
+
+// ==========================================
+// Load Wishlist
+// ==========================================
+
+function loadWishlist(){
+
+    const wishlistBox = document.getElementById("wishlistItems");
+
+    if(!wishlistBox) return;
+
+    const wishlist = getWishlist();
+
+    if(wishlist.length===0){
+
+        wishlistBox.innerHTML=`
+
+        <div class="card">
+
+            <h3>❤️ Wishlist খালি</h3>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    let html="";
+
+    wishlist.forEach(item=>{
+
+        html += `
+
+        <div class="card" style="margin-bottom:20px;">
+
+            <h3>${item.name}</h3>
+
+            <p>৳${item.price}</p>
+
+            <button
+            class="btn"
+            onclick="addToCart('${item.id}','${item.name}',${item.price},'${item.image}')">
+
+            🛒 Cart
+
+            </button>
+
+            <button
+            class="wish-btn"
+            onclick="removeWishlistItem('${item.id}')">
+
+            ❌ Remove
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    wishlistBox.innerHTML = html;
+
+}
+
+// ==========================================
+// Auto Update
+// ==========================================
+
+updateWishlistCount();
 updateCartCount();/* ==========================================
    Picker Shop V11
    script.js - Part 1
