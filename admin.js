@@ -223,3 +223,156 @@ window.resetProductForm = function () {
     }
 
 };
+// ==========================================
+// Edit Product
+// ==========================================
+
+let editingProductId = null;
+
+window.editProduct = async function(id){
+
+    try{
+
+        const ref = doc(db,"products",id);
+
+        const snap = await getDoc(ref);
+
+        if(!snap.exists()){
+
+            alert("Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const data = snap.data();
+
+        editingProductId = id;
+
+        document.getElementById("productName").value = data.name || "";
+
+        document.getElementById("productPrice").value = data.price || "";
+
+        document.getElementById("productCategory").value = data.category || "";
+
+        document.getElementById("productImage").value = data.image || "";
+
+        const description =
+            document.getElementById("productDescription");
+
+        if(description){
+
+            description.value = data.description || "";
+
+        }
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Product Load Failed");
+
+    }
+
+};
+
+// ==========================================
+// Update Product
+// ==========================================
+
+window.updateProduct = async function(){
+
+    if(!editingProductId){
+
+        alert("প্রথমে একটি Product Edit করুন");
+
+        return;
+
+    }
+
+    try{
+
+        await updateDoc(
+
+            doc(db,"products",editingProductId),
+
+            {
+
+                name:document.getElementById("productName").value,
+
+                price:Number(document.getElementById("productPrice").value),
+
+                category:document.getElementById("productCategory").value,
+
+                image:document.getElementById("productImage").value,
+
+                description:
+                document.getElementById("productDescription")
+                ? document.getElementById("productDescription").value
+                : ""
+
+            }
+
+        );
+
+        alert("✅ Product Updated");
+
+        editingProductId = null;
+
+        resetProductForm();
+
+        loadProducts();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Update Failed");
+
+    }
+
+};
+
+// ==========================================
+// Delete Product
+// ==========================================
+
+window.deleteProduct = async function(id){
+
+    if(!confirm("এই Product Delete করবেন?")){
+
+        return;
+
+    }
+
+    try{
+
+        await deleteDoc(doc(db,"products",id));
+
+        alert("🗑 Product Deleted");
+
+        loadProducts();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Delete Failed");
+
+    }
+
+};
