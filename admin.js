@@ -376,3 +376,126 @@ window.deleteProduct = async function(id){
     }
 
 };
+// ==========================================
+// Product Search
+// ==========================================
+
+window.searchProducts = async function () {
+
+    const keyword = document
+        .getElementById("searchProduct")
+        .value
+        .toLowerCase();
+
+    const table = document.getElementById("productTable");
+
+    if (!table) return;
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    let html = "";
+
+    snapshot.forEach((product) => {
+
+        const data = product.data();
+
+        if (
+            data.name.toLowerCase().includes(keyword) ||
+            data.category.toLowerCase().includes(keyword)
+        ) {
+
+            html += `
+
+            <tr>
+
+                <td>
+                    <img src="${data.image}"
+                    width="60"
+                    height="60"
+                    style="border-radius:8px;">
+                </td>
+
+                <td>${data.name}</td>
+
+                <td>৳${data.price}</td>
+
+                <td>${data.category}</td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    onclick="editProduct('${product.id}')">
+
+                    Edit
+
+                    </button>
+
+                    <button
+                    class="wish-btn"
+                    onclick="deleteProduct('${product.id}')">
+
+                    Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        }
+
+    });
+
+    table.innerHTML = html;
+
+};
+
+// ==========================================
+// Dashboard Statistics
+// ==========================================
+
+window.loadStatistics = async function () {
+
+    const totalProduct =
+        document.getElementById("totalProducts");
+
+    const totalValue =
+        document.getElementById("inventoryValue");
+
+    if (!totalProduct || !totalValue) return;
+
+    const snapshot =
+        await getDocs(collection(db, "products"));
+
+    let count = 0;
+
+    let value = 0;
+
+    snapshot.forEach((doc) => {
+
+        const p = doc.data();
+
+        count++;
+
+        value += Number(p.price);
+
+    });
+
+    totalProduct.innerHTML = count;
+
+    totalValue.innerHTML = "৳" + value;
+
+};
+
+// ==========================================
+// Auto Dashboard
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadStatistics();
+
+});
