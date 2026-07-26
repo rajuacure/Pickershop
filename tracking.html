@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Order Tracking | Picker Shop</title>
@@ -14,80 +15,96 @@
 
 <body>
 
-<header>
+<!-- Header -->
 
-<h1>📦 Order Tracking</h1>
+<header class="header">
 
-<p>আপনার অর্ডারের বর্তমান অবস্থা দেখুন</p>
+<div class="container">
+
+<a href="index.html" class="logo">
+
+<img src="images/logo.png" alt="Picker Shop">
+
+<span>Picker Shop</span>
+
+</a>
+
+<nav class="navbar">
+
+<a href="index.html">🏠 হোম</a>
+
+<a href="tracking.html">📦 Tracking</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="contact.html">📞 Contact</a>
+
+</nav>
+
+</div>
 
 </header>
 
-<section class="tracking">
+<!-- Tracking Section -->
 
-<div class="tracking-box">
+<section class="products-section">
 
-<h2>🆔 Order ID</h2>
+<div class="container">
 
-<h3 id="trackOrderID">লোড হচ্ছে...</h3>
+<div class="card" style="max-width:700px;margin:auto;padding:40px;">
 
-<div class="progress">
+<h2 style="text-align:center;color:#198754;">
 
-<div id="progressBar" class="progress-bar"></div>
+📦 অর্ডার ট্র্যাক করুন
 
-</div>
-
-<div class="status-list">
-<hr>
-
-<h3>🚚 ডেলিভারি তথ্য</h3>
-
-<p><strong>আনুমানিক ডেলিভারি:</strong>
-<span id="deliveryDate"></span></p>
-
-<p><strong>কুরিয়ার:</strong>
-<span id="courierName">Pathao Courier</span></p>
-
-<p><strong>রাইডার:</strong>
-<span id="riderName">Assigned Soon</span></p>
-
-<p><strong>মোবাইল:</strong>
-<span id="riderPhone">Updating...</span></p>
-<div class="status active">
-✅ Order Received
-</div>
-
-<div class="status" id="status2">
-📞 Confirmed
-</div>
-
-<div class="status" id="status3">
-🚚 Shipped
-</div>
-
-<div class="status" id="status4">
-📦 Delivered
-</div>
-
-</div>
+</h2>
 
 <br>
 
-<button class="btn" onclick="nextStatus()">
-পরবর্তী স্ট্যাটাস
+<p style="text-align:center;">
+
+আপনার Order ID লিখে অর্ডারের বর্তমান অবস্থা দেখুন।
+
+</p>
+
+<br>
+
+<input
+type="text"
+id="trackingNumber"
+placeholder="যেমন: PK123456789">
+
+<br><br>
+
+<button
+class="btn"
+style="width:100%;"
+onclick="trackOrder()">
+
+🔍 অর্ডার ট্র্যাক করুন
+
 </button>
 
 <br><br>
 
-<a href="index.html" class="btn">
-🏠 হোমে ফিরে যান
-</a>
+<div id="trackingResult">
+
+<div class="category-card">
+
+<h3>📋 নির্দেশনা</h3>
+
+<p>
+
+উপরে আপনার Order ID লিখে <strong>অর্ডার ট্র্যাক করুন</strong> বাটনে ক্লিক করুন।
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
