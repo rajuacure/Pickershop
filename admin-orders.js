@@ -80,3 +80,76 @@ Loading...
 </tr>
 
 </tbody>
+import {
+    doc,
+    updateDoc,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+// ==========================================
+// Update Order Status
+// ==========================================
+
+window.updateOrderStatus = async function(id){
+
+    const status = prompt(
+        "নতুন Status লিখুন:\n\nPending\nProcessing\nDelivered"
+    );
+
+    if(!status) return;
+
+    try{
+
+        await updateDoc(doc(db,"orders",id),{
+
+            status:status
+
+        });
+
+        alert("✅ Status Updated");
+
+        loadOrders();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Status Update Failed");
+
+    }
+
+};
+
+// ==========================================
+// Delete Order
+// ==========================================
+
+window.deleteOrder = async function(id){
+
+    if(!confirm("এই Order Delete করবেন?")){
+
+        return;
+
+    }
+
+    try{
+
+        await deleteDoc(doc(db,"orders",id));
+
+        alert("🗑 Order Deleted");
+
+        loadOrders();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Delete Failed");
+
+    }
+
+};
