@@ -47,8 +47,24 @@ async function loadOrders() {
                 <td>${data.phone}</td>
                 <td>${data.address}</td>
                 <td>${data.status}</td>
-                <td>${data.items ? data.items.length : 0}</td>
-                <td>${order.id}</td>
+
+<td>
+
+<button class="btn"
+onclick="updateOrderStatus('${order.id}')">
+
+Update
+
+</button>
+
+<button class="wish-btn"
+onclick="deleteOrder('${order.id}')">
+
+Delete
+
+</button>
+
+</td>
             </tr>`;
         });
 
