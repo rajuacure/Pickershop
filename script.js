@@ -879,3 +879,20 @@ function togglePassword(){
     }
 
 }
+// ==========================
+// Register Password Show / Hide
+// ==========================
+
+function toggleRegisterPassword(){
+
+    const pass=document.getElementById("registerPassword");
+    const confirm=document.getElementById("confirmPassword");
+
+    if(!pass || !confirm) return;
+
+    const type = pass.type==="password" ? "text" : "password";
+
+    pass.type=type;
+    confirm.type=type;
+
+}
