@@ -3,7 +3,6 @@ Picker Shop V13
 admin.js
 Part 1
 ========================================== */
-alert("admin.js loaded");
 import {
     auth,
     db,
