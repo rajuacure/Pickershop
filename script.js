@@ -431,7 +431,205 @@ function loadWishlist(){
 // ==========================================
 
 updateWishlistCount();
-updateCartCount();/* ==========================================
+updateCartCount()
+    // ==========================================
+// Product Search
+// ==========================================
+
+function searchProducts(){
+
+    const input = document.getElementById("searchInput");
+
+    if(!input) return;
+
+    const keyword = input.value.toLowerCase();
+
+    const products = document.querySelectorAll(".product-card");
+
+    products.forEach(product=>{
+
+        const title = product.querySelector("h3");
+
+        if(!title) return;
+
+        const text = title.innerText.toLowerCase();
+
+        if(text.includes(keyword)){
+
+            product.style.display="block";
+
+        }else{
+
+            product.style.display="none";
+
+        }
+
+    });
+
+}
+
+// ==========================================
+// Product Filter
+// ==========================================
+
+function filterProducts(category){
+
+    const products=document.querySelectorAll(".product-card");
+
+    products.forEach(product=>{
+
+        if(category==="all"){
+
+            product.style.display="block";
+
+            return;
+
+        }
+
+        if(product.dataset.category===category){
+
+            product.style.display="block";
+
+        }else{
+
+            product.style.display="none";
+
+        }
+
+    });
+
+}
+
+// ==========================================
+// Reviews
+// ==========================================
+
+function loadReviews(){
+
+    const reviewBox=document.getElementById("reviewList");
+
+    if(!reviewBox) return;
+
+    const reviews=JSON.parse(
+
+        localStorage.getItem("pickerReviews")
+
+    ) || [];
+
+    if(reviews.length===0){
+
+        reviewBox.innerHTML=`
+
+        <div class="card">
+
+            <p>এখনও কোনো Review নেই।</p>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    let html="";
+
+    reviews.forEach(item=>{
+
+        html+=`
+
+        <div class="card" style="margin-bottom:15px;">
+
+            <h4>${item.name}</h4>
+
+            <p>${item.review}</p>
+
+        </div>
+
+        `;
+
+    });
+
+    reviewBox.innerHTML=html;
+
+}
+
+// ==========================================
+// Add Review
+// ==========================================
+
+function addReview(){
+
+    const name=document.getElementById("reviewName");
+
+    const review=document.getElementById("reviewText");
+
+    if(!name || !review) return;
+
+    if(
+
+        name.value.trim()==="" ||
+
+        review.value.trim()===""
+
+    ){
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    let reviews=JSON.parse(
+
+        localStorage.getItem("pickerReviews")
+
+    ) || [];
+
+    reviews.unshift({
+
+        name:name.value,
+
+        review:review.value
+
+    });
+
+    localStorage.setItem(
+
+        "pickerReviews",
+
+        JSON.stringify(reviews)
+
+    );
+
+    name.value="";
+
+    review.value="";
+
+    showToast("⭐ Review Added");
+
+    loadReviews();
+
+}
+
+// ==========================================
+// Auto Load
+// ==========================================
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    updateCartCount();
+
+    updateWishlistCount();
+
+    loadCart();
+
+    loadWishlist();
+
+    loadReviews();
+
+});
+    ;/* ==========================================
    Picker Shop V11
    script.js - Part 1
 ========================================== */
