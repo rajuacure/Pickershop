@@ -61,8 +61,9 @@ alert("Login Clicked");
     }
 
     catch (error) {
-
-        alert(error.message);
+    console.log(error);
+    alert(error.code + "\n\n" + error.message);
+}
 
     }
 
