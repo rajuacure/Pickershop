@@ -26,7 +26,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
+export const storage = getStorage(app);
 export const auth = getAuth(app);
 
 export const db = getFirestore(app);
@@ -36,3 +36,6 @@ export {
   signOut,
   onAuthStateChanged
 };
+import {
+  getStorage
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
