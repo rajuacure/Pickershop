@@ -795,21 +795,46 @@ function loadProfile(){
 
 // ---------- Order Tracking ----------
 
+// ==========================
+// Order Tracking
+// ==========================
+
 function trackOrder(){
 
-    const input=document.getElementById("trackingNumber");
-
-    const result=document.getElementById("trackingResult");
+    const input = document.getElementById("trackingNumber");
+    const result = document.getElementById("trackingResult");
 
     if(!input || !result) return;
 
     if(input.value.trim()===""){
 
-        result.innerHTML="<p>অর্ডার নম্বর লিখুন</p>";
-
+        result.innerHTML = `
+        <div class="card">
+            <h3>⚠️ Order ID লিখুন</h3>
+        </div>`;
         return;
 
     }
+
+    result.innerHTML = `
+    <div class="card">
+
+        <h3>📦 Order Found</h3>
+
+        <p><strong>Tracking ID:</strong> ${input.value}</p>
+
+        <br>
+
+        <p>🟢 Status : ডেলিভারির পথে</p>
+
+        <p>📍 Current Location : ঢাকা হাব</p>
+
+        <p>🚚 সম্ভাব্য ডেলিভারি : ১-২ কার্যদিবস</p>
+
+    </div>
+    `;
+
+}
 
     result.innerHTML=`
 
