@@ -8,7 +8,7 @@ import {
 async function loadOrders() {
 
     const table = document.getElementById("ordersTable");
-
+<script type="module" src="admin-orders.js"></script>
     if (!table) return;
 
     table.innerHTML = `
