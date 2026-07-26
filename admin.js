@@ -499,3 +499,51 @@ document.addEventListener("DOMContentLoaded", () => {
     loadStatistics();
 
 });
+// ==========================================
+// Image Preview
+// ==========================================
+
+window.previewImage = function () {
+
+    const input = document.getElementById("productImage");
+    const preview = document.getElementById("imagePreview");
+
+    if (!input || !preview) return;
+
+    const url = input.value.trim();
+
+    if (url === "") {
+
+        preview.src = "";
+        preview.style.display = "none";
+        return;
+
+    }
+
+    preview.src = url;
+    preview.style.display = "block";
+
+};
+
+// ==========================================
+// Product Validation
+// ==========================================
+
+window.validateProduct = function () {
+
+    const name = document.getElementById("productName").value.trim();
+    const price = document.getElementById("productPrice").value.trim();
+    const category = document.getElementById("productCategory").value.trim();
+    const image = document.getElementById("productImage").value.trim();
+
+    if (!name || !price || !category || !image) {
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return false;
+
+    }
+
+    return true;
+
+};
