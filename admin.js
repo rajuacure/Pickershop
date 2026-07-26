@@ -26,7 +26,7 @@ import {
 // ==========================================
 
 window.adminLogin = async function () {
-
+alert("Login Clicked");
     const email = document.getElementById("adminEmail");
     const password = document.getElementById("adminPassword");
 
