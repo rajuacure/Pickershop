@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<h2 style="text-align:center;color:#198754;">
+
+🌿 Picker Shop
+
+</h2>
+
+<hr>
+
+<a href="admin-dashboard.html">
+
+📊 Dashboard
+
+</a>
+
+<a href="admin-products.html">
+
+📦 Products
+
+</a>
+
+<a href="admin-orders.html">
+
+🛒 Orders
+
+</a>
+
+<a href="admin-users.html">
+
+👥 Users
+
+</a>
+
+<a href="admin-settings.html">
+
+⚙️ Settings
+
+</a>
+
+<hr>
+
+<button
+class="btn"
+style="width:100%;"
+onclick="adminLogout()">
+
+🚪 Logout
+
+</button>
+
+</aside>
+
+<!-- Main -->
+
+<main class="admin-main">
+
+<h1>
+
+📊 Dashboard
+
+</h1>
+
+<br>
+
+<div class="category-grid">
+
+<div class="category-card">
+
+<h2 id="totalProducts">
+
+0
+
+</h2>
+
+<p>
+
+📦 Products
+
+</p>
+
+</div>
+
+<div class="category-card">
+
+<h2 id="totalOrders">
+
+0
+
+</h2>
+
+<p>
+
+🛒 Orders
+
+</p>
+
+</div>
+
+<div class="category-card">
+
+<h2 id="totalUsers">
+
+0
+
+</h2>
+
+<p>
+
+👥 Users
+
+</p>
+
+</div>
+
+<div class="category-card">
+
+<h2 id="totalSales">
+
+৳0
+
+</h2>
+
+<p>
+
+💰 Sales
+
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>
+
+📈 Website Overview
+
+</h2>
+
+<p>
+
+স্বাগতম Picker Shop Admin Panel-এ।
+
+এখান থেকে আপনি Products, Orders, Users এবং Settings পরিচালনা করতে পারবেন।
+
+</p>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="firebase.js" type="module"></script>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
