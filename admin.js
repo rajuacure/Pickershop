@@ -551,3 +551,49 @@ window.validateProduct = function () {
     return true;
 
 };
+// ==========================================
+// Upload Image To Firebase Storage
+// ==========================================
+
+window.uploadImage = async function () {
+
+    const fileInput = document.getElementById("productFile");
+
+    if (!fileInput.files.length) {
+
+        alert("একটি ছবি নির্বাচন করুন");
+
+        return;
+
+    }
+
+    const file = fileInput.files[0];
+
+    const imageRef = ref(
+        storage,
+        "products/" + Date.now() + "_" + file.name
+    );
+
+    try {
+
+        await uploadBytes(imageRef, file);
+
+        const url = await getDownloadURL(imageRef);
+
+        document.getElementById("productImage").value = url;
+
+        previewImage();
+
+        alert("✅ Image Upload সফল হয়েছে");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Image Upload Failed");
+
+    }
+
+};
