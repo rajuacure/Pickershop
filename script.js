@@ -898,3 +898,34 @@ function toggleRegisterPassword(){
     confirm.type=type;
 
 }
+// ==========================
+// Contact Form
+// ==========================
+
+function sendContactMessage(){
+
+    const name=document.getElementById("contactName");
+    const email=document.getElementById("contactEmail");
+    const subject=document.getElementById("contactSubject");
+    const message=document.getElementById("contactMessage");
+
+    if(!name || !email || !message) return;
+
+    if(
+        name.value.trim()==="" ||
+        email.value.trim()==="" ||
+        message.value.trim()===""
+    ){
+
+        alert("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য পূরণ করুন।");
+        return;
+
+    }
+
+    showToast("📩 আপনার বার্তা সফলভাবে পাঠানো হয়েছে।");
+
+    name.value="";
+    email.value="";
+    subject.value="";
+    message.value="";
+}
