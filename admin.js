@@ -123,3 +123,44 @@ window.location.pathname.includes(
     checkAdmin();
 
 }
+// ==========================
+// Add Product (Temporary)
+// ==========================
+
+function addProduct(){
+
+    const name =
+    document.getElementById("productName");
+
+    const price =
+    document.getElementById("productPrice");
+
+    const category =
+    document.getElementById("productCategory");
+
+    const image =
+    document.getElementById("productImage");
+
+    const description =
+    document.getElementById("productDescription");
+
+    if(
+        name.value==="" ||
+        price.value===""
+    ){
+
+        alert("Product Name এবং Price লিখুন");
+
+        return;
+
+    }
+
+    alert("✅ Product Save Successfully");
+
+    name.value="";
+    price.value="";
+    category.value="";
+    image.value="";
+    description.value="";
+
+}
