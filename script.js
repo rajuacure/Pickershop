@@ -167,7 +167,132 @@ function updateCartCount(){
     count.innerHTML=getCart().length;
 
 }
+// ==========================================
+// Cart System
+// ==========================================
 
+function addToCart(id, name, price, image = "") {
+
+    let cart = getCart();
+
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+
+        existing.qty += 1;
+
+    } else {
+
+        cart.push({
+
+            id: id,
+            name: name,
+            price: Number(price),
+            image: image,
+            qty: 1
+
+        });
+
+    }
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    showToast("🛒 " + name + " কার্টে যোগ হয়েছে");
+
+}
+
+// ==========================================
+// Remove Cart Item
+// ==========================================
+
+function removeCartItem(id){
+
+    let cart = getCart();
+
+    cart = cart.filter(item => item.id !== id);
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    loadCart();
+
+}
+
+// ==========================================
+// Load Cart
+// ==========================================
+
+function loadCart(){
+
+    const cartItems = document.getElementById("cartItems");
+    const totalPrice = document.getElementById("totalPrice");
+
+    if(!cartItems) return;
+
+    const cart = getCart();
+
+    if(cart.length===0){
+
+        cartItems.innerHTML=`
+        <div class="card">
+            <h3>🛒 আপনার কার্ট খালি</h3>
+        </div>
+        `;
+
+        if(totalPrice){
+
+            totalPrice.innerHTML="৳0";
+
+        }
+
+        return;
+
+    }
+
+    let html="";
+
+    let total=0;
+
+    cart.forEach(item=>{
+
+        total += item.price * item.qty;
+
+        html += `
+
+        <div class="card" style="margin-bottom:20px;">
+
+            <h3>${item.name}</h3>
+
+            <p>Price : ৳${item.price}</p>
+
+            <p>Qty : ${item.qty}</p>
+
+            <button
+            class="wish-btn"
+            onclick="removeCartItem('${item.id}')">
+
+            ❌ Remove
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    cartItems.innerHTML = html;
+
+    if(totalPrice){
+
+        totalPrice.innerHTML = "৳" + total;
+
+    }
+
+}
 updateCartCount();/* ==========================================
    Picker Shop V11
    script.js - Part 1
