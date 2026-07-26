@@ -132,3 +132,94 @@ window.loadProducts = async function () {
                     <img
                     src="${data.image}"
                    
+// ==========================================
+// Add Product
+// ==========================================
+
+window.addProduct = async function () {
+
+    const name = document.getElementById("productName");
+    const price = document.getElementById("productPrice");
+    const category = document.getElementById("productCategory");
+    const image = document.getElementById("productImage");
+    const description = document.getElementById("productDescription");
+
+    if (!name || !price || !category || !image) return;
+
+    if (
+        name.value.trim() === "" ||
+        price.value.trim() === "" ||
+        category.value.trim() === "" ||
+        image.value.trim() === ""
+    ) {
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    try {
+
+        await addDoc(collection(db, "products"), {
+
+            name: name.value.trim(),
+            price: Number(price.value),
+            category: category.value.trim(),
+            image: image.value.trim(),
+            description: description ? description.value.trim() : "",
+            stock: 100,
+            createdAt: new Date()
+
+        });
+
+        alert("✅ Product সফলভাবে যোগ হয়েছে");
+
+        name.value = "";
+        price.value = "";
+        category.value = "";
+        image.value = "";
+
+        if (description) {
+
+            description.value = "";
+
+        }
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Save Failed");
+
+    }
+
+};
+
+// ==========================================
+// Reset Form
+// ==========================================
+
+window.resetProductForm = function () {
+
+    document.getElementById("productName").value = "";
+
+    document.getElementById("productPrice").value = "";
+
+    document.getElementById("productCategory").value = "";
+
+    document.getElementById("productImage").value = "";
+
+    const description = document.getElementById("productDescription");
+
+    if (description) {
+
+        description.value = "";
+
+    }
+
+};
