@@ -1,31 +1,38 @@
-/* =====================================
-Picker Shop V12
-Admin Panel
+/* ==========================================
+Picker Shop V13
 admin.js
-===================================== */
+Part 1
+========================================== */
 
-// ==========================
-// Admin Login
-// ==========================
 import {
-  auth,
-  db,
-  signInWithEmailAndPassword
+    auth,
+    db,
+    signInWithEmailAndPassword,
+    signOut
 } from "./firebase.js";
-async function adminLogin(){
 
-    const email =
-        document.getElementById("adminEmail");
+import {
+    collection,
+    getDocs,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-    const password =
-        document.getElementById("adminPassword");
+// ==========================================
+// Admin Login
+// ==========================================
 
-    if(!email || !password) return;
+window.adminLogin = async function () {
 
-    if(
-        email.value.trim()==="" ||
-        password.value.trim()===""
-    ){
+    const email = document.getElementById("adminEmail");
+    const password = document.getElementById("adminPassword");
+
+    if (!email || !password) return;
+
+    if (email.value.trim() === "" || password.value.trim() === "") {
 
         alert("ইমেইল এবং পাসওয়ার্ড লিখুন");
 
@@ -33,7 +40,7 @@ async function adminLogin(){
 
     }
 
-    try{
+    try {
 
         await signInWithEmailAndPassword(
 
@@ -45,184 +52,32 @@ async function adminLogin(){
 
         );
 
-        localStorage.setItem(
+        localStorage.setItem("pickerAdmin", "true");
 
-            "pickerAdmin",
+        alert("✅ Admin Login Successful");
 
-            "true"
-
-        );
-
-        alert("✅ Login Successful");
-
-        window.location =
-            "admin-dashboard.html";
+        window.location.href = "admin-dashboard.html";
 
     }
 
-    catch(error){
+    catch (error) {
 
-        alert("❌ " + error.message);
+        alert(error.message);
 
     }
 
-}
+};
 
-// ==========================
-// Check Admin
-// ==========================
-
-function checkAdmin(){
-
-    onAuthStateChanged(auth,function(user){
-
-        if(!user){
-
-            window.location =
-                "admin-login.html";
-
-        }
-
-    });
-
-}
-
-// ==========================
+// ==========================================
 // Logout
-// ==========================
-
-function adminLogout(){
-
-    signOut(auth)
-
-    .then(function(){
-
-        localStorage.removeItem(
-
-            "pickerAdmin"
-
-        );
-
-        window.location =
-            "admin-login.html";
-
-    });
-
-}
-
-// ==========================
-// Auto Check
-// ==========================
-
-if(
-
-window.location.pathname.includes(
-
-"admin-dashboard"
-
-)
-
-){
-
-    checkAdmin();
-
-}
-// ==========================
-// Add Product (Temporary)
-// ==========================
-
-function addProduct(){
-
-    const name =
-    document.getElementById("productName");
-
-    const price =
-    document.getElementById("productPrice");
-
-    const category =
-    document.getElementById("productCategory");
-
-    const image =
-    document.getElementById("productImage");
-
-    const description =
-    document.getElementById("productDescription");
-
-    if(
-        name.value==="" ||
-        price.value===""
-    ){
-
-        alert("Product Name এবং Price লিখুন");
-
-        return;
-
-    }
-
-    alert("✅ Product Save Successfully");
-
-    name.value="";
-    price.value="";
-    category.value="";
-    image.value="";
-    description.value="";
-
-}
-// ==========================================
-// Firebase Product Add
 // ==========================================
 
-import { db } from "./firebase.js";
+window.adminLogout = async function () {
 
-import {
-  collection,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+    await signOut(auth);
 
-async function addProduct() {
+    localStorage.removeItem("pickerAdmin");
 
-    const name = document.getElementById("productName").value.trim();
-    const price = document.getElementById("productPrice").value.trim();
-    const category = document.getElementById("productCategory").value.trim();
-    const image = document.getElementById("productImage").value.trim();
-    const description = document.getElementById("productDescription").value.trim();
+    window.location.href = "admin-login.html";
 
-    if (!name || !price || !category || !image) {
-
-        alert("সব তথ্য পূরণ করুন");
-
-        return;
-
-    }
-
-    try {
-
-        await addDoc(collection(db, "products"), {
-
-            name: name,
-            price: Number(price),
-            category: category,
-            image: image,
-            description: description,
-            stock: 100,
-            createdAt: new Date()
-
-        });
-
-        alert("✅ Product সফলভাবে যোগ হয়েছে");
-
-        document.getElementById("productName").value = "";
-        document.getElementById("productPrice").value = "";
-        document.getElementById("productCategory").value = "";
-        document.getElementById("productImage").value = "";
-        document.getElementById("productDescription").value = "";
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("❌ Product Save করতে সমস্যা হয়েছে");
-
-    }
-
-}
+};
