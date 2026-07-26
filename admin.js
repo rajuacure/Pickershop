@@ -10,7 +10,7 @@ import {
     signInWithEmailAndPassword,
     signOut
 } from "./firebase.js";
-
+import { storage } from "./firebase.js";
 import {
     collection,
     getDocs,
@@ -131,7 +131,11 @@ window.loadProducts = async function () {
 
                     <img
                     src="${data.image}"
-                   
+              import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";     
 // ==========================================
 // Add Product
 // ==========================================
