@@ -773,22 +773,24 @@ function logoutUser(){
 
 function loadProfile(){
 
-    const profile=document.getElementById("profileName");
+    const name = localStorage.getItem("pickerName") || "Guest User";
+    const email = localStorage.getItem("pickerUser") || "guest@example.com";
 
-    const email=document.getElementById("profileEmail");
+    const profileName = document.getElementById("profileName");
+    const userName = document.getElementById("userName");
+    const profileEmail = document.getElementById("profileEmail");
+    const userEmail = document.getElementById("userEmail");
+    const wishlistTotal = document.getElementById("wishlistTotal");
 
-    if(profile){
+    if(profileName) profileName.innerHTML = name;
+    if(userName) userName.innerHTML = name;
 
-        profile.innerHTML=localStorage.getItem("pickerName") || "Guest User";
+    if(profileEmail) profileEmail.innerHTML = email;
+    if(userEmail) userEmail.innerHTML = email;
 
+    if(wishlistTotal){
+        wishlistTotal.innerHTML = getWishlist().length;
     }
-
-    if(email){
-
-        email.innerHTML=localStorage.getItem("pickerUser") || "-";
-
-    }
-
 }
 
 // ---------- Order Tracking ----------
