@@ -808,22 +808,23 @@ function trackOrder(){
 
     if(input.value.trim()===""){
 
-        result.innerHTML = `
+        result.innerHTML=`
         <div class="card">
             <h3>⚠️ Order ID লিখুন</h3>
-        </div>`;
+        </div>
+        `;
+
         return;
 
     }
 
-    result.innerHTML = `
+    result.innerHTML=`
+
     <div class="card">
 
         <h3>📦 Order Found</h3>
 
         <p><strong>Tracking ID:</strong> ${input.value}</p>
-
-        <br>
 
         <p>🟢 Status : ডেলিভারির পথে</p>
 
@@ -832,21 +833,6 @@ function trackOrder(){
         <p>🚚 সম্ভাব্য ডেলিভারি : ১-২ কার্যদিবস</p>
 
     </div>
-    `;
-
-}
-
-    result.innerHTML=`
-
-        <div class="card" style="padding:20px;">
-
-            <h3>📦 Order Found</h3>
-
-            <p><strong>Tracking ID:</strong> ${input.value}</p>
-
-            <p><strong>Status:</strong> 🚚 ডেলিভারির পথে</p>
-
-        </div>
 
     `;
 
