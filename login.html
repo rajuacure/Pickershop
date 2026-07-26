@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="bn">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>লগইন | Picker Shop</title>
+<title>Login | Picker Shop</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -15,25 +16,29 @@
 
 <body>
 
-<div id="loader"></div>
+<!-- Header -->
 
-<header>
+<header class="header">
 
 <div class="container">
 
-<img src="images/logo.png" class="logo" alt="Picker Shop Logo">
+<a href="index.html" class="logo">
 
-<h1>Picker Shop</h1>
+<img src="images/logo.png" alt="Picker Shop">
 
-<p>Pure • Natural • Trusted</p>
+<span>Picker Shop</span>
 
-<nav>
+</a>
+
+<nav class="navbar">
 
 <a href="index.html">🏠 হোম</a>
 
-<a href="register.html">📝 রেজিস্ট্রেশন</a>
+<a href="cart.html">🛒 Cart</a>
 
-<a href="contact.html">☎ যোগাযোগ</a>
+<a href="wishlist.html">❤️ Wishlist</a>
+
+<a href="register.html">📝 Register</a>
 
 </nav>
 
@@ -41,170 +46,60 @@
 
 </header>
 
-<section class="login-section">
+<!-- Login -->
 
-<h2>🔐 আপনার অ্যাকাউন্টে লগইন করুন</h2>
+<section class="products-section">
 
-<p>ইমেইল ও পাসওয়ার্ড দিয়ে লগইন করুন</p>
+<div class="container">
 
-<div class="login-box">
+<div class="card"
+style="max-width:500px;margin:auto;padding:35px;">
+
+<h2 style="text-align:center;margin-bottom:25px;">
+
+🔐 লগইন করুন
+
+</h2>
 
 <input
 type="email"
 id="loginEmail"
 placeholder="আপনার ইমেইল">
 
+<br><br>
+
 <input
 type="password"
 id="loginPassword"
 placeholder="আপনার পাসওয়ার্ড">
 
+<br><br>
+
 <button
-class="cart-btn"
+class="btn"
+style="width:100%;"
 onclick="loginUser()">
 
-🔑 লগইন
+লগইন
 
 </button>
 
-<p>
+<br><br>
+
+<p style="text-align:center;">
 
 অ্যাকাউন্ট নেই?
 
 <a href="register.html">
 
-রেজিস্ট্রেশন করুন
+রেজিস্টার করুন
 
 </a>
 
 </p>
+
+</div>
 
 </div>
 
 </section>
-<!-- WhatsApp Floating -->
-
-<a href="https://wa.me/8801400599748"
-class="whatsapp"
-target="_blank">
-
-💬
-
-</a>
-
-<!-- Scroll To Top -->
-
-<button
-id="topBtn"
-onclick="topFunction()">
-
-⬆
-
-</button>
-
-<!-- Bottom Navigation -->
-
-<div class="bottom-nav">
-
-<a href="index.html">
-
-🏠
-
-<span>হোম</span>
-
-</a>
-
-<a href="wishlist.html">
-
-❤️
-
-<span>Wishlist</span>
-
-</a>
-
-<a href="cart.html">
-
-🛒
-
-<span>Cart</span>
-
-</a>
-
-<a href="profile.html">
-
-👤
-
-<span>Profile</span>
-
-</a>
-
-</div>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="footer-container">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
-
-<p>
-
-Pure • Natural • Trusted
-
-</p>
-
-<p>
-
-বাংলাদেশের বিশ্বস ্ ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ।
-
-</p>
-
-</div>
-
-<div>
-
-<h3> f</h3>
-
-<p><a href="about.html"></a></p>
-
-<p><a href="contact.html">CTT</a></p>
-
-<p><a href="privacy.html">Privacy Policy</a></p>
-
-<p><a href="terms.html">Terms & Conditions</a></p>
-
-<p><a href="refund.html">Refund Policy</a></p>
-
-</div>
-
-<div>
-
-<h3></h3>
-
-<p>
-
-<p>
-
-01400599748</
-
-<p> support@pickershop.com</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 707h Dicker Shon | All Riahts Recorved
-  </p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body> </html>
