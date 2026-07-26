@@ -1,8 +1,3 @@
- // ==========================================
-// Picker Shop Firebase
-// firebase.js
-// ==========================================
-alert("firebase.js loaded");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
 import {
@@ -16,6 +11,10 @@ import {
   getFirestore
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+import {
+  getStorage
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBSHIUE40N17ISOxduOSoaDt2gxtwSxKto",
   authDomain: "picker-shop.firebaseapp.com",
@@ -26,16 +25,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
-export const auth = getAuth(app);
 
+export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged
 };
-import {
-  getStorage
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
