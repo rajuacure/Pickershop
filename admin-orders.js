@@ -67,3 +67,16 @@ async function loadOrders() {
 }
 
 document.addEventListener("DOMContentLoaded", loadOrders);
+<tbody id="ordersTable">
+
+<tr>
+
+<td colspan="6" style="text-align:center;">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
