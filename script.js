@@ -300,34 +300,71 @@ function addToWishlist(name){
 
 function loadWishlist(){
 
-    const box = document.getElementById("wishlistItems");
+    const box=document.getElementById("wishlistItems");
 
     if(!box) return;
 
-    let list = getWishlist();
-
-    if(list.length===0){
-
-        box.innerHTML="<h3>❤️ Wishlist খালি</h3>";
-
-        return;
-
-    }
+    let wishlist=getWishlist();
 
     let html="";
 
-    list.forEach((item,index)=>{
+    if(wishlist.length===0){
 
-        html += `
+        html=`
 
-<div class="card" style="padding:20px;margin-bottom:15px;">
+<div class="card" style="padding:40px;text-align:center;">
 
-<h3>${item}</h3>
+<h2>❤️ Wishlist খালি</h2>
 
-<button class="wish-btn"
+<p>
+
+আপনি এখনো কোনো পণ্য Wishlist-এ যোগ করেননি।
+
+</p>
+
+<a href="index.html" class="btn">
+
+🛍️ কেনাকাটা শুরু করুন
+
+</a>
+
+</div>
+
+`;
+
+    }else{
+
+        wishlist.forEach((item,index)=>{
+
+            html+=`
+
+<div class="product-card">
+
+<h3>${item.name}</h3>
+
+<p class="price">
+
+৳${item.price || 0}
+
+</p>
+
+<button
+
+class="cart-btn"
+
+onclick="addToCart('${item.name}',${item.price || 0})">
+
+🛒 Cart-এ যোগ করুন
+
+</button>
+
+<button
+
+class="wish-btn"
+
 onclick="removeWishlist(${index})">
 
-🗑 Remove
+🗑️ Remove
 
 </button>
 
@@ -335,9 +372,19 @@ onclick="removeWishlist(${index})">
 
 `;
 
-    });
+        });
 
-    box.innerHTML = html;
+    }
+
+    box.innerHTML=html;
+
+    const count=document.getElementById("wishlistCount");
+
+    if(count){
+
+        count.innerHTML=wishlist.length;
+
+    }
 
 }
 
