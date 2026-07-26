@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Management | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<h2 style="text-align:center;color:#198754;">
+
+🌿 Picker Shop
+
+</h2>
+
+<hr>
+
+<a href="admin-dashboard.html">📊 Dashboard</a>
+
+<a href="admin-products.html">📦 Products</a>
+
+<a href="admin-orders.html">🛒 Orders</a>
+
+<a href="admin-users.html">👥 Users</a>
+
+<a href="admin-settings.html">⚙️ Settings</a>
+
+<hr>
+
+<button
+class="btn"
+style="width:100%;"
+onclick="adminLogout()">
+
+🚪 Logout
+
+</button>
+
+</aside>
+
+<!-- Main -->
+
+<main class="admin-main">
+
+<h1>
+
+📦 Product Management
+
+</h1>
+
+<br>
+
+<div class="card">
+
+<h2>➕ নতুন Product যোগ করুন</h2>
+
+<br>
+
+<input
+type="text"
+id="productName"
+placeholder="Product Name">
+
+<br><br>
+
+<input
+type="number"
+id="productPrice"
+placeholder="Price">
+
+<br><br>
+
+<input
+type="text"
+id="productCategory"
+placeholder="Category">
+
+<br><br>
+
+<input
+type="url"
+id="productImage"
+placeholder="Image URL">
+
+<br><br>
+
+<textarea
+id="productDescription"
+rows="5"
+placeholder="Product Description"></textarea>
+
+<br><br>
+
+<button
+class="btn"
+onclick="addProduct()">
+
+💾 Save Product
+
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>
+
+📋 Product List
+
+</h2>
+
+<br>
+
+<table style="width:100%;border-collapse:collapse;">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+
+<th>Name</th>
+
+<th>Price</th>
+
+<th>Category</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productTable">
+
+<tr>
+
+<td colspan="5" style="text-align:center;">
+
+কোনো Product পাওয়া যায়নি।
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="firebase.js" type="module"></script>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>
