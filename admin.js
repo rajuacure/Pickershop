@@ -91,3 +91,105 @@ window.adminLogout = async function () {
     window.location.href = "admin-login.html";
 
 };
+// ==========================================
+// Load Products From Firestore
+// ==========================================
+
+window.loadProducts = async function () {
+
+    const table = document.getElementById("productTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="5" style="text-align:center;">
+            Loading...
+        </td>
+    </tr>
+    `;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center;">
+                    কোনো Product পাওয়া যায়নি।
+                </td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        let html = "";
+
+        snapshot.forEach((product) => {
+
+            const data = product.data();
+
+            html += `
+            <tr>
+
+                <td>
+                    <img
+                    src="${data.image}"
+                    width="60"
+                    height="60"
+                    style="border-radius:8px;object-fit:cover;">
+                </td>
+
+                <td>${data.name}</td>
+
+                <td>৳ ${data.price}</td>
+
+                <td>${data.category}</td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    onclick="deleteProduct('${product.id}')">
+
+                    Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+            `;
+
+        });
+
+        table.innerHTML = html;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="5" style="text-align:center;color:red;">
+                Product Load Failed
+            </td>
+        </tr>
+        `;
+
+    }
+
+};
+
+// Dashboard বা Product Page খুললেই Product Load হবে
+window.addEventListener("DOMContentLoaded", () => {
+
+    loadProducts();
+
+});
