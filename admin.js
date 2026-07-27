@@ -794,7 +794,29 @@ window.importProducts = async function () {
         alert("✅ CSV Import Complete");
 
         loadProducts();
+// ==========================================
+// Delete All Products
+// ==========================================
 
+window.deleteAllProducts = async function(){
+
+    if(!confirm("সব Product Delete করবেন?"))
+        return;
+
+    const snapshot =
+        await getDocs(collection(db,"products"));
+
+    for(const item of snapshot.docs){
+
+        await deleteDoc(item.ref);
+
+    }
+
+    alert("✅ সব Product Delete হয়েছে");
+
+    loadProducts();
+
+};
     };
 
     reader.readAsText(file);
