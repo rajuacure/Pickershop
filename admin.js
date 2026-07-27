@@ -152,16 +152,24 @@ window.loadProducts = async function () {
 
                 <td>
 
-                    <button
-                    class="btn"
-                    onclick="deleteProduct('${product.id}')">
+<button
+class="btn"
+onclick="editProduct('${product.id}')">
 
-                    Delete
+✏️ Edit
 
-                    </button>
+</button>
 
-                </td>
+<button
+class="btn"
+style="background:red;margin-left:5px;"
+onclick="deleteProduct('${product.id}')">
 
+🗑 Delete
+
+</button>
+
+</td>
             </tr>
             `;
 
