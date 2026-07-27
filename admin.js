@@ -193,3 +193,91 @@ window.addEventListener("DOMContentLoaded", () => {
     loadProducts();
 
 });
+// ==========================================
+// Add Product
+// ==========================================
+
+window.addProduct = async function () {
+
+    const name = document.getElementById("productName");
+    const price = document.getElementById("productPrice");
+    const category = document.getElementById("productCategory");
+    const image = document.getElementById("productImage");
+    const description = document.getElementById("productDescription");
+
+    if (!name || !price || !category || !image) {
+        alert("Product Form পাওয়া যায়নি");
+        return;
+    }
+
+    if (
+        name.value.trim() === "" ||
+        price.value.trim() === "" ||
+        category.value.trim() === "" ||
+        image.value.trim() === ""
+    ) {
+        alert("সব তথ্য পূরণ করুন");
+        return;
+    }
+
+    try {
+
+        await addDoc(collection(db, "products"), {
+
+            name: name.value.trim(),
+            price: Number(price.value),
+            category: category.value.trim(),
+            image: image.value.trim(),
+            description: description ? description.value.trim() : "",
+            createdAt: new Date()
+
+        });
+
+        alert("✅ Product সফলভাবে যোগ হয়েছে");
+
+        name.value = "";
+        price.value = "";
+        category.value = "";
+        image.value = "";
+
+        if (description) {
+            description.value = "";
+        }
+
+        loadProducts();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Save Failed\n\n" + error.message);
+
+    }
+
+};
+
+// ==========================================
+// Delete Product
+// ==========================================
+
+window.deleteProduct = async function (id) {
+
+    if (!confirm("এই Product Delete করবেন?")) return;
+
+    try {
+
+        await deleteDoc(doc(db, "products", id));
+
+        alert("🗑 Product Deleted");
+
+        loadProducts();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Delete Failed");
+
+    }
+
+};
