@@ -225,44 +225,42 @@ window.addProduct = async function () {
         image.value.trim() === ""
     ) {
         alert("সব তথ্য পূরণ করুন");
-        return;
+       try {
+
+    let imageURL = document.getElementById("productImage").value;
+
+    if (!imageURL) {
+        imageURL = await uploadProductImage();
     }
 
-    try {
+    await addDoc(collection(db, "products"), {
 
-        await addDoc(collection(db, "products"), {
+        name: name.value.trim(),
+        price: Number(price.value),
+        category: category.value.trim(),
+        image: imageURL,
+        description: description.value.trim(),
+        createdAt: new Date()
 
-            name: name.value.trim(),
-            price: Number(price.value),
-            category: category.value.trim(),
-            image: image.value.trim(),
-            description: description ? description.value.trim() : "",
-            createdAt: new Date()
+    });
 
-        });
+    alert("✅ Product সফলভাবে যোগ হয়েছে");
 
-        alert("✅ Product সফলভাবে যোগ হয়েছে");
+    name.value = "";
+    price.value = "";
+    category.value = "";
+    image.value = "";
+    description.value = "";
 
-        name.value = "";
-        price.value = "";
-        category.value = "";
-        image.value = "";
+    loadProducts();
 
-        if (description) {
-            description.value = "";
-        }
+} catch (error) {
 
-        loadProducts();
+    console.error(error);
 
-    } catch (error) {
+    alert("❌ Product Save Failed\n\n" + error.message);
 
-        console.error(error);
-
-        alert("❌ Product Save Failed\n\n" + error.message);
-
-    }
-
-};
+}
 
 // ==========================================
 // Delete Product
