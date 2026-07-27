@@ -247,9 +247,7 @@ window.addProduct = async function () {
         alert("❌ Product Add Failed");
 
     }
-stock:100,
 
-featured:false,
 };
 
 // ==========================================
@@ -373,14 +371,25 @@ window.deleteProduct = async function(id){
 
     }
 
-    catch(error){
+    catchawait addDoc(collection(db, "products"), {
 
-        console.error(error);
+    name: document.getElementById("productName").value,
 
-        alert(error.message);
+    price: Number(document.getElementById("productPrice").value),
 
-    }
+    category: document.getElementById("productCategory").value,
 
+    image: document.getElementById("productImage").value,
+
+    description: document.getElementById("productDescription").value,
+
+    stock: 100,
+
+    featured: false,
+
+    createdAt: new Date().toISOString()
+
+});
 };
 
 // ==========================================
