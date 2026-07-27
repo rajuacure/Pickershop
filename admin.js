@@ -845,3 +845,12 @@ window.updateStock = async function(id,newStock){
     }
 
 };
+setInterval(()=>{
+
+    if(document.getElementById("productTable")){
+
+        loadProducts();
+
+    }
+
+},30000);
