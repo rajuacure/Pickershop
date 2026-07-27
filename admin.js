@@ -910,3 +910,22 @@ reader.readAsDataURL(file);
 });
 
 }
+// ==========================================
+// Loader
+// ==========================================
+
+window.showLoader=function(){
+
+const loader=document.getElementById("loader");
+
+if(loader) loader.style.display="flex";
+
+}
+
+window.hideLoader=function(){
+
+const loader=document.getElementById("loader");
+
+if(loader) loader.style.display="none";
+
+}
