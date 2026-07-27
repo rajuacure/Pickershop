@@ -637,3 +637,134 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// Export Products CSV
+// ==========================================
+
+window.exportProducts = async function () {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        let csv = "Name,Price,Category,Stock,Featured\n";
+
+        snapshot.forEach(docItem => {
+
+            const p = docItem.data();
+
+            csv += `"${p.name}",${p.price},"${p.category}",${p.stock},${p.featured}\n`;
+
+        });
+
+        const blob = new Blob([csv], { type: "text/csv" });
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+
+        a.href = url;
+
+        a.download = "PickerShopProducts.csv";
+
+        a.click();
+
+        URL.revokeObjectURL(url);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Export Failed");
+
+    }
+
+};
+
+// ==========================================
+// Delete All Products
+// ==========================================
+
+window.deleteAllProducts = async function () {
+
+    if (!confirm("সব Product Delete করবেন?")) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        for (const item of snapshot.docs) {
+
+            await deleteDoc(doc(db, "products", item.id));
+
+        }
+
+        alert("✅ All Products Deleted");
+
+        refreshProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Delete Failed");
+
+    }
+
+};
+
+// ==========================================
+// Toggle Featured
+// ==========================================
+
+window.toggleFeatured = async function (id, value) {
+
+    try {
+
+        await updateDoc(doc(db, "products", id), {
+
+            featured: value
+
+        });
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Update Stock
+// ==========================================
+
+window.updateStock = async function (id, stock) {
+
+    try {
+
+        await updateDoc(doc(db, "products", id), {
+
+            stock: Number(stock)
+
+        });
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
