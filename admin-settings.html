@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<h2 style="text-align:center;color:#198754;">
+🌿 Picker Shop
+</h2>
+
+<hr>
+
+<a href="admin-dashboard.html">📊 Dashboard</a>
+
+<a href="admin-products.html">📦 Products</a>
+
+<a href="admin-orders.html">🛒 Orders</a>
+
+<a href="admin-users.html">👥 Users</a>
+
+<a href="admin-settings.html" class="active">
+⚙️ Settings
+</a>
+
+<hr>
+
+<button class="btn"
+style="width:100%;"
+onclick="adminLogout()">
+
+🚪 Logout
+
+</button>
+
+</aside>
+
+<!-- Main -->
+
+<main class="admin-main">
+
+<h1>⚙️ Website Settings</h1>
+
+<br>
+
+<div class="card">
+
+<h2>Basic Information</h2>
+
+<br>
+
+<input
+type="text"
+id="siteName"
+placeholder="Website Name">
+
+<br><br>
+
+<input
+type="text"
+id="phone"
+placeholder="Phone Number">
+
+<br><br>
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+<br><br>
+
+<textarea
+id="address"
+rows="3"
+placeholder="Address"></textarea>
+
+<br><br>
+
+<input
+type="number"
+id="deliveryCharge"
+placeholder="Delivery Charge">
+
+<br><br>
+
+<input
+type="text"
+id="bkash"
+placeholder="bKash Number">
+
+<br><br>
+
+<input
+type="text"
+id="nagad"
+placeholder="Nagad Number">
+
+<br><br>
+
+<button
+class="btn"
+onclick="saveSettings()">
+
+💾 Save Settings
+
+</button>
+
+</div>
+
+</main>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+
+</html>
