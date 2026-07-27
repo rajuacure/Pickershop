@@ -743,3 +743,60 @@ document.addEventListener("DOMContentLoaded",()=>{
     loadCategories();
 
 });
+// ==========================================
+// Import Products CSV
+// ==========================================
+
+window.importProducts = async function () {
+
+    const file =
+        document.getElementById("csvFile").files[0];
+
+    if (!file) {
+
+        alert("CSV File নির্বাচন করুন");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+
+        const rows =
+            e.target.result.split("\n");
+
+        rows.shift();
+
+        for (const row of rows) {
+
+            if (!row.trim()) continue;
+
+            const data = row.split(",");
+
+            await addDoc(collection(db,"products"),{
+
+                name:data[0].replace(/"/g,""),
+
+                price:Number(data[1]),
+
+                category:data[2].replace(/"/g,""),
+
+                description:data[3].replace(/"/g,""),
+
+                image:""
+
+            });
+
+        }
+
+        alert("✅ CSV Import Complete");
+
+        loadProducts();
+
+    };
+
+    reader.readAsText(file);
+
+};
