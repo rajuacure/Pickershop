@@ -268,3 +268,20 @@ Loading...
 </body>
 
 </html>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin:15px 0;">
+
+<select id="categoryFilter" onchange="filterProducts()">
+
+<option value="">সব Category</option>
+
+</select>
+
+<button class="btn" onclick="loadProducts()">
+🔄 Refresh
+</button>
+
+<button class="btn" onclick="exportProducts()">
+📤 Export CSV
+</button>
+
+</div>
