@@ -517,3 +517,88 @@ document.addEventListener("DOMContentLoaded", () => {
     loadUsers();
 
 });
+// ==========================================
+// Save Website Settings
+// ==========================================
+
+window.saveSettings = async function () {
+
+    try {
+
+        await updateDoc(doc(db, "settings", "website"), {
+
+            siteName: document.getElementById("siteName").value,
+
+            phone: document.getElementById("phone").value,
+
+            email: document.getElementById("email").value,
+
+            address: document.getElementById("address").value,
+
+            deliveryCharge: Number(document.getElementById("deliveryCharge").value),
+
+            bkash: document.getElementById("bkash").value,
+
+            nagad: document.getElementById("nagad").value
+
+        });
+
+        alert("✅ Settings Saved Successfully");
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        alert("❌ Save Failed");
+
+    }
+
+};
+
+// ==========================================
+// Load Website Settings
+// ==========================================
+
+window.loadSettings = async function () {
+
+    if (!document.getElementById("siteName")) return;
+
+    try {
+
+        const snap = await getDoc(doc(db, "settings", "website"));
+
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        document.getElementById("siteName").value = data.siteName || "";
+
+        document.getElementById("phone").value = data.phone || "";
+
+        document.getElementById("email").value = data.email || "";
+
+        document.getElementById("address").value = data.address || "";
+
+        document.getElementById("deliveryCharge").value = data.deliveryCharge || "";
+
+        document.getElementById("bkash").value = data.bkash || "";
+
+        document.getElementById("nagad").value = data.nagad || "";
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadSettings();
+
+});
