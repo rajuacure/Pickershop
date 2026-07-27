@@ -190,3 +190,146 @@ window.addProduct = async function () {
     }
 
 };
+// ==========================================
+// Reset Product Form
+// ==========================================
+
+window.resetProductForm = function () {
+
+    document.getElementById("productName").value = "";
+
+    document.getElementById("productPrice").value = "";
+
+    document.getElementById("productCategory").value = "";
+
+    document.getElementById("productImage").value = "";
+
+    document.getElementById("productDescription").value = "";
+
+    document.getElementById("productFile").value = "";
+
+    const preview = document.getElementById("previewImage");
+
+    if (preview) {
+
+        preview.src = "";
+
+        preview.style.display = "none";
+
+    }
+
+    editingProductId = null;
+
+};
+
+// ==========================================
+// Load Products
+// ==========================================
+
+window.loadProducts = async function () {
+
+    const table = document.getElementById("productTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="5" style="text-align:center;">
+            Loading...
+        </td>
+    </tr>
+    `;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center;">
+                    কোনো Product পাওয়া যায়নি।
+                </td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const product = docItem.data();
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    <img
+                    src="${product.image}"
+                    width="60"
+                    style="border-radius:8px;">
+                </td>
+
+                <td>${product.name}</td>
+
+                <td>৳${product.price}</td>
+
+                <td>${product.category}</td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    onclick="editProduct('${docItem.id}')">
+
+                    ✏️ Edit
+
+                    </button>
+
+                    <button
+                    class="btn"
+                    style="background:#dc3545;margin-left:5px;"
+                    onclick="deleteProduct('${docItem.id}')">
+
+                    🗑 Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Load Failed");
+
+    }
+
+};
+
+// ==========================================
+// Auto Load Products
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("productTable")) {
+
+        loadProducts();
+
+    }
+
+});
