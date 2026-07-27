@@ -822,3 +822,18 @@ window.deleteAllProducts = async function(){
     reader.readAsText(file);
 
 };
+// ==========================================
+// Toggle Featured
+// ==========================================
+
+window.toggleFeatured = async function(id,value){
+
+    await updateDoc(doc(db,"products",id),{
+
+        featured:value
+
+    });
+
+    loadProducts();
+
+};
