@@ -982,3 +982,97 @@ document.addEventListener("DOMContentLoaded", () => {
     makeResponsiveTable();
 
 });
+// ==========================================
+// Dashboard Statistics
+// ==========================================
+
+window.loadDashboardStats = async function () {
+
+    try {
+
+        // Products
+        const productSnap = await getDocs(collection(db, "products"));
+
+        const totalProducts = productSnap.size;
+
+        let featuredProducts = 0;
+
+        let lowStockProducts = 0;
+
+        productSnap.forEach(docItem => {
+
+            const p = docItem.data();
+
+            if (p.featured === true) {
+
+                featuredProducts++;
+
+            }
+
+            if ((p.stock || 0) <= 5) {
+
+                lowStockProducts++;
+
+            }
+
+        });
+
+        // Orders
+        const orderSnap = await getDocs(collection(db, "orders"));
+
+        const totalOrders = orderSnap.size;
+
+        // Users
+        const userSnap = await getDocs(collection(db, "users"));
+
+        const totalUsers = userSnap.size;
+
+        // Dashboard Box
+        const productsBox = document.getElementById("dashboardProducts");
+
+        const ordersBox = document.getElementById("dashboardOrders");
+
+        const usersBox = document.getElementById("dashboardUsers");
+
+        const featuredBox = document.getElementById("dashboardFeatured");
+
+        const stockBox = document.getElementById("dashboardLowStock");
+
+        if (productsBox)
+            productsBox.innerHTML = totalProducts;
+
+        if (ordersBox)
+            ordersBox.innerHTML = totalOrders;
+
+        if (usersBox)
+            usersBox.innerHTML = totalUsers;
+
+        if (featuredBox)
+            featuredBox.innerHTML = featuredProducts;
+
+        if (stockBox)
+            stockBox.innerHTML = lowStockProducts;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Auto Dashboard Load
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("dashboardProducts")) {
+
+        loadDashboardStats();
+
+    }
+
+});
