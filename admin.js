@@ -854,3 +854,59 @@ setInterval(()=>{
     }
 
 },30000);
+// ==========================================
+// Drag & Drop Upload
+// ==========================================
+
+const dropArea = document.getElementById("dropArea");
+
+if(dropArea){
+
+["dragenter","dragover"].forEach(event=>{
+
+dropArea.addEventListener(event,e=>{
+
+e.preventDefault();
+
+dropArea.style.background="#e9f8ef";
+
+});
+
+});
+
+["dragleave","drop"].forEach(event=>{
+
+dropArea.addEventListener(event,e=>{
+
+e.preventDefault();
+
+dropArea.style.background="";
+
+});
+
+});
+
+dropArea.addEventListener("drop",e=>{
+
+const file=e.dataTransfer.files[0];
+
+document.getElementById("productFile").files=
+e.dataTransfer.files;
+
+const reader=new FileReader();
+
+reader.onload=function(ev){
+
+const img=document.getElementById("previewImage");
+
+img.src=ev.target.result;
+
+img.style.display="block";
+
+}
+
+reader.readAsDataURL(file);
+
+});
+
+}
