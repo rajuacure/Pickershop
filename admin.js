@@ -281,3 +281,88 @@ window.deleteProduct = async function (id) {
     }
 
 };
+// ==========================================
+// Edit Product
+// ==========================================
+
+window.editProduct = async function(id){
+
+    try{
+
+        const snap = await getDoc(doc(db,"products",id));
+
+        if(!snap.exists()){
+
+            alert("Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const data = snap.data();
+
+        document.getElementById("productName").value = data.name;
+        document.getElementById("productPrice").value = data.price;
+        document.getElementById("productCategory").value = data.category;
+        document.getElementById("productImage").value = data.image;
+        document.getElementById("productDescription").value = data.description || "";
+
+        const saveBtn=document.querySelector(".btn");
+
+        saveBtn.innerHTML="💾 Update Product";
+
+        saveBtn.onclick=function(){
+
+            updateProduct(id);
+
+        };
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+};
+
+// ==========================================
+// Update Product
+// ==========================================
+
+window.updateProduct = async function(id){
+
+    try{
+
+        await updateDoc(doc(db,"products",id),{
+
+            name:document.getElementById("productName").value,
+
+            price:Number(document.getElementById("productPrice").value),
+
+            category:document.getElementById("productCategory").value,
+
+            image:document.getElementById("productImage").value,
+
+            description:document.getElementById("productDescription").value
+
+        });
+
+        alert("✅ Product Updated");
+
+        location.reload();
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+};
