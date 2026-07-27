@@ -64,6 +64,9 @@ alert("Login Clicked");
     alert(error.code + "\n\n" + error.message);
 }
 
+};
+ 
+
     
 };
 
