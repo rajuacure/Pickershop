@@ -602,3 +602,58 @@ document.addEventListener("DOMContentLoaded", () => {
     loadSettings();
 
 });
+// ==========================================
+// Dashboard Statistics
+// ==========================================
+
+window.loadDashboard = async function () {
+
+    try {
+
+        const productSnap = await getDocs(collection(db, "products"));
+
+        const orderSnap = await getDocs(collection(db, "orders"));
+
+        const userSnap = await getDocs(collection(db, "users"));
+
+        document.getElementById("totalProducts").innerText =
+            productSnap.size;
+
+        document.getElementById("totalOrders").innerText =
+            orderSnap.size;
+
+        document.getElementById("totalUsers").innerText =
+            userSnap.size;
+
+        let total = 0;
+
+        orderSnap.forEach(docItem => {
+
+            const order = docItem.data();
+
+            total += Number(order.total || 0);
+
+        });
+
+        document.getElementById("totalSales").innerText =
+            "৳" + total;
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    if(document.getElementById("totalProducts")){
+
+        loadDashboard();
+
+    }
+
+});
