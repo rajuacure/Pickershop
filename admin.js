@@ -401,7 +401,43 @@ window.updateProduct = async function(id){
         alert(error.message);
 
     }
+table.innerHTML += `
+<tr>
 
+<td>
+<img src="${product.image}"
+width="60">
+</td>
+
+<td>${product.name}</td>
+
+<td>৳${product.price}</td>
+
+<td>${product.category}</td>
+
+<td>
+
+<button
+class="btn"
+onclick="editProduct('${docItem.id}')">
+
+✏️ Edit
+
+</button>
+
+<button
+class="btn"
+style="background:red;margin-left:5px;"
+onclick="deleteProduct('${docItem.id}')">
+
+🗑 Delete
+
+</button>
+
+</td>
+
+</tr>
+`;
 };
 // ==========================================
 // Image Preview
