@@ -820,3 +820,28 @@ window.toggleFeatured = async function(id,value){
     loadProducts();
 
 };
+// ==========================================
+// Update Stock
+// ==========================================
+
+window.updateStock = async function(id,newStock){
+
+    try{
+
+        await updateDoc(doc(db,"products",id),{
+
+            stock:Number(newStock)
+
+        });
+
+        loadProducts();
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+};
