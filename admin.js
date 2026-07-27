@@ -473,3 +473,167 @@ window.deleteProduct = async function (id) {
     }
 
 };
+// ==========================================
+// Product Search
+// ==========================================
+
+window.searchProducts = function () {
+
+    const keyword = document
+        .getElementById("searchProduct")
+        .value
+        .toLowerCase();
+
+    const rows = document.querySelectorAll("#productTable tr");
+
+    rows.forEach(row => {
+
+        if (row.innerText.toLowerCase().includes(keyword)) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+};
+
+// ==========================================
+// Load Product Count
+// ==========================================
+
+window.loadProductCount = async function () {
+
+    const countBox = document.getElementById("productCount");
+
+    if (!countBox) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        countBox.innerHTML = `📦 Total Products: ${snapshot.size}`;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Load Categories
+// ==========================================
+
+window.loadCategories = async function () {
+
+    const select = document.getElementById("categoryFilter");
+
+    if (!select) return;
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    const categories = [];
+
+    snapshot.forEach(docItem => {
+
+        const product = docItem.data();
+
+        if (
+            product.category &&
+            !categories.includes(product.category)
+        ) {
+
+            categories.push(product.category);
+
+        }
+
+    });
+
+    select.innerHTML =
+        '<option value="">সব Category</option>';
+
+    categories.sort().forEach(cat => {
+
+        select.innerHTML +=
+            `<option value="${cat}">${cat}</option>`;
+
+    });
+
+};
+
+// ==========================================
+// Filter Products
+// ==========================================
+
+window.filterProducts = function () {
+
+    const category = document
+        .getElementById("categoryFilter")
+        .value
+        .toLowerCase();
+
+    const rows = document.querySelectorAll("#productTable tr");
+
+    rows.forEach(row => {
+
+        if (category === "") {
+
+            row.style.display = "";
+
+            return;
+
+        }
+
+        if (row.innerText.toLowerCase().includes(category)) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+};
+
+// ==========================================
+// Refresh Product List
+// ==========================================
+
+window.refreshProducts = function () {
+
+    loadProducts();
+
+    loadProductCount();
+
+    loadCategories();
+
+};
+
+// ==========================================
+// Auto Load
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("productTable")) {
+
+        loadProducts();
+
+        loadProductCount();
+
+        loadCategories();
+
+    }
+
+});
