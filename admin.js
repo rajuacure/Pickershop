@@ -290,6 +290,37 @@ window.deleteProduct = async function (id) {
 
 };
 // ==========================================
+// Upload Image To Firebase Storage
+// ==========================================
+
+window.uploadProductImage = async function () {
+
+    const fileInput = document.getElementById("productImageFile");
+
+    if (!fileInput.files.length) {
+
+        alert("ছবি নির্বাচন করুন");
+
+        return null;
+
+    }
+
+    const file = fileInput.files[0];
+
+    const fileName = Date.now() + "_" + file.name;
+
+    const storageRef = ref(storage, "products/" + fileName);
+
+    await uploadBytes(storageRef, file);
+
+    const imageURL = await getDownloadURL(storageRef);
+
+    document.getElementById("productImage").value = imageURL;
+
+    return imageURL;
+
+};
+// ==========================================
 // Edit Product
 // ==========================================
 
