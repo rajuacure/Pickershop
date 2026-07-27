@@ -333,3 +333,143 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// Edit Product
+// ==========================================
+
+window.editProduct = async function (id) {
+
+    try {
+
+        const snap = await getDoc(doc(db, "products", id));
+
+        if (!snap.exists()) {
+
+            alert("Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const product = snap.data();
+
+        document.getElementById("productName").value = product.name;
+
+        document.getElementById("productPrice").value = product.price;
+
+        document.getElementById("productCategory").value = product.category;
+
+        document.getElementById("productImage").value = product.image;
+
+        document.getElementById("productDescription").value = product.description;
+
+        const preview = document.getElementById("previewImage");
+
+        if (preview) {
+
+            preview.src = product.image;
+
+            preview.style.display = "block";
+
+        }
+
+        editingProductId = id;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Load Failed");
+
+    }
+
+};
+
+// ==========================================
+// Update Product
+// ==========================================
+
+window.updateProduct = async function () {
+
+    if (!editingProductId) {
+
+        alert("প্রথমে Edit করুন");
+
+        return;
+
+    }
+
+    try {
+
+        await updateDoc(doc(db, "products", editingProductId), {
+
+            name: document.getElementById("productName").value.trim(),
+
+            price: Number(document.getElementById("productPrice").value),
+
+            category: document.getElementById("productCategory").value.trim(),
+
+            image: document.getElementById("productImage").value.trim(),
+
+            description: document.getElementById("productDescription").value.trim()
+
+        });
+
+        alert("✅ Product Updated");
+
+        editingProductId = null;
+
+        resetProductForm();
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Update Failed");
+
+    }
+
+};
+
+// ==========================================
+// Delete Product
+// ==========================================
+
+window.deleteProduct = async function (id) {
+
+    if (!confirm("এই Product Delete করবেন?")) {
+
+        return;
+
+    }
+
+    try {
+
+        await deleteDoc(doc(db, "products", id));
+
+        alert("✅ Product Deleted");
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Delete Failed");
+
+    }
+
+};
