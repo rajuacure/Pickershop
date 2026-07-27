@@ -693,3 +693,28 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 });
+// ==========================================
+// Delete Product
+// ==========================================
+
+window.deleteProduct = async function(id){
+
+    if(!confirm("এই Product Delete করবেন?")) return;
+
+    try{
+
+        await deleteDoc(doc(db,"products",id));
+
+        alert("✅ Product Deleted");
+
+        loadProducts();
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+};
