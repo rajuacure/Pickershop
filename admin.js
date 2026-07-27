@@ -81,7 +81,11 @@ window.adminLogout = async function () {
 // ==========================================
 // Load Products From Firestore
 // ==========================================
-
+ import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";     
 window.loadProducts = async function () {
 
     const table = document.getElementById("productTable");
@@ -128,11 +132,7 @@ window.loadProducts = async function () {
 
                     <img
                     src="${data.image}"
-              import {
-    ref,
-    uploadBytes,
-    getDownloadURL
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";     
+             
 // ==========================================
 // Add Product
 // ==========================================
