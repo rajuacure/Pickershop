@@ -275,8 +275,15 @@ window.loadProducts = async function () {
                     style="border-radius:8px;">
                 </td>
 
-                <td>${product.name}</td>
+<td>
 
+${product.name}
+
+<br>
+
+${featuredBadge(product.featured)}
+
+</td>
                 <td>৳${product.price}</td>
 
                 <td>${product.category}</td>
