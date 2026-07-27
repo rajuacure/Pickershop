@@ -285,92 +285,73 @@ window.loadProducts = async function () {
 
     if (!table) return;
 
-    table.innerHTML = `
-    <tr>
-        <td colspan="5" style="text-align:center;">
-            Loading...
-        </td>
-    </tr>
-    `;
+    table.innerHTML += `
 
-    try {
+<tr>
 
-        const snapshot = await getDocs(collection(db, "products"));
+<td>
+<img
+src="${product.image}"
+width="60"
+style="border-radius:8px;">
+</td>
 
-        if (snapshot.empty) {
+<td>
 
-            table.innerHTML = `
-            <tr>
-                <td colspan="5" style="text-align:center;">
-                    কোনো Product পাওয়া যায়নি।
-                </td>
-            </tr>
-            `;
+${product.name}
 
-            return;
+${product.featured
+? '<br><span style="color:#ffc107;">⭐ Featured</span>'
+: ""}
 
-        }
+</td>
 
-        table.innerHTML = "";
+<td>
 
-        snapshot.forEach((docItem) => {
+৳${product.price}
 
-            const product = docItem.data();
+</td>
 
-            table.innerHTML += `
+<td>
 
-            <tr>
+${product.category}
 
-                <td>
-                    <img
-                    src="${product.image}"
-                    width="60"
-                    style="border-radius:8px;">
-                </td>
+</td>
 
-                <td>${product.name}</td>
+<td>
 
-                <td>৳${product.price}</td>
+${product.stock <= 5
 
-                <td>${product.category}</td>
+? '<span style="color:red;">⚠ Low Stock</span>'
 
-                <td>
+: '<span style="color:green;">✅ In Stock</span>'}
 
-                    <button
-                    class="btn"
-                    onclick="editProduct('${docItem.id}')">
+</td>
 
-                    ✏️
+<td>
 
-                    </button>
+<button
+class="btn"
+onclick="editProduct('${docItem.id}')">
 
-                    <button
-                    class="btn"
-                    style="background:#dc3545;margin-left:5px;"
-                    onclick="deleteProduct('${docItem.id}')">
+✏️
 
-                    🗑
+</button>
 
-                    </button>
+<button
+class="btn"
+style="background:#dc3545;"
+onclick="deleteProduct('${docItem.id}')">
 
-                </td>
+🗑
 
-            </tr>
+</button>
 
-            `;
+</td>
 
-        });
+</tr>
 
-    }
-
-    catch(error){
-
-        console.error(error);
-
-    }
-
-};
-
+`;
 // ==========================================
 // Delete Product
 // ==========================================
