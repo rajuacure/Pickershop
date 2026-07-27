@@ -204,7 +204,31 @@ window.addEventListener("DOMContentLoaded", () => {
 // ==========================================
 // Add Product
 // ==========================================
+if(window.editProductId){
 
+    await updateDoc(doc(db,"products",window.editProductId),{
+
+        name: productName.value,
+
+        price: Number(productPrice.value),
+
+        category: productCategory.value,
+
+        image: productImage.value,
+
+        description: productDescription.value
+
+    });
+
+    alert("✅ Product Updated");
+
+    window.editProductId = null;
+
+    loadProducts();
+
+    return;
+
+}
 window.addProduct = async function () {
 
     const name = document.getElementById("productName");
