@@ -628,3 +628,118 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProductStatistics();
 
 });
+// ==========================================
+// Load Categories
+// ==========================================
+
+window.loadCategories = async function () {
+
+    const select = document.getElementById("categoryFilter");
+
+    if (!select) return;
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    const categories = [];
+
+    snapshot.forEach(doc => {
+
+        const p = doc.data();
+
+        if (p.category && !categories.includes(p.category)) {
+
+            categories.push(p.category);
+
+        }
+
+    });
+
+    select.innerHTML = '<option value="">সব Category</option>';
+
+    categories.sort().forEach(cat => {
+
+        select.innerHTML += `<option value="${cat}">${cat}</option>`;
+
+    });
+
+};
+
+// ==========================================
+// Filter Products
+// ==========================================
+
+window.filterProducts = function () {
+
+    const category = document
+        .getElementById("categoryFilter")
+        .value
+        .toLowerCase();
+
+    const rows = document
+        .querySelectorAll("#productTable tr");
+
+    rows.forEach(row => {
+
+        if (category === "") {
+
+            row.style.display = "";
+
+            return;
+
+        }
+
+        row.style.display =
+            row.innerText.toLowerCase().includes(category)
+            ? ""
+            : "none";
+
+    });
+
+};
+
+// ==========================================
+// Export Products CSV
+// ==========================================
+
+window.exportProducts = async function () {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    let csv =
+"Name,Price,Category,Description\n";
+
+    snapshot.forEach(doc => {
+
+        const p = doc.data();
+
+        csv += `"${p.name}",${p.price},"${p.category}","${p.description}"\n`;
+
+    });
+
+    const blob = new Blob([csv], {
+
+        type: "text/csv"
+
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+
+    a.href = url;
+
+    a.download = "products.csv";
+
+    a.click();
+
+};
+
+// ==========================================
+// Auto Load Category
+// ==========================================
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    loadCategories();
+
+});
