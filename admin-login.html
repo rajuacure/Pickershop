@@ -2,11 +2,8 @@
 <html lang="bn">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin Login | Picker Shop</title>
 
@@ -21,17 +18,10 @@ content="width=device-width, initial-scale=1.0">
 <div class="container">
 
 <div class="card"
-style="max-width:450px;
-margin:auto;
-margin-top:80px;
-padding:40px;">
+style="max-width:450px;margin:auto;margin-top:80px;padding:40px;">
 
-<h2
-style="text-align:center;
-color:#198754;">
-
+<h2 style="text-align:center;color:#198754;">
 🔐 Admin Login
-
 </h2>
 
 <br>
@@ -39,18 +29,21 @@ color:#198754;">
 <input
 type="email"
 id="adminEmail"
-placeholder="Admin Email">
+placeholder="Admin Email"
+autocomplete="email">
 
 <br><br>
 
 <input
 type="password"
 id="adminPassword"
-placeholder="Password">
+placeholder="Password"
+autocomplete="current-password">
 
 <br><br>
 
 <button
+type="button"
 class="btn"
 style="width:100%;"
 onclick="adminLogin()">
@@ -61,11 +54,8 @@ Login
 
 <br><br>
 
-<p
-style="text-align:center;">
-
+<p style="text-align:center;">
 Picker Shop Admin Panel
-
 </p>
 
 </div>
@@ -74,7 +64,7 @@ Picker Shop Admin Panel
 
 </section>
 
-<script type="module" src="admin.js"></script>
-</body>
+<script type="module" src="./admin.js"></script>
 
+</body>
 </html>
