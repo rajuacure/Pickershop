@@ -434,3 +434,86 @@ if (imageInput) {
     });
 
 }
+// ==========================================
+// Load Users From Firestore
+// ==========================================
+
+window.loadUsers = async function () {
+
+    const table = document.getElementById("userTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="3" style="text-align:center;">
+            Loading...
+        </td>
+    </tr>
+    `;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "users"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="3" style="text-align:center;">
+                    কোনো User পাওয়া যায়নি।
+                </td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const user = docItem.data();
+
+            table.innerHTML += `
+            <tr>
+
+                <td>${user.email || "-"}</td>
+
+                <td>${docItem.id}</td>
+
+                <td>${user.createdAt || "-"}</td>
+
+            </tr>
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        table.innerHTML = `
+        <tr>
+            <td colspan="3" style="text-align:center;color:red;">
+                Users Load Failed
+            </td>
+        </tr>
+        `;
+
+    }
+
+};
+
+// ==========================================
+// Auto Load Users
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadUsers();
+
+});
