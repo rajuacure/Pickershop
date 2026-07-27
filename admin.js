@@ -63,11 +63,7 @@ alert("Login Clicked");
     console.log(error);
     alert(error.code + "\n\n" + error.message);
 }
-
-};
  
-
-    
 };
 
 // ==========================================
