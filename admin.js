@@ -718,3 +718,47 @@ window.deleteProduct = async function(id){
     }
 
 };
+// ==========================================
+// Edit Product
+// ==========================================
+
+window.editProduct = async function(id){
+
+    try{
+
+        const snap = await getDoc(doc(db,"products",id));
+
+        if(!snap.exists()){
+
+            alert("Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const product = snap.data();
+
+        document.getElementById("productName").value = product.name;
+
+        document.getElementById("productPrice").value = product.price;
+
+        document.getElementById("productCategory").value = product.category;
+
+        document.getElementById("productImage").value = product.image;
+
+        document.getElementById("productDescription").value = product.description;
+
+        window.editProductId = id;
+
+        document.querySelector(".btn").innerHTML =
+        "💾 Update Product";
+
+    }
+
+    catch(error){
+
+        alert(error.message);
+
+    }
+
+};
