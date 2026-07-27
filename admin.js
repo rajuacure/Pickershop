@@ -403,3 +403,34 @@ window.updateProduct = async function(id){
     }
 
 };
+// ==========================================
+// Image Preview
+// ==========================================
+
+const imageInput = document.getElementById("productImageFile");
+
+if (imageInput) {
+
+    imageInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const preview = document.getElementById("previewImage");
+
+            preview.src = e.target.result;
+
+            preview.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
