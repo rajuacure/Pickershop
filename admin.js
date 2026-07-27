@@ -247,7 +247,9 @@ window.addProduct = async function () {
         alert("❌ Product Add Failed");
 
     }
+stock:100,
 
+featured:false,
 };
 
 // ==========================================
