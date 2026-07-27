@@ -896,3 +896,89 @@ window.featuredBadge = function (featured) {
     return "";
 
 };
+// ==========================================
+// Pagination
+// ==========================================
+
+let currentPage = 1;
+const productsPerPage = 10;
+
+// ==========================================
+// Loading Spinner
+// ==========================================
+
+window.showLoading = function () {
+
+    const table = document.getElementById("productTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6" style="text-align:center;padding:20px;">
+            ⏳ Loading Products...
+        </td>
+    </tr>
+    `;
+
+};
+
+// ==========================================
+// Refresh Products
+// ==========================================
+
+window.refreshProducts = function () {
+
+    showLoading();
+
+    setTimeout(() => {
+
+        loadProducts();
+
+        loadProductCount();
+
+        loadCategories();
+
+    }, 500);
+
+};
+
+// ==========================================
+// Auto Refresh Every 60 Seconds
+// ==========================================
+
+setInterval(() => {
+
+    if (document.getElementById("productTable")) {
+
+        refreshProducts();
+
+    }
+
+}, 60000);
+
+// ==========================================
+// Responsive Table
+// ==========================================
+
+window.makeResponsiveTable = function () {
+
+    const table = document.querySelector("table");
+
+    if (!table) return;
+
+    table.style.width = "100%";
+
+    table.style.overflowX = "auto";
+
+};
+
+// ==========================================
+// Page Loaded
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    makeResponsiveTable();
+
+});
