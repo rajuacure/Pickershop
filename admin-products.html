@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Product Management | Picker Shop</title>
 
@@ -29,15 +30,36 @@
 
 <hr>
 
-<a href="admin-dashboard.html">📊 Dashboard</a>
+<a href="admin-dashboard.html">
 
-<a href="admin-products.html">📦 Products</a>
+📊 Dashboard
 
-<a href="admin-orders.html">🛒 Orders</a>
+</a>
 
-<a href="admin-users.html">👥 Users</a>
+<a href="admin-products.html"
+class="active">
 
-<a href="admin-settings.html">⚙️ Settings</a>
+📦 Products
+
+</a>
+
+<a href="admin-orders.html">
+
+🛒 Orders
+
+</a>
+
+<a href="admin-users.html">
+
+👥 Users
+
+</a>
+
+<a href="admin-settings.html">
+
+⚙️ Settings
+
+</a>
 
 <hr>
 
@@ -61,6 +83,7 @@ onclick="adminLogout()">
 📦 Product Management
 
 </h1>
+
 <br>
 
 <input
@@ -68,17 +91,29 @@ type="text"
 id="searchProduct"
 placeholder="🔍 Product Search..."
 onkeyup="searchProducts()">
-<br>
+
+<br><br>
 
 <div class="card">
 
-<h2>➕ নতুন Product যোগ করুন</h2>
+<h2>
+
+➕ নতুন Product যোগ করুন
+
+</h2>
 
 <br>
+<!-- Image Upload -->
+
+<label>📷 Product Image</label>
+
+<br><br>
+
 <input
 type="file"
 id="productFile"
 accept="image/*">
+
 <br><br>
 
 <img
@@ -91,6 +126,7 @@ border-radius:10px;
 border:1px solid #ddd;
 padding:5px;
 ">
+
 <br><br>
 
 <button
@@ -101,7 +137,14 @@ onclick="uploadImage()">
 
 </button>
 
-<br><br>
+<input
+type="hidden"
+id="productImage">
+
+<hr>
+
+<br>
+
 <input
 type="text"
 id="productName"
@@ -123,27 +166,6 @@ placeholder="Category">
 
 <br><br>
 
-<label>Product Image</label>
-
-<input
-type="file"
-id="productImageFile"
-accept="image/*">
-
-<br><br>
-
-<input
-type="hidden"
-id="productImage">
-onkeyup="previewImage()">
-<br><br>
-
-<img
-id="imagePreview"
-src=""
-style="display:none;width:120px;border-radius:10px;">
-<br><br>
-
 <textarea
 id="productDescription"
 rows="5"
@@ -151,25 +173,38 @@ placeholder="Product Description"></textarea>
 
 <br><br>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<div
+style="
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+">
 
-    <button class="btn" onclick="addProduct()">
-        ➕ Add Product
-    </button>
+<button
+class="btn"
+onclick="addProduct()">
 
-    <button class="btn" onclick="updateProduct()">
-        ✏️ Update Product
-    </button>
-
-    <button class="btn" onclick="resetProductForm()">
-        🔄 Reset
-    </button>
-
-</div>
-
-💾 Save Product
+➕ Add Product
 
 </button>
+
+<button
+class="btn"
+onclick="updateProduct()">
+
+✏️ Update Product
+
+</button>
+
+<button
+class="btn"
+onclick="resetProductForm()">
+
+🔄 Reset
+
+</button>
+
+</div>
 
 </div>
 
@@ -184,8 +219,8 @@ placeholder="Product Description"></textarea>
 </h2>
 
 <br>
-
-<table style="width:100%;border-collapse:collapse;">
+<table
+style="width:100%;border-collapse:collapse;">
 
 <thead>
 
@@ -209,9 +244,10 @@ placeholder="Product Description"></textarea>
 
 <tr>
 
-<td colspan="5" style="text-align:center;">
+<td colspan="5"
+style="text-align:center;">
 
-কোনো Product পাওয়া যায়নি।
+Loading...
 
 </td>
 
@@ -230,4 +266,5 @@ placeholder="Product Description"></textarea>
 <script type="module" src="admin.js"></script>
 
 </body>
+
 </html>
