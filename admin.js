@@ -768,3 +768,124 @@ window.updateStock = async function (id, stock) {
     }
 
 };
+// ==========================================
+// Image Preview
+// ==========================================
+
+window.previewImage = function () {
+
+    const url = document.getElementById("productImage").value;
+
+    const img = document.getElementById("previewImage");
+
+    if (!img) return;
+
+    if (url.trim() === "") {
+
+        img.style.display = "none";
+
+        img.src = "";
+
+        return;
+
+    }
+
+    img.src = url;
+
+    img.style.display = "block";
+
+};
+
+// ==========================================
+// CSV Import
+// ==========================================
+
+window.importProducts = async function () {
+
+    const file = document.getElementById("csvFile").files[0];
+
+    if (!file) {
+
+        alert("CSV File নির্বাচন করুন");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+
+        const rows = e.target.result.split("\n");
+
+        rows.shift();
+
+        for (const row of rows) {
+
+            if (row.trim() === "") continue;
+
+            const data = row.split(",");
+
+            await addDoc(collection(db, "products"), {
+
+                name: data[0].replace(/"/g, ""),
+
+                price: Number(data[1]),
+
+                category: data[2].replace(/"/g, ""),
+
+                stock: Number(data[3]) || 100,
+
+                featured: data[4] === "true",
+
+                image: "",
+
+                description: "",
+
+                createdAt: new Date().toISOString()
+
+            });
+
+        }
+
+        alert("✅ CSV Import সফল");
+
+        refreshProducts();
+
+    };
+
+    reader.readAsText(file);
+
+};
+
+// ==========================================
+// Low Stock Check
+// ==========================================
+
+window.stockBadge = function (stock) {
+
+    if (stock <= 5) {
+
+        return '<span style="color:red;font-weight:bold;">⚠ Low Stock</span>';
+
+    }
+
+    return '<span style="color:green;">✅ In Stock</span>';
+
+};
+
+// ==========================================
+// Featured Badge
+// ==========================================
+
+window.featuredBadge = function (featured) {
+
+    if (featured) {
+
+        return '<span style="color:#ffc107;font-weight:bold;">⭐ Featured</span>';
+
+    }
+
+    return "";
+
+};
