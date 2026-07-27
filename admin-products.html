@@ -112,10 +112,18 @@ placeholder="Category">
 
 <br><br>
 
+<label>Product Image</label>
+
 <input
-type="url"
-id="productImage"
-placeholder="Image URL"
+type="file"
+id="productImageFile"
+accept="image/*">
+
+<br><br>
+
+<input
+type="hidden"
+id="productImage">
 onkeyup="previewImage()">
 <br><br>
 
