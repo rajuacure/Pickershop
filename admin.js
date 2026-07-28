@@ -1440,3 +1440,79 @@ window.deleteOrder = async function(id){
 
 
 };
+// ===============================
+// DASHBOARD ANALYTICS
+// ===============================
+
+
+async function loadDashboard(){
+
+
+let total = 0;
+let pending = 0;
+let processing = 0;
+let delivered = 0;
+let sales = 0;
+
+
+
+const snapshot = await db
+.collection("orders")
+.get();
+
+
+
+snapshot.forEach(doc=>{
+
+
+let order = doc.data();
+
+
+
+total++;
+
+
+
+if(order.status=="Pending"){
+pending++;
+}
+
+
+
+if(order.status=="Processing"){
+processing++;
+}
+
+
+
+if(order.status=="Delivered"){
+
+delivered++;
+
+sales += Number(order.total || 0);
+
+}
+
+
+
+});
+
+
+
+document.getElementById("totalOrders").innerHTML = total;
+
+
+document.getElementById("pendingOrders").innerHTML = pending;
+
+
+document.getElementById("processingOrders").innerHTML = processing;
+
+
+document.getElementById("deliveredOrders").innerHTML = delivered;
+
+
+document.getElementById("totalSales").innerHTML =
+sales + " ৳";
+
+
+}
