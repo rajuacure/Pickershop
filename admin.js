@@ -1425,8 +1425,8 @@ window.deleteOrder = async function(id){
         alert("✅ Order Deleted");
 
 
-        loadOrders();
-
+loadOrders();
+loadDashboard();
 
     }
 
