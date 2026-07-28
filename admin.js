@@ -132,3 +132,90 @@ onAuthStateChanged(auth, (user) => {
     }
 
 });
+// ==========================================
+// Dashboard Statistics
+// ==========================================
+
+window.loadDashboard = async function () {
+
+    try {
+
+        // Products
+        const productSnap = await getDocs(collection(db, "products"));
+
+        // Orders
+        const orderSnap = await getDocs(collection(db, "orders"));
+
+        // Users
+        const userSnap = await getDocs(collection(db, "users"));
+
+        let totalSales = 0;
+        let pendingOrders = 0;
+        let completedOrders = 0;
+
+        orderSnap.forEach((docItem) => {
+
+            const order = docItem.data();
+
+            totalSales += Number(order.total || 0);
+
+            if (order.status === "Pending") {
+                pendingOrders++;
+            }
+
+            if (order.status === "Delivered") {
+                completedOrders++;
+            }
+
+        });
+
+        // Dashboard Cards
+        const totalProducts = document.getElementById("totalProducts");
+        const totalOrders = document.getElementById("totalOrders");
+        const totalUsers = document.getElementById("totalUsers");
+        const totalRevenue = document.getElementById("totalRevenue");
+        const pending = document.getElementById("pendingOrders");
+        const delivered = document.getElementById("completedOrders");
+
+        if (totalProducts)
+            totalProducts.innerHTML = productSnap.size;
+
+        if (totalOrders)
+            totalOrders.innerHTML = orderSnap.size;
+
+        if (totalUsers)
+            totalUsers.innerHTML = userSnap.size;
+
+        if (totalRevenue)
+            totalRevenue.innerHTML = "৳ " + totalSales;
+
+        if (pending)
+            pending.innerHTML = pendingOrders;
+
+        if (delivered)
+            delivered.innerHTML = completedOrders;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Auto Load Dashboard
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("totalProducts")) {
+
+        loadDashboard();
+
+    }
+
+});
