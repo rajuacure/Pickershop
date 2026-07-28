@@ -1288,3 +1288,155 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// View Order Details
+// ==========================================
+
+window.viewOrder = async function(id){
+
+    try{
+
+        const snap = await getDoc(doc(db,"orders",id));
+
+        if(!snap.exists()){
+
+            alert("Order পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const order = snap.data();
+
+        let items = "";
+
+        if(order.items){
+
+            order.items.forEach(item=>{
+
+                items += `
+                ${item.name} 
+                x ${item.qty || 1}
+                = ৳${item.price}
+                \n`;
+
+            });
+
+        }
+
+
+        alert(
+`🛒 Order Details
+
+Customer:
+${order.customerName || "-"}
+
+Phone:
+${order.phone || "-"}
+
+Address:
+${order.address || "-"}
+
+Total:
+৳${order.total || 0}
+
+Status:
+${order.status || "Pending"}
+
+Products:
+
+${items}
+`
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Order Details Load Failed");
+
+    }
+
+};
+
+
+
+// ==========================================
+// Change Order Status
+// ==========================================
+
+window.changeOrderStatus = async function(id,status){
+
+    try{
+
+        await updateDoc(
+            doc(db,"orders",id),
+            {
+                status: status
+            }
+        );
+
+
+        alert("✅ Order Status Updated");
+
+
+        loadOrders();
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("❌ Status Update Failed");
+
+    }
+
+};
+
+
+
+// ==========================================
+// Delete Order
+// ==========================================
+
+window.deleteOrder = async function(id){
+
+
+    if(!confirm("এই Order Delete করবেন?")){
+
+        return;
+
+    }
+
+
+    try{
+
+
+        await deleteDoc(
+            doc(db,"orders",id)
+        );
+
+
+        alert("✅ Order Deleted");
+
+
+        loadOrders();
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("❌ Delete Failed");
+
+    }
+
+
+};
