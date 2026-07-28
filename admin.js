@@ -469,3 +469,146 @@ window.addProduct = async function () {
     }
 
 };
+// ==========================================
+// Edit Product
+// ==========================================
+
+window.editProduct = async function (id) {
+
+    try {
+
+        const snap = await getDoc(doc(db, "products", id));
+
+        if (!snap.exists()) {
+
+            alert("❌ Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+        const product = snap.data();
+
+        editingProductId = id;
+
+        document.getElementById("productName").value = product.name || "";
+
+        document.getElementById("productPrice").value = product.price || "";
+
+        document.getElementById("productCategory").value = product.category || "";
+
+        document.getElementById("productDescription").value = product.description || "";
+
+        uploadedImageURL = product.image || "";
+
+        if (uploadedImageURL !== "") {
+
+            const preview = document.getElementById("previewImage");
+
+            preview.src = uploadedImageURL;
+
+            preview.style.display = "block";
+
+        }
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Load Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Update Product
+// ==========================================
+
+window.updateProduct = async function () {
+
+    if (!editingProductId) {
+
+        alert("আগে একটি Product Edit করুন");
+
+        return;
+
+    }
+
+    try {
+
+        await updateDoc(doc(db, "products", editingProductId), {
+
+            name: document.getElementById("productName").value.trim(),
+
+            price: Number(document.getElementById("productPrice").value),
+
+            category: document.getElementById("productCategory").value.trim(),
+
+            description: document.getElementById("productDescription").value.trim(),
+
+            image: uploadedImageURL
+
+        });
+
+        alert("✅ Product Updated Successfully");
+
+        editingProductId = null;
+
+        resetProductForm();
+
+        loadProducts();
+
+        loadDashboard();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Update Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Reset Product Form
+// ==========================================
+
+window.resetProductForm = function () {
+
+    editingProductId = null;
+
+    uploadedImageURL = "";
+
+    document.getElementById("productName").value = "";
+
+    document.getElementById("productPrice").value = "";
+
+    document.getElementById("productCategory").value = "";
+
+    document.getElementById("productDescription").value = "";
+
+    document.getElementById("productFile").value = "";
+
+    const preview = document.getElementById("previewImage");
+
+    preview.src = "";
+
+    preview.style.display = "none";
+
+};
