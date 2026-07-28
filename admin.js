@@ -219,3 +219,137 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// Load Products
+// ==========================================
+
+window.loadProducts = async function () {
+
+    const table = document.getElementById("productTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6" style="text-align:center;">
+            Loading Products...
+        </td>
+    </tr>
+    `;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align:center;">
+                    কোনো Product পাওয়া যায়নি।
+                </td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const product = docItem.data();
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>
+
+                    <img
+                    src="${product.image}"
+                    width="60"
+                    style="
+                    border-radius:8px;
+                    border:1px solid #ddd;">
+
+                </td>
+
+                <td>
+
+                    ${product.name}
+
+                </td>
+
+                <td>
+
+                    ৳${product.price}
+
+                </td>
+
+                <td>
+
+                    ${product.category}
+
+                </td>
+
+                <td>
+
+                    ${product.stock || 0}
+
+                </td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    onclick="editProduct('${docItem.id}')">
+
+                    ✏️
+
+                    </button>
+
+                    <button
+                    class="btn"
+                    style="background:#dc3545;"
+                    onclick="deleteProduct('${docItem.id}')">
+
+                    🗑
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Load Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Auto Load Products
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("productTable")) {
+
+        loadProducts();
+
+    }
+
+});
