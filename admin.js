@@ -1423,6 +1423,9 @@ window.changeOrderStatus = async function(id,status){
 // ==========================================
 // Delete Order
 // ==========================================
+// ==========================================
+// Delete Order
+// ==========================================
 
 window.deleteOrder = async function(id){
 
@@ -1437,27 +1440,30 @@ window.deleteOrder = async function(id){
     try{
 
 
-    await deleteDoc(
-        doc(db,"orders",id)
-    );
+        await deleteDoc(
+            doc(db,"orders",id)
+        );
 
 
-    alert("✅ Order Deleted");
+        alert("✅ Order Deleted");
 
 
-alert("Status Updated");
+        loadOrders();
+
+        loadDashboard();
 
 
-loadOrders();
+    }
 
-loadDashboard();
+    catch(error){
 
 
-{
+        console.error(error);
 
-    console.error(error);
+        alert("❌ Delete Failed");
 
-    alert("❌ Delete Failed");
+
+    }
 
 
 };
