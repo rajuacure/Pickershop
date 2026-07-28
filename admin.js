@@ -1425,10 +1425,14 @@ window.deleteOrder = async function(id){
         alert("✅ Order Deleted");
 
 
+alert("Status Updated");
+
+
 loadOrders();
+
 loadDashboard();
 
-    }
+
 
     catch(error){
 
