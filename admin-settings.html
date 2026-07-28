@@ -4,17 +4,21 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Settings | Picker Shop</title>
+<title>Website Settings | Admin</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
+
 <div class="admin-layout">
+
 
 <!-- Sidebar -->
 
@@ -26,92 +30,141 @@
 
 <hr>
 
-<a href="admin-dashboard.html">📊 Dashboard</a>
 
-<a href="admin-products.html">📦 Products</a>
+<a href="admin-dashboard.html">
+📊 Dashboard
+</a>
 
-<a href="admin-orders.html">🛒 Orders</a>
 
-<a href="admin-users.html">👥 Users</a>
+<a href="admin-products.html">
+📦 Products
+</a>
 
-<a href="admin-settings.html" class="active">
+
+<a href="admin-orders.html">
+🛒 Orders
+</a>
+
+
+<a href="admin-users.html">
+👥 Users
+</a>
+
+
+<a href="admin-settings.html">
 ⚙️ Settings
 </a>
 
+
 <hr>
 
-<button class="btn"
-style="width:100%;"
+
+<button
+class="btn"
 onclick="adminLogout()">
 
 🚪 Logout
 
 </button>
 
+
 </aside>
+
+
+
 
 <!-- Main -->
 
+
 <main class="admin-main">
 
-<h1>⚙️ Website Settings</h1>
+
+<h1>
+
+⚙️ Website Settings
+
+</h1>
+
 
 <br>
+
 
 <div class="card">
 
-<h2>Basic Information</h2>
+
+<h2>
+Website Information
+</h2>
+
 
 <br>
 
+
 <input
-type="text"
-id="siteName"
+id="websiteName"
 placeholder="Website Name">
 
+
 <br><br>
 
+
 <input
-type="text"
-id="phone"
+id="websitePhone"
 placeholder="Phone Number">
 
+
 <br><br>
 
+
 <input
-type="email"
-id="email"
+id="websiteEmail"
 placeholder="Email">
 
+
 <br><br>
+
 
 <textarea
-id="address"
-rows="3"
-placeholder="Address"></textarea>
+id="websiteAddress"
+placeholder="Address">
+</textarea>
+
 
 <br><br>
+
 
 <input
-type="number"
-id="deliveryCharge"
-placeholder="Delivery Charge">
+id="facebook"
+placeholder="Facebook Link">
+
 
 <br><br>
+
 
 <input
-type="text"
-id="bkash"
-placeholder="bKash Number">
+id="youtube"
+placeholder="YouTube Link">
+
 
 <br><br>
+
 
 <input
-type="text"
-id="nagad"
-placeholder="Nagad Number">
+id="whatsapp"
+placeholder="WhatsApp Link">
+
 
 <br><br>
+
+
+<textarea
+id="footerText"
+placeholder="Footer Text">
+</textarea>
+
+
+<br><br>
+
 
 <button
 class="btn"
@@ -121,13 +174,19 @@ onclick="saveSettings()">
 
 </button>
 
+
 </div>
+
 
 </main>
 
+
 </div>
 
-<script type="module" src="admin.js"></script>
+
+
+<script type="module" src="./admin.js"></script>
+
 
 </body>
 
