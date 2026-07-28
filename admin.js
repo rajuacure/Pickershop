@@ -3,7 +3,21 @@
 // admin.js
 // Part 1
 // ==========================================
+firebase.auth()
+.onAuthStateChanged(function(user){
 
+
+if(!user){
+
+
+window.location.href =
+"admin-login.html";
+
+
+}
+
+
+});
 import {
     auth,
     db,
