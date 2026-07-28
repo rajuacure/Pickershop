@@ -612,3 +612,121 @@ window.resetProductForm = function () {
     preview.style.display = "none";
 
 };
+// ==========================================
+// Delete Product
+// ==========================================
+
+window.deleteProduct = async function (id) {
+
+    if (!confirm("আপনি কি এই Product Delete করতে চান?")) {
+
+        return;
+
+    }
+
+    try {
+
+        await deleteDoc(doc(db, "products", id));
+
+        alert("✅ Product Deleted Successfully");
+
+        loadProducts();
+
+        loadDashboard();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Product Delete Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Search Products
+// ==========================================
+
+window.searchProducts = function () {
+
+    const keyword = document
+        .getElementById("searchProduct")
+        .value
+        .toLowerCase();
+
+    const rows =
+        document.querySelectorAll("#productTable tr");
+
+    rows.forEach((row) => {
+
+        const text =
+            row.innerText.toLowerCase();
+
+        row.style.display =
+            text.includes(keyword)
+                ? ""
+                : "none";
+
+    });
+
+};
+
+
+// ==========================================
+// Toggle Featured Product
+// ==========================================
+
+window.toggleFeatured = async function (id, currentValue) {
+
+    try {
+
+        await updateDoc(doc(db, "products", id), {
+
+            featured: !currentValue
+
+        });
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Featured Update Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Update Stock
+// ==========================================
+
+window.updateStock = async function (id, stock) {
+
+    try {
+
+        await updateDoc(doc(db, "products", id), {
+
+            stock: Number(stock)
+
+        });
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
