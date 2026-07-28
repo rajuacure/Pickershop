@@ -730,3 +730,197 @@ window.updateStock = async function (id, stock) {
     }
 
 };
+// ==========================================
+// Category Filter
+// ==========================================
+
+window.filterCategory = function(){
+
+    const category =
+    document.getElementById("categoryFilter")
+    .value
+    .toLowerCase();
+
+
+    const rows =
+    document.querySelectorAll("#productTable tr");
+
+
+    rows.forEach(row=>{
+
+        const text =
+        row.innerText.toLowerCase();
+
+
+        if(category === "" || text.includes(category)){
+
+            row.style.display = "";
+
+        }
+        else{
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+};
+
+
+
+// ==========================================
+// Pagination
+// ==========================================
+
+let currentProductPage = 1;
+
+const productsPerPage = 10;
+
+
+
+window.productPagination = function(page){
+
+
+    currentProductPage = page;
+
+
+    loadProducts();
+
+
+};
+
+
+
+// ==========================================
+// Export Product CSV
+// ==========================================
+
+window.exportProductsCSV = async function(){
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(collection(db,"products"));
+
+
+        let csv =
+        "Name,Price,Category,Stock\n";
+
+
+        snapshot.forEach(docItem=>{
+
+
+            const product =
+            docItem.data();
+
+
+            csv +=
+            `${product.name},${product.price},${product.category},${product.stock || 0}\n`;
+
+
+        });
+
+
+
+        const blob =
+        new Blob([csv],
+        {
+            type:"text/csv"
+        });
+
+
+
+        const url =
+        URL.createObjectURL(blob);
+
+
+
+        const link =
+        document.createElement("a");
+
+
+        link.href = url;
+
+
+        link.download =
+        "products.csv";
+
+
+        link.click();
+
+
+
+        URL.revokeObjectURL(url);
+
+
+
+    }
+
+
+    catch(error){
+
+        console.error(error);
+
+        alert("CSV Export Failed");
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Print Product List
+// ==========================================
+
+window.printProducts = function(){
+
+
+    const content =
+    document.querySelector(".card").innerHTML;
+
+
+    const printWindow =
+    window.open("");
+
+
+    printWindow.document.write(`
+
+    <html>
+
+    <head>
+
+    <title>
+    Product List
+    </title>
+
+    </head>
+
+
+    <body>
+
+    <h2>
+    Product List
+    </h2>
+
+
+    ${content}
+
+
+    </body>
+
+
+    </html>
+
+    `);
+
+
+
+    printWindow.print();
+
+
+};
