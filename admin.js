@@ -1546,3 +1546,293 @@ window.printInvoice = async function(id){
 
 
 };
+// ==========================================
+// Load Users
+// ==========================================
+
+window.loadUsers = async function(){
+
+    const table =
+    document.getElementById("userTable");
+
+
+    if(!table) return;
+
+
+
+    table.innerHTML = `
+
+    <tr>
+
+    <td colspan="5"
+    style="text-align:center;">
+
+    ⏳ Loading Users...
+
+    </td>
+
+    </tr>
+
+    `;
+
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(collection(db,"users"));
+
+
+
+        if(snapshot.empty){
+
+
+            table.innerHTML = `
+
+            <tr>
+
+            <td colspan="5"
+            style="text-align:center;">
+
+            কোনো User পাওয়া যায়নি।
+
+            </td>
+
+            </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+        table.innerHTML = "";
+
+
+
+        snapshot.forEach(docItem=>{
+
+
+            const user =
+            docItem.data();
+
+
+
+            table.innerHTML += `
+
+
+            <tr>
+
+
+            <td>
+
+            ${docItem.id}
+
+            </td>
+
+
+
+            <td>
+
+            ${user.name || "-"}
+
+            </td>
+
+
+
+            <td>
+
+            ${user.email || "-"}
+
+            </td>
+
+
+
+            <td>
+
+            ${user.phone || "-"}
+
+            </td>
+
+
+
+            <td>
+
+
+            <button
+
+            class="btn"
+
+            style="background:#dc3545;"
+
+            onclick="deleteUser('${docItem.id}')">
+
+
+            🗑 Delete
+
+
+            </button>
+
+
+            </td>
+
+
+
+            </tr>
+
+
+            `;
+
+
+
+        });
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ User Load Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Delete User
+// ==========================================
+
+window.deleteUser = async function(id){
+
+
+    if(!confirm("এই User Delete করবেন?")){
+
+
+        return;
+
+
+    }
+
+
+
+    try{
+
+
+        await deleteDoc(
+
+            doc(db,"users",id)
+
+        );
+
+
+
+        alert("✅ User Deleted");
+
+
+
+        loadUsers();
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ User Delete Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Search Users
+// ==========================================
+
+window.searchUsers = function(){
+
+
+    const keyword =
+
+    document
+    .getElementById("searchUser")
+    .value
+    .toLowerCase();
+
+
+
+    const rows =
+
+    document
+    .querySelectorAll("#userTable tr");
+
+
+
+    rows.forEach(row=>{
+
+
+        const text =
+
+        row.innerText.toLowerCase();
+
+
+
+        row.style.display =
+
+        text.includes(keyword)
+
+        ?
+
+        ""
+
+        :
+
+        "none";
+
+
+    });
+
+
+};
+
+
+
+// ==========================================
+// Auto Load Users
+// ==========================================
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+
+    if(document.getElementById("userTable")){
+
+
+        loadUsers();
+
+
+    }
+
+
+});
