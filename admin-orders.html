@@ -1,15 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Orders | Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- Sidebar -->
+
+<aside class="admin-sidebar">
+
+<h2 style="text-align:center;color:#198754;">
+🌿 Picker Shop
+</h2>
+
+<hr>
+
+<a href="admin-dashboard.html">📊 Dashboard</a>
+
+<a href="admin-products.html">📦 Products</a>
+
+<a href="admin-orders.html" class="active">🛒 Orders</a>
+
+<a href="admin-users.html">👥 Users</a>
+
+<a href="admin-settings.html">⚙ Settings</a>
+
+<hr>
+
+<button
+class="btn"
+onclick="adminLogout()"
+style="width:100%;">
+
+🚪 Logout
+
+</button>
+
+</aside>
+
+<!-- Main -->
+
+<main class="admin-main">
+
+<h1>
+
+🛒 Order Management
+
+</h1>
+
+<br>
+
+<input
+type="text"
+id="searchOrder"
+placeholder="🔍 Search Order..."
+onkeyup="searchOrders()">
+
+<br><br>
+
+<div class="card">
+
+<h2>
+
+📋 All Orders
+
+</h2>
+
+<br>
+
+<table style="width:100%;border-collapse:collapse;">
+
+<thead>
+
 <tr>
+
+<th>Order ID</th>
 
 <th>Customer</th>
 
 <th>Phone</th>
 
-<th>Address</th>
+<th>Total</th>
 
 <th>Status</th>
-
-<th>Items</th>
 
 <th>Action</th>
 
 </tr>
+
+</thead>
+
+<tbody id="orderTable">
+
+<tr>
+
+<td colspan="6" style="text-align:center;">
+
+Loading Orders...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+
+</html>
