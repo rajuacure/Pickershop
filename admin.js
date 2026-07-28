@@ -49,32 +49,38 @@ let editingProductId = null;
 // Admin Login
 // ==========================================
 
-window.adminLogin = async function () {
+window.adminLogin = async function(){
 
-    const email = document.getElementById("adminEmail").value.trim();
-    const password = document.getElementById("adminPassword").value.trim();
+    const email =
+    document.getElementById("adminEmail").value;
 
-    if (!email || !password) {
+    const password =
+    document.getElementById("adminPassword").value;
 
-        alert("ইমেইল ও পাসওয়ার্ড লিখুন");
 
-        return;
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+
+        alert("✅ Login Successful");
+
+
+        window.location.href =
+        "admin-dashboard.html";
+
 
     }
 
-    try {
+    catch(error){
 
-        await signInWithEmailAndPassword(auth, email, password);
+        console.error(error);
 
-        localStorage.setItem("pickerAdmin", "true");
-
-        window.location.href = "admin-dashboard.html";
-
-    }
-
-    catch (error) {
-
-        alert(error.message);
+        alert("❌ Login Failed");
 
     }
 
