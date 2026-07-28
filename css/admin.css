@@ -1,0 +1,49 @@
+.product-section{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+
+.product-section input,
+.product-section textarea{
+
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:5px;
+
+}
+
+
+.product-section button{
+
+    background:#008000;
+    color:white;
+    padding:12px 25px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+
+}
+
+
+.product-card{
+
+    border:1px solid #ddd;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+
+}
+
+
+.product-card img{
+
+    width:120px;
+    height:120px;
+    object-fit:cover;
+
+}
