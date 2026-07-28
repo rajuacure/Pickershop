@@ -1076,3 +1076,102 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// Orders Management
+// ==========================================
+
+window.loadOrders = async function () {
+
+    const table = document.getElementById("orderTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6" style="text-align:center;">
+            Loading Orders...
+        </td>
+    </tr>`;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "orders"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align:center;">
+                    কোনো Order পাওয়া যায়নি।
+                </td>
+            </tr>`;
+
+            return;
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const order = docItem.data();
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>${docItem.id}</td>
+
+                <td>${order.customerName || "-"}</td>
+
+                <td>${order.phone || "-"}</td>
+
+                <td>৳${order.total || 0}</td>
+
+                <td>
+
+                    <select onchange="changeOrderStatus('${docItem.id}', this.value)">
+
+                        <option value="Pending" ${order.status=="Pending"?"selected":""}>Pending</option>
+
+                        <option value="Processing" ${order.status=="Processing"?"selected":""}>Processing</option>
+
+                        <option value="Shipped" ${order.status=="Shipped"?"selected":""}>Shipped</option>
+
+                        <option value="Delivered" ${order.status=="Delivered"?"selected":""}>Delivered</option>
+
+                        <option value="Cancelled" ${order.status=="Cancelled"?"selected":""}>Cancelled</option>
+
+                    </select>
+
+                </td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    style="background:#dc3545;"
+                    onclick="deleteOrder('${docItem.id}')">
+
+                    🗑 Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Order Load Failed");
+
+    }
+
+};
