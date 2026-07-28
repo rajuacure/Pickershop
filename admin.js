@@ -1455,8 +1455,6 @@ loadDashboard();
 
         alert("❌ Delete Failed");
 
-    }
-
 
 };
 // ===============================
