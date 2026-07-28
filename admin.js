@@ -1447,8 +1447,6 @@ loadOrders();
 loadDashboard();
 
 
-
-catch(error)
 {
 
     console.error(error);
