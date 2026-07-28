@@ -2017,3 +2017,183 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 });
+// ==========================================
+// Upload Website Logo
+// Phase 2 - Part 3
+// ==========================================
+
+
+window.uploadLogo = async function(){
+
+
+    const file =
+    document.getElementById("logoFile").files[0];
+
+
+    if(!file){
+
+        alert("Logo Image নির্বাচন করুন");
+
+        return;
+
+    }
+
+
+
+    try{
+
+
+        const fileName =
+        "logo_" + Date.now();
+
+
+
+        const storageRef =
+        ref(storage,"website/"+fileName);
+
+
+
+        await uploadBytes(
+            storageRef,
+            file
+        );
+
+
+
+        const imageURL =
+        await getDownloadURL(storageRef);
+
+
+
+        await updateDoc(
+
+            doc(db,"settings","website"),
+
+            {
+
+                logo:imageURL
+
+            }
+
+        );
+
+
+
+        document.getElementById("logoPreview").src =
+        imageURL;
+
+
+
+        alert("✅ Logo Uploaded");
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Logo Upload Failed");
+
+
+    }
+
+
+};
+
+
+
+
+
+// ==========================================
+// Upload Banner
+// ==========================================
+
+
+window.uploadBanner = async function(){
+
+
+    const file =
+    document.getElementById("bannerFile").files[0];
+
+
+
+    if(!file){
+
+
+        alert("Banner Image নির্বাচন করুন");
+
+
+        return;
+
+
+    }
+
+
+
+    try{
+
+
+        const fileName =
+        "banner_" + Date.now();
+
+
+
+        const storageRef =
+        ref(storage,"website/"+fileName);
+
+
+
+        await uploadBytes(
+            storageRef,
+            file
+        );
+
+
+
+        const imageURL =
+        await getDownloadURL(storageRef);
+
+
+
+        await updateDoc(
+
+            doc(db,"settings","website"),
+
+            {
+
+                banner:imageURL
+
+            }
+
+        );
+
+
+
+        document.getElementById("bannerPreview").src =
+        imageURL;
+
+
+
+        alert("✅ Banner Uploaded");
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Banner Upload Failed");
+
+
+    }
+
+
+};
