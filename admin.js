@@ -1836,3 +1836,184 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 });
+// ==========================================
+// Website Settings
+// Phase 2 - Part 2
+// ==========================================
+
+
+// Load Settings
+// ==========================================
+
+window.loadSettings = async function(){
+
+
+    try{
+
+
+        const snap = await getDoc(
+            doc(db,"settings","website")
+        );
+
+
+        if(!snap.exists()){
+
+            return;
+
+        }
+
+
+        const data = snap.data();
+
+
+
+        document.getElementById("websiteName").value =
+        data.websiteName || "";
+
+
+        document.getElementById("websitePhone").value =
+        data.phone || "";
+
+
+        document.getElementById("websiteEmail").value =
+        data.email || "";
+
+
+        document.getElementById("websiteAddress").value =
+        data.address || "";
+
+
+        document.getElementById("facebook").value =
+        data.facebook || "";
+
+
+        document.getElementById("youtube").value =
+        data.youtube || "";
+
+
+        document.getElementById("whatsapp").value =
+        data.whatsapp || "";
+
+
+        document.getElementById("footerText").value =
+        data.footerText || "";
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Settings Load Failed");
+
+
+    }
+
+
+};
+
+
+
+
+
+// Save Settings
+// ==========================================
+
+window.saveSettings = async function(){
+
+
+    try{
+
+
+        await updateDoc(
+
+            doc(db,"settings","website"),
+
+            {
+
+
+            websiteName:
+            document.getElementById("websiteName").value,
+
+
+            phone:
+            document.getElementById("websitePhone").value,
+
+
+            email:
+            document.getElementById("websiteEmail").value,
+
+
+            address:
+            document.getElementById("websiteAddress").value,
+
+
+            facebook:
+            document.getElementById("facebook").value,
+
+
+            youtube:
+            document.getElementById("youtube").value,
+
+
+            whatsapp:
+            document.getElementById("whatsapp").value,
+
+
+            footerText:
+            document.getElementById("footerText").value,
+
+
+            updatedAt:
+            new Date().toISOString()
+
+
+            }
+
+        );
+
+
+        alert("✅ Settings Saved Successfully");
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Settings Save Failed");
+
+
+    }
+
+
+};
+
+
+
+
+
+// Auto Load Settings
+// ==========================================
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+
+    if(document.getElementById("websiteName")){
+
+
+        loadSettings();
+
+
+    }
+
+
+});
