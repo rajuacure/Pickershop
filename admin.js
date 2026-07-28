@@ -1462,7 +1462,13 @@ window.searchOrders = function(){
 };
 
 
+<button
+class="btn"
+onclick="printInvoice('${docItem.id}')">
 
+🧾 Invoice
+
+</button>
 // ==========================================
 // Print Invoice
 // ==========================================
