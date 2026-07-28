@@ -924,3 +924,323 @@ window.printProducts = function(){
 
 
 };
+// ==========================================
+// Load Orders
+// ==========================================
+
+window.loadOrders = async function(){
+
+    const table =
+    document.getElementById("orderTable");
+
+
+    if(!table) return;
+
+
+    table.innerHTML = `
+
+    <tr>
+
+    <td colspan="7"
+    style="text-align:center;">
+
+    ⏳ Loading Orders...
+
+    </td>
+
+    </tr>
+
+    `;
+
+
+    try{
+
+
+        const snapshot =
+        await getDocs(collection(db,"orders"));
+
+
+
+        if(snapshot.empty){
+
+
+            table.innerHTML = `
+
+            <tr>
+
+            <td colspan="7"
+            style="text-align:center;">
+
+            কোনো Order পাওয়া যায়নি।
+
+            </td>
+
+            </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+        table.innerHTML = "";
+
+
+
+        snapshot.forEach(docItem=>{
+
+
+            const order =
+            docItem.data();
+
+
+
+            table.innerHTML += `
+
+
+            <tr>
+
+
+            <td>
+
+            ${docItem.id}
+
+            </td>
+
+
+
+            <td>
+
+            ${order.customerName || "-"}
+
+            </td>
+
+
+
+            <td>
+
+            ${order.phone || "-"}
+
+            </td>
+
+
+
+            <td>
+
+            ৳${order.total || 0}
+
+            </td>
+
+
+
+            <td>
+
+
+            <select
+
+            onchange="updateOrderStatus('${docItem.id}',this.value)">
+
+
+            <option
+
+            value="Pending"
+
+            ${order.status=="Pending"?"selected":""}>
+
+            Pending
+
+            </option>
+
+
+
+            <option
+
+            value="Processing"
+
+            ${order.status=="Processing"?"selected":""}>
+
+            Processing
+
+            </option>
+
+
+
+            <option
+
+            value="Shipped"
+
+            ${order.status=="Shipped"?"selected":""}>
+
+            Shipped
+
+            </option>
+
+
+
+            <option
+
+            value="Delivered"
+
+            ${order.status=="Delivered"?"selected":""}>
+
+            Delivered
+
+            </option>
+
+
+
+            <option
+
+            value="Cancelled"
+
+            ${order.status=="Cancelled"?"selected":""}>
+
+            Cancelled
+
+            </option>
+
+
+
+            </select>
+
+
+            </td>
+
+
+
+            <td>
+
+
+            <button
+
+            class="btn"
+
+            onclick="viewOrder('${docItem.id}')">
+
+
+            👁 View
+
+
+            </button>
+
+
+            </td>
+
+
+
+            <td>
+
+
+            <button
+
+            class="btn"
+
+            style="background:red;"
+
+            onclick="deleteOrder('${docItem.id}')">
+
+
+            🗑 Delete
+
+
+            </button>
+
+
+            </td>
+
+
+
+            </tr>
+
+
+            `;
+
+
+        });
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Order Load Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Update Order Status
+// ==========================================
+
+window.updateOrderStatus = async function(id,status){
+
+
+    try{
+
+
+        await updateDoc(
+
+            doc(db,"orders",id),
+
+            {
+
+                status:status
+
+            }
+
+        );
+
+
+
+        alert("✅ Order Status Updated");
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Status Update Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Auto Load Orders
+// ==========================================
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+
+    if(document.getElementById("orderTable")){
+
+
+        loadOrders();
+
+
+    }
+
+
+});
