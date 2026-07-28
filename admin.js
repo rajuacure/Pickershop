@@ -1244,3 +1244,299 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 });
+// ==========================================
+// View Order Details
+// ==========================================
+
+window.viewOrder = async function(id){
+
+
+    try{
+
+
+        const snap =
+        await getDoc(doc(db,"orders",id));
+
+
+        if(!snap.exists()){
+
+            alert("Order পাওয়া যায়নি");
+
+            return;
+
+        }
+
+
+        const order =
+        snap.data();
+
+
+
+        let products = "";
+
+
+
+        if(order.items){
+
+
+            order.items.forEach(item=>{
+
+
+                products +=
+                `
+                ${item.name}
+                x ${item.qty || 1}
+                = ৳${item.price}
+
+                `;
+
+
+            });
+
+
+        }
+
+
+
+        alert(
+
+`
+🛒 Order Details
+
+
+Customer:
+${order.customerName || "-"}
+
+
+Phone:
+${order.phone || "-"}
+
+
+Address:
+${order.address || "-"}
+
+
+Payment:
+${order.paymentMethod || "COD"}
+
+
+Total:
+৳${order.total || 0}
+
+
+Status:
+${order.status || "Pending"}
+
+
+
+Products:
+
+${products}
+
+`
+
+        );
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+        alert("❌ Order Details Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Delete Order
+// ==========================================
+
+window.deleteOrder = async function(id){
+
+
+    if(!confirm("এই Order Delete করবেন?")){
+
+
+        return;
+
+
+    }
+
+
+
+    try{
+
+
+        await deleteDoc(
+
+            doc(db,"orders",id)
+
+        );
+
+
+
+        alert("✅ Order Deleted");
+
+
+        loadOrders();
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert("❌ Delete Failed");
+
+
+    }
+
+
+};
+
+
+
+// ==========================================
+// Search Orders
+// ==========================================
+
+window.searchOrders = function(){
+
+
+    const keyword =
+
+    document
+    .getElementById("searchOrder")
+    .value
+    .toLowerCase();
+
+
+
+    const rows =
+
+    document
+    .querySelectorAll("#orderTable tr");
+
+
+
+    rows.forEach(row=>{
+
+
+        const text =
+
+        row.innerText.toLowerCase();
+
+
+
+        row.style.display =
+
+        text.includes(keyword)
+
+        ?
+
+        ""
+
+        :
+
+        "none";
+
+
+    });
+
+
+};
+
+
+
+// ==========================================
+// Print Invoice
+// ==========================================
+
+window.printInvoice = async function(id){
+
+
+    try{
+
+
+        const snap =
+
+        await getDoc(
+            doc(db,"orders",id)
+        );
+
+
+        const order =
+        snap.data();
+
+
+
+        const invoice = `
+
+
+        <h2>
+        Picker Shop Invoice
+        </h2>
+
+
+        Customer:
+        ${order.customerName}
+
+
+        <br>
+
+        Phone:
+        ${order.phone}
+
+
+        <br><br>
+
+
+        Total:
+        ৳${order.total}
+
+
+
+        `;
+
+
+
+        const win =
+        window.open("");
+
+
+
+        win.document.write(invoice);
+
+
+        win.print();
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+    }
+
+
+};
