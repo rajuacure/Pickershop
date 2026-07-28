@@ -1175,3 +1175,116 @@ window.loadOrders = async function () {
     }
 
 };
+// ==========================================
+// Load Orders
+// ==========================================
+
+window.loadOrders = async function () {
+
+    const table = document.getElementById("orderTable");
+
+    if (!table) return;
+
+    table.innerHTML = `
+    <tr>
+        <td colspan="6" style="text-align:center;">
+            Loading Orders...
+        </td>
+    </tr>
+    `;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "orders"));
+
+        if (snapshot.empty) {
+
+            table.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align:center;">
+                    এখনো কোনো Order আসেনি।
+                </td>
+            </tr>
+            `;
+
+            return;
+
+        }
+
+        table.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const order = docItem.data();
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>${docItem.id}</td>
+
+                <td>${order.customerName || "-"}</td>
+
+                <td>${order.phone || "-"}</td>
+
+                <td>৳${order.total || 0}</td>
+
+                <td>
+
+                    <span style="
+                    color:
+                    ${order.status=="Pending"?"orange":
+                    order.status=="Processing"?"blue":
+                    order.status=="Shipped"?"purple":
+                    order.status=="Delivered"?"green":"red"};
+                    font-weight:bold;">
+
+                    ${order.status || "Pending"}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                    class="btn"
+                    onclick="viewOrder('${docItem.id}')">
+
+                    👁 View
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Order Load Failed");
+
+    }
+
+};
+
+// ==========================================
+// Auto Load Orders
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("orderTable")) {
+
+        loadOrders();
+
+    }
+
+});
