@@ -135,3 +135,63 @@ id: docItem.id,
 }
 
 loadProducts();
+// ==========================================
+// Search + Filter + Sort
+// ==========================================
+
+function renderProducts(products){
+
+const container =
+document.getElementById("productContainer");
+
+container.innerHTML="";
+
+products.forEach(product=>{
+
+container.innerHTML += `
+
+<div class="product-card">
+
+${product.featured
+? '<span class="product-badge">⭐ Featured</span>'
+: ""}
+
+<img src="${product.image}" alt="${product.name}">
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p class="price">
+
+৳${product.price}
+
+</p>
+
+<div class="product-buttons">
+
+<a
+href="product.html?id=${product.id}"
+class="btn">
+
+👁 বিস্তারিত
+
+</a>
+
+<button class="btn">
+
+🛒 কার্টে যোগ করুন
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
