@@ -184,3 +184,36 @@ currentSlide=0;
 image.src = sliderImages[currentSlide];
 
 },4000);
+// ==========================================
+// Back To Top
+// ==========================================
+
+const topBtn = document.getElementById("backTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+
+topBtn.style.display="block";
+
+}
+
+else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
