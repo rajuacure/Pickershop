@@ -83,7 +83,11 @@ View Details
     }
 
 }
+const bestSellerContainer =
+document.getElementById("bestSellerProducts");
 
+const newArrivalContainer =
+document.getElementById("newArrivalProducts");
 loadHomeProducts();
 // ==========================================
 // Auto Slider
