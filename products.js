@@ -211,3 +211,27 @@ p.name.toLowerCase().includes(keyword)
 renderProducts(filtered);
 
 });
+document.getElementById("categoryFilter")
+?.addEventListener("change",(e)=>{
+
+const category =
+e.target.value;
+
+if(category==""){
+
+renderProducts(allProducts);
+
+return;
+
+}
+
+const filtered =
+allProducts.filter(p=>
+
+p.category===category
+
+);
+
+renderProducts(filtered);
+
+});
