@@ -1805,3 +1805,100 @@ background:#198754;
 color:#fff;
 
 }
+/* ==========================================
+Why Choose Us
+========================================== */
+
+.why-us{
+
+padding:80px 0;
+
+background:#f8f9fa;
+
+}
+
+.why-grid{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+}
+
+.why-card{
+
+background:#fff;
+
+padding:35px 25px;
+
+text-align:center;
+
+border-radius:15px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.why-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.why-icon{
+
+font-size:50px;
+
+margin-bottom:15px;
+
+color:#198754;
+
+}
+
+
+
+/* ==========================================
+Reviews
+========================================== */
+
+.reviews{
+
+padding:80px 0;
+
+background:#fff;
+
+}
+
+.review-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+}
+
+.review-card{
+
+background:#fff;
+
+padding:30px;
+
+border-radius:15px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.review-card h3{
+
+color:#ffc107;
+
+margin-bottom:15px;
+
+}
