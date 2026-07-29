@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Invoice | Picker Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="invoice">
+
+<h1>🌿 Picker Shop</h1>
+
+<h2>Invoice</h2>
+
+<hr>
+
+<p><strong>Order No:</strong> <span id="invoiceOrder"></span></p>
+
+<p><strong>Name:</strong> <span id="invoiceName"></span></p>
+
+<p><strong>Phone:</strong> <span id="invoicePhone"></span></p>
+
+<p><strong>Address:</strong> <span id="invoiceAddress"></span></p>
+
+<p><strong>Payment:</strong> <span id="invoicePayment"></span></p>
+
+<hr>
+
+<div id="invoiceItems"></div>
+
+<hr>
+
+<h2>Total : <span id="invoiceTotal"></span></h2>
+
+<br>
+
+<button class="btn" onclick="window.print()">
+
+🖨 Print Invoice
+
+</button>
+
+</div>
+
+<script type="module" src="js/invoice.js"></script>
+
+</body>
+
+</html>
