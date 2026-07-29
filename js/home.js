@@ -1,60 +1,38 @@
-const demoProducts = [
+import { db } from "./firebase.js";
 
-{
-
-name:"Premium Honey",
-
-price:"৳850",
-
-image:"images/product1.jpg"
-
-},
-
-{
-
-name:"Organic Dry Fruits",
-
-price:"৳1200",
-
-image:"images/product2.jpg"
-
-},
-
-{
-
-name:"Herbal Powder",
-
-price:"৳450",
-
-image:"images/product3.jpg"
-
-},
-
-{
-
-name:"Natural Oil",
-
-price:"৳650",
-
-image:"images/product4.jpg"
-
-}
-
-];
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
+// ==========================================
+// Load Homepage Products
+// ==========================================
 
-function loadProducts(id){
+async function loadHomeProducts() {
 
-const container=document.getElementById(id);
+    const flashContainer =
+        document.getElementById("flashProducts");
 
-if(!container) return;
+    const featuredContainer =
+        document.getElementById("featuredProducts");
 
-container.innerHTML="";
+    if (!flashContainer || !featuredContainer) return;
 
-demoProducts.forEach(product=>{
+    flashContainer.innerHTML = "";
+    featuredContainer.innerHTML = "";
 
-container.innerHTML+=`
+    try {
+
+        const snapshot =
+            await getDocs(collection(db, "products"));
+
+        snapshot.forEach(docItem => {
+
+            const product = docItem.data();
+
+            const card = `
 
 <div class="product-card">
 
@@ -62,21 +40,19 @@ container.innerHTML+=`
 
 <div class="product-info">
 
-<div class="product-title">
-
+<h3 class="product-title">
 ${product.name}
+</h3>
 
-</div>
+<p class="product-price">
+৳${product.price}
+</p>
 
-<div class="product-price">
+<a
+href="product.html?id=${docItem.id}"
+class="buy-btn">
 
-${product.price}
-
-</div>
-
-<a href="#" class="buy-btn">
-
-Buy Now
+View Details
 
 </a>
 
@@ -86,10 +62,26 @@ Buy Now
 
 `;
 
-});
+            // প্রথম ৮টি Product Flash Sale-এ
+            if (flashContainer.children.length < 8) {
+                flashContainer.innerHTML += card;
+            }
+
+            // Featured Product
+            if (product.featured === true) {
+                featuredContainer.innerHTML += card;
+            }
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
 
 }
 
-loadProducts("flashProducts");
-
-loadProducts("featuredProducts");
+loadHomeProducts();
