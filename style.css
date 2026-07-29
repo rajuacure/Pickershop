@@ -1902,3 +1902,192 @@ color:#ffc107;
 margin-bottom:15px;
 
 }
+/* ==========================================
+Newsletter
+========================================== */
+
+.newsletter{
+
+padding:80px 20px;
+
+background:#198754;
+
+color:#fff;
+
+text-align:center;
+
+}
+
+.newsletter-box{
+
+display:flex;
+
+justify-content:center;
+
+margin-top:25px;
+
+gap:10px;
+
+}
+
+.newsletter-box input{
+
+padding:15px;
+
+width:350px;
+
+border:none;
+
+border-radius:8px;
+
+}
+
+.newsletter-box button{
+
+padding:15px 30px;
+
+background:#ffc107;
+
+border:none;
+
+border-radius:8px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+
+/* ==========================================
+Footer
+========================================== */
+
+.footer{
+
+background:#222;
+
+color:#fff;
+
+padding:70px 20px;
+
+}
+
+.footer-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:40px;
+
+}
+
+.footer a{
+
+color:#fff;
+
+text-decoration:none;
+
+}
+
+.footer ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+.footer li{
+
+margin-bottom:10px;
+
+}
+
+.copyright{
+
+text-align:center;
+
+padding-top:30px;
+
+margin-top:30px;
+
+border-top:1px solid rgba(255,255,255,.2);
+
+}
+
+
+
+/* ==========================================
+Floating Button
+========================================== */
+
+.whatsapp{
+
+position:fixed;
+
+bottom:25px;
+
+left:25px;
+
+width:60px;
+
+height:60px;
+
+background:#25D366;
+
+color:#fff;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+font-size:30px;
+
+text-decoration:none;
+
+z-index:999;
+
+}
+
+
+
+/* ==========================================
+Back To Top
+========================================== */
+
+#backTop{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#198754;
+
+color:#fff;
+
+font-size:22px;
+
+cursor:pointer;
+
+display:none;
+
+z-index:999;
+
+}
