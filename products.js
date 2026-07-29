@@ -178,9 +178,12 @@ class="btn">
 
 </a>
 
-<button class="btn">
+<button
+class="btn cart-btn"
 
-🛒 কার্টে যোগ করুন
+onclick='addToCart(${JSON.stringify(product)})'>
+
+🛒 Add To Cart
 
 </button>
 
