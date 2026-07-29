@@ -258,3 +258,4 @@ products.sort((a,b)=>b.price-a.price);
 renderProducts(products);
 
 });
+<script src="js/cart.js"></script>
