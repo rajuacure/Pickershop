@@ -27,7 +27,14 @@ window.placeOrder = async function () {
     try {
 
         await addDoc(collection(db, "orders"), {
+const orderNumber =
+"PKS-" +
+Date.now();
 
+localStorage.setItem(
+"lastOrder",
+orderNumber
+);
             customerName: name,
             phone: phone,
             address: address,
