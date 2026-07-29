@@ -135,7 +135,31 @@ window.placeOrder = async function () {
         window.location.href = "index.html";
 
     }
+const invoiceData={
 
+orderNumber,
+
+customerName,
+
+phone:customerPhone,
+
+address:customerAddress,
+
+paymentMethod,
+
+products:cart,
+
+total:subTotal+delivery-discount
+
+};
+
+localStorage.setItem(
+
+"lastInvoice",
+
+JSON.stringify(invoiceData)
+
+);
     catch (error) {
 
         console.error(error);
