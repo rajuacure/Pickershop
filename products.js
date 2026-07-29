@@ -77,7 +77,7 @@ async function loadProducts() {
         }
 
         let html = "";
-
+let allProducts = [];
         snapshot.forEach((docItem) => {
 
             const p = docItem.data();
