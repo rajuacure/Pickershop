@@ -61,3 +61,26 @@ grid-template-columns:1fr;
 }
 
 }
+@media(max-width:992px){
+
+.slider-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.slide-content{
+
+position:static;
+
+padding:30px;
+
+}
+
+.slider-left img{
+
+height:280px;
+
+}
+
+}
