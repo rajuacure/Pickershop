@@ -235,3 +235,23 @@ p.category===category
 renderProducts(filtered);
 
 });
+document.getElementById("sortProducts")
+?.addEventListener("change",(e)=>{
+
+let products=[...allProducts];
+
+if(e.target.value=="low"){
+
+products.sort((a,b)=>a.price-b.price);
+
+}
+
+if(e.target.value=="high"){
+
+products.sort((a,b)=>b.price-a.price);
+
+}
+
+renderProducts(products);
+
+});
