@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Order Success | Picker Shop</title>
@@ -16,35 +17,70 @@
 
 <section class="success-page">
 
-<div class="success-box">
+<div class="container">
 
-<h1>🎉 অর্ডার সফল হয়েছে!</h1>
+<div class="success-card">
 
-<p>আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে।</p>
+<div class="success-icon">
 
-<h2 id="orderNumber"></h2>
+✅
 
-<p>খুব শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।</p>
+</div>
+
+<h1>
+
+আপনার অর্ডার সফল হয়েছে
+
+</h1>
+
+<p>
+
+আপনার অর্ডার নম্বর
+
+</p>
+
+<h2 id="orderNumber">
+
+PKS-000000
+
+</h2>
 
 <br>
 
 <a href="index.html" class="btn">
-🏠 হোমে ফিরে যান
+
+🏠 হোম পেজে ফিরে যান
+
 </a>
+
+<br><br>
+
+<a href="products.html" class="wish-btn">
+
+🛍️ আরও কেনাকাটা করুন
+
+</a>
+
+</div>
 
 </div>
 
 </section>
 
-<script src="script.js"></script>
+<script>
+
+const orderNo =
+localStorage.getItem("lastOrder");
+
+if(orderNo){
+
+document.getElementById("orderNumber").innerHTML =
+orderNo;
+
+}
+
+</script>
 
 </body>
 
 </html>
-<br><br>
-
-<a href="tracking.html" class="btn">
-
-📦 Track Your Order
-
-</a>
