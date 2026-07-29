@@ -195,3 +195,19 @@ class="btn">
 });
 
 }
+document.getElementById("searchInput")
+?.addEventListener("input",(e)=>{
+
+const keyword =
+e.target.value.toLowerCase();
+
+const filtered =
+allProducts.filter(p=>
+
+p.name.toLowerCase().includes(keyword)
+
+);
+
+renderProducts(filtered);
+
+});
