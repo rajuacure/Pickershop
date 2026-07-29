@@ -1,0 +1,25 @@
+ @media(max-width:992px){
+
+.hero-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.hero-btn{
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.hero-left h1{
+
+font-size:36px;
+
+}
+
+}
