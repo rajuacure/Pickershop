@@ -1388,7 +1388,44 @@ window.deleteOrder = async function(id){
         alert("✅ Order Deleted");
 
 
-        loadOrders();
+        loadOrders();table.innerHTML += `
+
+<tr>
+
+...
+
+<td>
+
+<button
+class="btn"
+onclick="viewOrder('${docItem.id}')">
+
+👁 View
+
+</button>
+
+<button
+class="btn"
+onclick="printInvoice('${docItem.id}')">
+
+🧾 Invoice
+
+</button>
+
+<button
+class="btn"
+style="background:red;"
+onclick="deleteOrder('${docItem.id}')">
+
+🗑 Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
 
 
 
