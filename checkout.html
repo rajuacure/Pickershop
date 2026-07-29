@@ -2,141 +2,216 @@
 <html lang="bn">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Picker Shop</title>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Checkout | Picker Shop</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
-<h1>🛒 Checkout</h1>
+    <div class="container">
 
-<p>আপনার অর্ডারের তথ্য পূরণ করুন</p>
+        <a href="index.html" class="logo">
+            🌿 <span>Picker Shop</span>
+        </a>
+
+        <nav class="navbar">
+
+            <a href="index.html">হোম</a>
+
+            <a href="products.html">পণ্য</a>
+
+            <a href="cart.html">কার্ট</a>
+
+        </nav>
+
+    </div>
 
 </header>
 
-<section class="checkout">
 
-<form id="checkoutForm">
+
+<section class="checkout-section">
+
+<div class="container">
+
+<h2 style="text-align:center;margin-bottom:30px;">
+
+🛒 Checkout
+
+</h2>
+
+<div class="checkout-grid">
+
+<!-- Customer Information -->
+
+<div class="checkout-form">
+
+<h3>গ্রাহকের তথ্য</h3>
 
 <input
 type="text"
 id="customerName"
-placeholder="আপনার নাম"
-required>
+placeholder="আপনার নাম">
 
 <input
 type="tel"
 id="customerPhone"
-placeholder="মোবাইল নম্বর"
-required>
+placeholder="মোবাইল নম্বর">
 
 <textarea
 id="customerAddress"
-placeholder="সম্পূর্ণ ঠিকানা"
-rows="4"
-required></textarea>
+placeholder="সম্পূর্ণ ঠিকানা"></textarea>
 
 <select id="paymentMethod">
 
 <option value="Cash on Delivery">
+
 Cash on Delivery
+
 </option>
 
 <option value="bKash">
+
 bKash
+
 </option>
 
 <option value="Nagad">
+
 Nagad
+
 </option>
 
 <option value="Rocket">
+
 Rocket
+
 </option>
 
 </select>
 
-<button
-type="button"
-class="cart-btn"
-onclick="submitOrder()">
+</div>
 
-✅ অর্ডার নিশ্চিত করুন
+
+
+<!-- Order Summary -->
+
+<div class="checkout-summary">
+
+<h3>
+
+📦 Order Summary
+
+</h3>
+
+<hr>
+
+<div id="checkoutItems">
+
+</div>
+
+<hr>
+
+<h4>
+
+Subtotal :
+
+<span id="subTotal">
+
+৳0
+
+</span>
+
+</h4>
+
+<h4>
+
+Discount :
+
+<span id="discount">
+
+৳0
+
+</span>
+
+</h4>
+
+<h4>
+
+Delivery :
+
+<span id="deliveryCharge">
+
+৳80
+
+</span>
+
+</h4>
+
+<hr>
+
+<h2>
+
+Total :
+
+<span id="finalTotal">
+
+৳80
+
+</span>
+
+</h2>
+
+<br>
+
+<h3>
+
+🎟 Coupon
+
+</h3>
+
+<input
+type="text"
+id="couponCode"
+placeholder="Coupon Code">
+
+<br><br>
+
+<button
+class="btn"
+onclick="applyCoupon()">
+
+Apply Coupon
 
 </button>
 
-</form>
+<br><br>
 
-</section>
 <button
-type="button"
-class="cart-btn"
+class="btn"
+style="width:100%;"
+
 onclick="placeOrder()">
 
-✅ অর্ডার নিশ্চিত করুন
+✅ Confirm Order
 
 </button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script type="module" src="js/checkout.js"></script>
 
 </body>
 
 </html>
-<h3>🎟️ Coupon Code</h3>
-
-<input
-type="text"
-id="couponCode"
-placeholder="কুপন কোড লিখুন">
-
-<button
-type="button"
-class="btn"
-onclick="applyCoupon()">
-
-Apply Coupon
-
-</button>
-<hr>
-
-<h3>🎟️ Coupon Code</h3>
-
-<input
-type="text"
-id="couponCode"
-placeholder="কুপন কোড লিখুন">
-
-<button
-type="button"
-class="btn"
-onclick="applyCoupon()">
-
-Apply Coupon
-
-</button>
-
-<hr>
-
-<h3 id="subTotal">Subtotal: ৳0</h3>
-
-<h3 id="discount">Discount: ৳0</h3>
-
-<h3 id="deliveryCharge">Delivery: ৳80</h3>
-
-<h2 id="finalTotal">Total: ৳0</h2>
-<hr>
-
-<h3 id="subTotal">Subtotal: ৳0</h3>
-
-<h3 id="discount">Discount: ৳0</h3>
-
-<h3 id="deliveryCharge">Delivery: ৳80</h3>
-
-<h2 id="finalTotal">Total: ৳0</h2>
