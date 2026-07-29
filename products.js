@@ -1,3 +1,4 @@
+let allProducts = [];
 import { db } from "./firebase.js";
 
 import {
