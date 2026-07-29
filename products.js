@@ -79,7 +79,13 @@ async function loadProducts() {
         let html = "";
 let allProducts = [];
         snapshot.forEach((docItem) => {
+allProducts.push({
 
+id: docItem.id,
+
+...p
+
+});
             const p = docItem.data();
 
             html += `
