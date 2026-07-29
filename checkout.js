@@ -59,3 +59,22 @@ orderNumber
     }
 
 };
+const message=
+
+`নতুন Order
+
+Order: ${orderNumber}
+
+নাম: ${customerName}
+
+ফোন: ${customerPhone}
+
+মোট: ৳${subTotal+delivery-discount}`;
+
+window.open(
+
+"https://wa.me/8801XXXXXXXXX?text="+
+
+encodeURIComponent(message)
+
+);
