@@ -85,3 +85,36 @@ View Details
 }
 
 loadHomeProducts();
+// ==========================================
+// Auto Slider
+// ==========================================
+
+const sliderImages = [
+
+"images/slider1.jpg",
+
+"images/slider2.jpg",
+
+"images/slider3.jpg"
+
+];
+
+let currentSlide = 0;
+
+setInterval(()=>{
+
+const image = document.getElementById("sliderImage");
+
+if(!image) return;
+
+currentSlide++;
+
+if(currentSlide>=sliderImages.length){
+
+currentSlide=0;
+
+}
+
+image.src = sliderImages[currentSlide];
+
+},4000);
