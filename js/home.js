@@ -61,7 +61,69 @@ View Details
 </div>
 
 `;
+const productCard = `
 
+<div class="product-card">
+
+<div class="discount-badge">
+
+-10%
+
+</div>
+
+<img src="${product.image}" alt="${product.name}">
+
+<div class="product-info">
+
+<h3 class="product-title">
+
+${product.name}
+
+</h3>
+
+<p class="product-price">
+
+৳${product.price}
+
+</p>
+
+<div class="product-actions">
+
+<a
+href="product.html?id=${docItem.id}"
+class="cart-btn">
+
+🛒 Buy
+
+</a>
+
+<div class="wishlist-btn">
+
+❤
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+if(bestSellerContainer &&
+bestSellerContainer.children.length<4){
+
+bestSellerContainer.innerHTML+=productCard;
+
+}
+
+if(newArrivalContainer &&
+newArrivalContainer.children.length<4){
+
+newArrivalContainer.innerHTML+=productCard;
+
+}
             // প্রথম ৮টি Product Flash Sale-এ
             if (flashContainer.children.length < 8) {
                 flashContainer.innerHTML += card;
