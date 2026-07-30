@@ -17,7 +17,7 @@ window.discount = 0;
 window.currentCoupon = null;
 
 // ==========================================
-// Apply Coupon
+// Apply Coupon (Professional Version)
 // ==========================================
 
 window.applyCoupon = async function () {
@@ -39,11 +39,8 @@ window.applyCoupon = async function () {
     try {
 
         const q = query(
-
             collection(db, "coupons"),
-
             where("code", "==", code)
-
         );
 
         const snapshot = await getDocs(q);
@@ -51,7 +48,6 @@ window.applyCoupon = async function () {
         if (snapshot.empty) {
 
             discount = 0;
-
             currentCoupon = null;
 
             calculateTotal();
@@ -62,22 +58,69 @@ window.applyCoupon = async function () {
 
         }
 
-        const coupon = snapshot.docs[0].data();
+        const couponDoc = snapshot.docs[0];
 
+        const coupon = couponDoc.data();
+
+        // Active Check
         if (!coupon.active) {
 
-            alert("Coupon Disabled");
+            alert("❌ Coupon Disabled");
 
             return;
 
         }
 
+        // Expiry Check
+        if (coupon.expiry) {
+
+            const today = new Date();
+
+            const expiry = new Date(coupon.expiry);
+
+            if (today > expiry) {
+
+                alert("❌ Coupon Expired");
+
+                return;
+
+            }
+
+        }
+
+        // Usage Limit Check
+        if (
+            coupon.usageLimit &&
+            coupon.usedCount >= coupon.usageLimit
+        ) {
+
+            alert("❌ Coupon Usage শেষ");
+
+            return;
+
+        }
+
+        // Minimum Order Check
+        if (
+            coupon.minimumOrder &&
+            subTotal < coupon.minimumOrder
+        ) {
+
+            alert(
+                "Minimum Order ৳" +
+                coupon.minimumOrder +
+                " হতে হবে"
+            );
+
+            return;
+
+        }
+
+        // Discount Calculate
         if (coupon.type === "percent") {
 
             discount =
-
                 subTotal *
-
                 (coupon.value / 100);
 
         }
@@ -88,11 +131,24 @@ window.applyCoupon = async function () {
 
         }
 
-        currentCoupon = coupon;
+        // Discount বেশি হলে Limit
+        if (discount > subTotal) {
+
+            discount = subTotal;
+
+        }
+
+        currentCoupon = {
+
+            id: couponDoc.id,
+
+            ...coupon
+
+        };
 
         calculateTotal();
 
-        alert("✅ Coupon Applied");
+        alert("✅ Coupon Applied Successfully");
 
     }
 
@@ -100,7 +156,7 @@ window.applyCoupon = async function () {
 
         console.error(error);
 
-        alert("Coupon Failed");
+        alert("Coupon Apply Failed");
 
     }
 
