@@ -1489,27 +1489,21 @@ window.searchOrders = function(){
 <button
 class="btn"
 onclick="viewOrder('${docItem.id}')">
-
 👁 View
-
 </button>
 
 <button
 class="btn"
 style="background:#0d6efd;"
 onclick="printInvoice('${docItem.id}')">
-
 🧾 Invoice
-
 </button>
 
 <button
 class="btn"
 style="background:#dc3545;"
 onclick="deleteOrder('${docItem.id}')">
-
 🗑 Delete
-
 </button>
 
 </td>
