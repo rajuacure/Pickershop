@@ -5,7 +5,19 @@ import {
   addDoc,
   Timestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
 
+updateDoc,
+
+doc,
+
+increment
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 window.placeOrder = async function () {
 
     const name = document.getElementById("customerName").value.trim();
