@@ -5,71 +5,182 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Order Success</title>
+<title>Order Success | Picker Shop</title>
 
-<link rel="stylesheet"
-href="style.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<style>
+
+.success-box{
+
+max-width:700px;
+
+margin:80px auto;
+
+background:#fff;
+
+padding:40px;
+
+border-radius:15px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.12);
+
+text-align:center;
+
+}
+
+.success-icon{
+
+font-size:80px;
+
+color:#28a745;
+
+margin-bottom:20px;
+
+animation:pop .6s ease;
+
+}
+
+@keyframes pop{
+
+0%{transform:scale(.4);opacity:0;}
+
+100%{transform:scale(1);opacity:1;}
+
+}
+
+.success-box h2{
+
+color:#28a745;
+
+margin-bottom:15px;
+
+}
+
+.success-box p{
+
+font-size:17px;
+
+color:#555;
+
+line-height:1.8;
+
+}
+
+.action-buttons{
+
+margin-top:35px;
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+.action-buttons a{
+
+text-decoration:none;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<section class="products-section">
+<header class="header">
 
 <div class="container">
 
-<div class="card"
-style="max-width:650px;
-margin:auto;
-text-align:center;
-padding:50px;">
+<a href="index.html" class="logo">
 
-<h1>
+🌿 Picker Shop
 
-🎉 Order Successful
+</a>
 
-</h1>
+<nav>
 
-<br>
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="orders.html">My Orders</a>
+
+<a href="profile.html">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section>
+
+<div class="success-box">
+
+<div class="success-icon">
+
+✅
+
+</div>
+
+<h2>
+
+অর্ডার সফলভাবে সম্পন্ন হয়েছে
+
+</h2>
 
 <p>
 
 আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে।
 
+<br><br>
+
+আমাদের টিম খুব দ্রুত আপনার অর্ডার যাচাই করবে এবং প্রসেসিং শুরু করবে।
+
+<br><br>
+
+অর্ডারের সর্বশেষ অবস্থা দেখতে "My Orders" এ যান।
+
 </p>
 
-<br>
+<div class="action-buttons">
 
-<h3>
+<a href="products.html">
 
-Order ID
+<button class="btn">
 
-</h3>
+🛍 আরও কেনাকাটা করুন
 
-<h2 id="orderId">
-
-Loading...
-
-</h2>
-
-<br>
-
-<a
-href="tracking.html"
-class="btn">
-
-Track Order
+</button>
 
 </a>
 
-<a
-href="index.html"
-class="btn">
+<a href="orders.html">
 
-Home
+<button class="btn">
+
+📦 My Orders
+
+</button>
+
+</a>
+
+<a href="index.html">
+
+<button class="btn">
+
+🏠 Home
+
+</button>
 
 </a>
 
@@ -79,16 +190,21 @@ Home
 
 </section>
 
-<script>
+<footer>
 
-const params =
-new URLSearchParams(location.search);
+<div class="container">
 
-document.getElementById("orderId")
-.innerHTML =
-params.get("id");
+<p>
 
-</script>
+© 2026 Picker Shop. All Rights Reserved.
+
+</p>
+
+</div>
+
+</footer>
+
+<script type="module" src="js/navbar.js"></script>
 
 </body>
 
