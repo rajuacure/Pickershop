@@ -369,3 +369,111 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
 
 });
+// ==========================================
+// Picker Shop V2
+// Checkout & Order
+// Phase 2 - Part 5.3
+// ==========================================
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+window.placeOrder = async function () {
+
+    const name =
+        document.getElementById("customerName")?.value.trim();
+
+    const phone =
+        document.getElementById("customerPhone")?.value.trim();
+
+    const address =
+        document.getElementById("customerAddress")?.value.trim();
+
+    const payment =
+        document.getElementById("paymentMethod")?.value;
+
+    if (!name || !phone || !address) {
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    if (cart.length === 0) {
+
+        alert("কার্ট খালি");
+
+        return;
+
+    }
+
+    const summary =
+        JSON.parse(
+            localStorage.getItem("orderSummary")
+        );
+
+    try {
+
+        const order = {
+
+            customerName: name,
+
+            phone: phone,
+
+            address: address,
+
+            paymentMethod: payment,
+
+            items: cart,
+
+            subtotal: summary.subtotal,
+
+            discount: summary.discount,
+
+            deliveryCharge: summary.delivery,
+
+            total: summary.total,
+
+            paymentStatus: "Unpaid",
+
+            status: "Pending",
+
+            createdAt: serverTimestamp()
+
+        };
+
+        const docRef =
+            await addDoc(
+                collection(db, "orders"),
+                order
+            );
+
+        localStorage.removeItem("cart");
+
+        localStorage.removeItem("orderSummary");
+
+        alert(
+            "✅ অর্ডার সফল হয়েছে\n\nOrder ID : "
+            + docRef.id
+        );
+
+        window.location.href =
+            "order-success.html?id=" + docRef.id;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Order Failed");
+
+    }
+
+};
