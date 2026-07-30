@@ -133,3 +133,128 @@ document.addEventListener("DOMContentLoaded",()=>{
 loadFeaturedProducts();
 
 });
+// ==========================================
+// Picker Shop V2
+// Phase 2 - Part 6.3
+// Best Seller + Badge + Quick View
+// ==========================================
+
+// ------------------------------
+// Best Seller
+// ------------------------------
+
+window.showBestSeller = function () {
+
+    const best = allProducts.filter(p => p.bestSeller === true);
+
+    currentPage = 1;
+
+    renderProducts(best);
+
+};
+
+// ------------------------------
+// New Arrival
+// ------------------------------
+
+window.showNewArrival = function () {
+
+    const latest = [...allProducts].sort((a, b) => {
+
+        return new Date(b.createdAt) - new Date(a.createdAt);
+
+    });
+
+    currentPage = 1;
+
+    renderProducts(latest);
+
+};
+
+// ------------------------------
+// Discount Badge
+// ------------------------------
+
+window.getDiscountBadge = function (product) {
+
+    if (!product.discount || product.discount <= 0) {
+
+        return "";
+
+    }
+
+    return `<span class="discount-badge">
+
+-${product.discount}%
+
+</span>`;
+
+};
+
+// ------------------------------
+// Stock Badge
+// ------------------------------
+
+window.getStockBadge = function (product) {
+
+    if (product.stock <= 0) {
+
+        return `<span class="stock-badge out">
+
+Out Of Stock
+
+</span>`;
+
+    }
+
+    if (product.stock <= 5) {
+
+        return `<span class="stock-badge low">
+
+Low Stock
+
+</span>`;
+
+    }
+
+    return "";
+
+};
+
+// ------------------------------
+// Quick View
+// ------------------------------
+
+window.quickView = function (id) {
+
+    const product =
+
+        allProducts.find(p => p.id === id);
+
+    if (!product) return;
+
+    document.getElementById("quickImage").src = product.image;
+
+    document.getElementById("quickName").innerHTML = product.name;
+
+    document.getElementById("quickPrice").innerHTML =
+
+        "৳" + product.price;
+
+    document.getElementById("quickDescription").innerHTML =
+
+        product.description || "";
+
+    document.getElementById("quickModal").style.display = "flex";
+
+};
+
+// ------------------------------
+// Close Quick View
+// ------------------------------
+
+window.closeQuickView = function () {
+
+    document.getElementById("quickModal").style.display = "none";
+
+};
