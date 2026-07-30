@@ -64,7 +64,71 @@ id="customerPhone"
 placeholder="মোবাইল নম্বর">
 
 <textarea
-id="customerAddress"
+id="customerAddress"<select
+id="customerDistrict"
+onchange="calculateDelivery()">
+
+<option value="">
+
+জেলা নির্বাচন করুন
+
+</option>
+
+<option value="Dhaka">
+
+ঢাকা
+
+</option>
+
+<option value="Chattogram">
+
+চট্টগ্রাম
+
+</option>
+
+<option value="Rajshahi">
+
+রাজশাহী
+
+</option>
+
+<option value="Khulna">
+
+খুলনা
+
+</option>
+
+<option value="Sylhet">
+
+সিলেট
+
+</option>
+
+<option value="Barishal">
+
+বরিশাল
+
+</option>
+
+<option value="Rangpur">
+
+রংপুর
+
+</option>
+
+<option value="Mymensingh">
+
+ময়মনসিংহ
+
+</option>
+
+<option value="Express">
+
+এক্সপ্রেস ডেলিভারি
+
+</option>
+
+</select>
 placeholder="সম্পূর্ণ ঠিকানা"></textarea>
 
 <select id="paymentMethod">
