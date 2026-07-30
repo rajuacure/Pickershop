@@ -1,30 +1,34 @@
 // ==========================================
-// Picker Shop V2
+// Picker Shop V3
 // auth.js
-// Phase 2 - Part 7.1
 // Complete File
+// Segment 1
 // ==========================================
 
-import {
-    auth,
-    db
-} from "./firebase.js";
+import { auth, db } from "./firebase.js";
 
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged,
     sendPasswordResetEmail,
-    updateProfile
+    updateProfile,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 import {
     doc,
     setDoc,
-    getDoc
+    getDoc,
+    updateDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+// ==========================================
+// Current User
+// ==========================================
+
+let currentUser = null;
 
 // ==========================================
 // Register
@@ -44,9 +48,25 @@ window.registerUser = async function () {
     const password =
         document.getElementById("registerPassword").value;
 
-    if (!name || !phone || !email || !password) {
+    const confirm =
+        document.getElementById("registerConfirmPassword").value;
+
+    if (
+        !name ||
+        !phone ||
+        !email ||
+        !password
+    ) {
 
         alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    if (password !== confirm) {
+
+        alert("Password মিলছে না");
 
         return;
 
@@ -55,20 +75,33 @@ window.registerUser = async function () {
     try {
 
         const userCredential =
+
             await createUserWithEmailAndPassword(
+
                 auth,
+
                 email,
+
                 password
+
             );
 
-        await updateProfile(userCredential.user, {
+        await updateProfile(
 
-            displayName: name
+            userCredential.user,
 
-        });
+            {
+
+                displayName: name
+
+            }
+
+        );
 
         await setDoc(
+
             doc(db, "users", userCredential.user.uid),
+
             {
 
                 uid: userCredential.user.uid,
@@ -79,14 +112,17 @@ window.registerUser = async function () {
 
                 email,
 
-                createdAt: new Date().toISOString()
+                role: "customer",
+
+                createdAt: serverTimestamp()
 
             }
+
         );
 
         alert("✅ Registration Successful");
 
-        window.location.href = "login.html";
+        location.href = "login.html";
 
     }
 
@@ -97,7 +133,6 @@ window.registerUser = async function () {
     }
 
 };
-
 
 // ==========================================
 // Login
@@ -133,7 +168,7 @@ window.loginUser = async function () {
 
         alert("✅ Login Successful");
 
-        window.location.href = "profile.html";
+        location.href = "profile.html";
 
     }
 
@@ -144,154 +179,3 @@ window.loginUser = async function () {
     }
 
 };
-
-
-// ==========================================
-// Logout
-// ==========================================
-
-window.logoutUser = async function () {
-
-    await signOut(auth);
-
-    window.location.href = "login.html";
-
-};
-
-
-// ==========================================
-// Forgot Password
-// ==========================================
-
-window.resetPassword = async function () {
-
-    const email =
-        document.getElementById("resetEmail").value.trim();
-
-    if (!email) {
-
-        alert("Email লিখুন");
-
-        return;
-
-    }
-
-    try {
-
-        await sendPasswordResetEmail(
-
-            auth,
-
-            email
-
-        );
-
-        alert("✅ Password Reset Email পাঠানো হয়েছে");
-
-    }
-
-    catch (error) {
-
-        alert(error.message);
-
-    }
-
-};
-
-
-// ==========================================
-// Load Profile
-// ==========================================
-
-window.loadProfile = function () {
-
-    onAuthStateChanged(auth, async (user) => {
-
-        if (!user) {
-
-            window.location.href = "login.html";
-
-            return;
-
-        }
-
-        const snap =
-            await getDoc(
-                doc(db, "users", user.uid)
-            );
-
-        if (!snap.exists()) return;
-
-        const data = snap.data();
-
-        const name =
-            document.getElementById("profileName");
-
-        const email =
-            document.getElementById("profileEmail");
-
-        const phone =
-            document.getElementById("profilePhone");
-
-        if (name)
-            name.innerHTML = data.name;
-
-        if (email)
-            email.innerHTML = data.email;
-
-        if (phone)
-            phone.innerHTML = data.phone;
-
-    });
-
-};
-
-
-// ==========================================
-// Login Check
-// ==========================================
-
-window.checkLogin = function () {
-
-    onAuthStateChanged(auth, (user) => {
-
-        const loginBtn =
-            document.getElementById("loginBtn");
-
-        const profileBtn =
-            document.getElementById("profileBtn");
-
-        if (loginBtn && profileBtn) {
-
-            if (user) {
-
-                loginBtn.style.display = "none";
-
-                profileBtn.style.display = "inline-block";
-
-            }
-
-            else {
-
-                loginBtn.style.display = "inline-block";
-
-                profileBtn.style.display = "none";
-
-            }
-
-        }
-
-    });
-
-};
-
-
-// ==========================================
-// Auto Run
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    checkLogin();
-
-});
