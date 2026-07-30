@@ -1,1573 +1,217 @@
-/* ==========================================
-Picker Shop V13
-script.js
-========================================== */
-
-"use strict";
-
-console.log("✅ Picker Shop V13 Loaded");
-
 // ==========================================
-// Loader
+// Picker Shop V2
+// script.js
 // ==========================================
 
-window.addEventListener("load", () => {
-
-    const loader = document.getElementById("loader");
-
-    if (loader) {
-
-        loader.style.opacity = "0";
-
-        setTimeout(() => {
-
-            loader.style.display = "none";
-
-        }, 300);
-
-    }
-
-});
-
-// ==========================================
-// Scroll To Top
-// ==========================================
-
-const topBtn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-
-    if (!topBtn) return;
-
-    topBtn.style.display =
-        window.scrollY > 300
-            ? "block"
-            : "none";
-
-});
-
-function topFunction() {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-// ==========================================
-// Toast
-// ==========================================
-
-function showToast(message){
-
-    let toast=document.createElement("div");
-
-    toast.className="toast";
-
-    toast.innerHTML=message;
-
-    document.body.appendChild(toast);
-
-    setTimeout(()=>{
-
-        toast.classList.add("show");
-
-    },100);
-
-    setTimeout(()=>{
-
-        toast.classList.remove("show");
-
-        setTimeout(()=>{
-
-            toast.remove();
-
-        },300);
-
-    },2500);
-
-}
-
-// ==========================================
-// Local Storage
-// ==========================================
-
-const STORAGE={
-
-cart:"pickerCart",
-
-wishlist:"pickerWishlist",
-
-orders:"pickerOrders",
-
-users:"pickerUsers"
-
-};
-
-function readStorage(key){
-
-    return JSON.parse(
-
-        localStorage.getItem(key)
-
-    ) || [];
-
-}
-
-function saveStorage(key,data){
-
-    localStorage.setItem(
-
-        key,
-
-        JSON.stringify(data)
-
-    );
-
-}
-
-function getCart(){
-
-    return readStorage(STORAGE.cart);
-
-}
-
-function saveCart(cart){
-
-    saveStorage(STORAGE.cart,cart);
-
-}
-
-function getWishlist(){
-
-    return readStorage(STORAGE.wishlist);
-
-}
-
-function saveWishlist(list){
-
-    saveStorage(STORAGE.wishlist,list);
-
-}
-
-// ==========================================
-// Cart Counter
-// ==========================================
-
-function updateCartCount(){
-
-    const count=document.getElementById("cartCount");
-
-    if(!count) return;
-
-    count.innerHTML=getCart().length;
-
-}
-// ==========================================
-// Cart System
-// ==========================================
-
-function addToCart(id, name, price, image = "") {
-
-    let cart = getCart();
-
-    const existing = cart.find(item => item.id === id);
-
-    if (existing) {
-
-        existing.qty += 1;
-
-    } else {
-
-        cart.push({
-
-            id: id,
-            name: name,
-            price: Number(price),
-            image: image,
-            qty: 1
-
-        });
-
-    }
-
-    saveCart(cart);
-
-    updateCartCount();
-
-    showToast("🛒 " + name + " কার্টে যোগ হয়েছে");
-
-}
-
-// ==========================================
-// Remove Cart Item
-// ==========================================
-
-function removeCartItem(id){
-
-    let cart = getCart();
-
-    cart = cart.filter(item => item.id !== id);
-
-    saveCart(cart);
-
-    updateCartCount();
-
-    loadCart();
-
-}
-
-// ==========================================
-// Load Cart
-// ==========================================
-
-function loadCart(){
-
-    const cartItems = document.getElementById("cartItems");
-    const totalPrice = document.getElementById("totalPrice");
-
-    if(!cartItems) return;
-
-    const cart = getCart();
-
-    if(cart.length===0){
-
-        cartItems.innerHTML=`
-        <div class="card">
-            <h3>🛒 আপনার কার্ট খালি</h3>
-        </div>
-        `;
-
-        if(totalPrice){
-
-            totalPrice.innerHTML="৳0";
-
-        }
-
-        return;
-
-    }
-
-    let html="";
-
-    let total=0;
-
-    cart.forEach(item=>{
-
-        total += item.price * item.qty;
-
-        html += `
-
-        <div class="card" style="margin-bottom:20px;">
-
-            <h3>${item.name}</h3>
-
-            <p>Price : ৳${item.price}</p>
-
-            <p>Qty : ${item.qty}</p>
-
-            <button
-            class="wish-btn"
-            onclick="removeCartItem('${item.id}')">
-
-            ❌ Remove
-
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-    cartItems.innerHTML = html;
-
-    if(totalPrice){
-
-        totalPrice.innerHTML = "৳" + total;
-
-    }
-
-}
-// ==========================================
-// Wishlist System
-// ==========================================
-
-function addToWishlist(id, name, price, image = "") {
-
-    let wishlist = getWishlist();
-
-    const exists = wishlist.find(item => item.id === id);
-
-    if (exists) {
-
-        showToast("❤️ ইতিমধ্যে Wishlist-এ আছে");
-
-        return;
-
-    }
-
-    wishlist.push({
-
-        id: id,
-        name: name,
-        price: Number(price),
-        image: image
-
-    });
-
-    saveWishlist(wishlist);
-
-    updateWishlistCount();
-
-    showToast("❤️ Wishlist-এ যোগ হয়েছে");
-
-}
-
-// ==========================================
-// Wishlist Counter
-// ==========================================
-
-function updateWishlistCount(){
-
-    const count = document.getElementById("wishlistCount");
-
-    if(!count) return;
-
-    count.innerHTML = getWishlist().length;
-
-}
-
-// ==========================================
-// Remove Wishlist Item
-// ==========================================
-
-function removeWishlistItem(id){
-
-    let wishlist = getWishlist();
-
-    wishlist = wishlist.filter(item => item.id !== id);
-
-    saveWishlist(wishlist);
-
-    updateWishlistCount();
-
-    loadWishlist();
-
-}
-
-// ==========================================
-// Load Wishlist
-// ==========================================
-
-function loadWishlist(){
-
-    const wishlistBox = document.getElementById("wishlistItems");
-
-    if(!wishlistBox) return;
-
-    const wishlist = getWishlist();
-
-    if(wishlist.length===0){
-
-        wishlistBox.innerHTML=`
-
-        <div class="card">
-
-            <h3>❤️ Wishlist খালি</h3>
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-    let html="";
-
-    wishlist.forEach(item=>{
-
-        html += `
-
-        <div class="card" style="margin-bottom:20px;">
-
-            <h3>${item.name}</h3>
-
-            <p>৳${item.price}</p>
-
-            <button
-            class="btn"
-            onclick="addToCart('${item.id}','${item.name}',${item.price},'${item.image}')">
-
-            🛒 Cart
-
-            </button>
-
-            <button
-            class="wish-btn"
-            onclick="removeWishlistItem('${item.id}')">
-
-            ❌ Remove
-
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-    wishlistBox.innerHTML = html;
-
-}
-
-// ==========================================
-// Auto Update
-// ==========================================
-
-updateWishlistCount();
-updateCartCount()
-    // ==========================================
-// Product Search
-// ==========================================
-
-function searchProducts(){
-
-    const input = document.getElementById("searchInput");
-
-    if(!input) return;
-
-    const keyword = input.value.toLowerCase();
-
-    const products = document.querySelectorAll(".product-card");
-
-    products.forEach(product=>{
-
-        const title = product.querySelector("h3");
-
-        if(!title) return;
-
-        const text = title.innerText.toLowerCase();
-
-        if(text.includes(keyword)){
-
-            product.style.display="block";
-
-        }else{
-
-            product.style.display="none";
-
-        }
-
-    });
-
-}
-
-// ==========================================
-// Product Filter
-// ==========================================
-
-function filterProducts(category){
-
-    const products=document.querySelectorAll(".product-card");
-
-    products.forEach(product=>{
-
-        if(category==="all"){
-
-            product.style.display="block";
-
-            return;
-
-        }
-
-        if(product.dataset.category===category){
-
-            product.style.display="block";
-
-        }else{
-
-            product.style.display="none";
-
-        }
-
-    });
-
-}
-
-// ==========================================
-// Reviews
-// ==========================================
-
-function loadReviews(){
-
-    const reviewBox=document.getElementById("reviewList");
-
-    if(!reviewBox) return;
-
-    const reviews=JSON.parse(
-
-        localStorage.getItem("pickerReviews")
-
-    ) || [];
-
-    if(reviews.length===0){
-
-        reviewBox.innerHTML=`
-
-        <div class="card">
-
-            <p>এখনও কোনো Review নেই।</p>
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-    let html="";
-
-    reviews.forEach(item=>{
-
-        html+=`
-
-        <div class="card" style="margin-bottom:15px;">
-
-            <h4>${item.name}</h4>
-
-            <p>${item.review}</p>
-
-        </div>
-
-        `;
-
-    });
-
-    reviewBox.innerHTML=html;
-
-}
-
-// ==========================================
-// Add Review
-// ==========================================
-
-function addReview(){
-
-    const name=document.getElementById("reviewName");
-
-    const review=document.getElementById("reviewText");
-
-    if(!name || !review) return;
-
-    if(
-
-        name.value.trim()==="" ||
-
-        review.value.trim()===""
-
-    ){
-
-        alert("সব তথ্য পূরণ করুন");
-
-        return;
-
-    }
-
-    let reviews=JSON.parse(
-
-        localStorage.getItem("pickerReviews")
-
-    ) || [];
-
-    reviews.unshift({
-
-        name:name.value,
-
-        review:review.value
-
-    });
-
-    localStorage.setItem(
-
-        "pickerReviews",
-
-        JSON.stringify(reviews)
-
-    );
-
-    name.value="";
-
-    review.value="";
-
-    showToast("⭐ Review Added");
-
-    loadReviews();
-
-}
-
-// ==========================================
-// Auto Load
-// ==========================================
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    updateCartCount();
-
-    updateWishlistCount();
-
-    loadCart();
-
-    loadWishlist();
-
-    loadReviews();
-
-});
-    ;/* ==========================================
-   Picker Shop V11
-   script.js - Part 1
-========================================== */
-
-// ---------- Loader ----------
-window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
-    if (loader) {
-        loader.style.display = "none";
-    }
-
-    updateCartCount();
-
-    if (typeof loadCart === "function") loadCart();
-    if (typeof loadWishlist === "function") loadWishlist();
-    if (typeof loadReviews === "function") loadReviews();
-    if (typeof loadProfile === "function") loadProfile();
-});
-
-// ---------- Toast ----------
-function showToast(message) {
-
-    const toast = document.createElement("div");
-
-    toast.className = "toast";
-
-    toast.innerHTML = message;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-
-        toast.classList.add("show");
-
-    },100);
-
-    setTimeout(() => {
-
-        toast.classList.remove("show");
-
-        setTimeout(()=>{
-
-            toast.remove();
-
-        },300);
-
-    },2500);
-
-}
-
-// ---------- Local Storage ----------
-
-function getCart(){
-
-    return JSON.parse(localStorage.getItem("pickerCart")) || [];
-
-}
-
-function saveCart(cart){
-
-    localStorage.setItem("pickerCart",JSON.stringify(cart));
-
-}
-
-function getWishlist(){
-
-    return JSON.parse(localStorage.getItem("wishlist")) || [];
-
-}
-
-function saveWishlist(list){
-
-    localStorage.setItem("wishlist",JSON.stringify(list));
-
-}
-
-// ---------- Cart Counter ----------
-
-function updateCartCount(){
-
-    const count=document.getElementById("cartCount");
-
-    if(count){
-
-        count.innerHTML=getCart().length;
-
-    }
-
-}
-
-// ---------- Scroll To Top ----------
+// ===============================
+// Sticky Header
+// ===============================
 
 window.addEventListener("scroll",()=>{
 
-    const btn=document.getElementById("topBtn");
+const header=document.querySelector(".header");
 
-    if(!btn) return;
+if(!header) return;
 
-    if(window.scrollY>300){
+if(window.scrollY>80){
 
-        btn.style.display="block";
+header.classList.add("sticky");
 
-    }else{
+}else{
 
-        btn.style.display="none";
+header.classList.remove("sticky");
 
-    }
+}
 
 });
 
-function topFunction(){
+// ===============================
+// Back To Top
+// ===============================
 
-    window.scrollTo({
+const topButton=document.createElement("button");
 
-        top:0,
+topButton.id="topButton";
 
-        behavior:"smooth"
+topButton.innerHTML="⬆";
 
-    });
+document.body.appendChild(topButton);
 
-}
-/* ==========================================
-   Picker Shop V11
-   script.js - Part 2
-   Cart & Wishlist
-========================================== */
+topButton.onclick=()=>{
 
-// ---------- Add To Cart ----------
+window.scrollTo({
 
-function addToCart(name, price){
+top:0,
 
-    let cart = getCart();
-
-    const found = cart.find(item => item.name === name);
-
-    if(found){
-
-        found.qty += 1;
-
-    }else{
-
-        cart.push({
-
-            name:name,
-
-            price:Number(price),
-
-            qty:1
-
-        });
-
-    }
-
-    saveCart(cart);
-
-    updateCartCount();
-
-    showToast("🛒 কার্টে যোগ হয়েছে");
-
-}
-
-// ---------- Remove Cart Item ----------
-
-function removeItem(index){
-
-    let cart = getCart();
-
-    cart.splice(index,1);
-
-    saveCart(cart);
-
-    updateCartCount();
-
-    loadCart();
-
-    showToast("❌ পণ্য সরানো হয়েছে");
-
-}
-
-// ---------- Load Cart ----------
-
-function loadCart(){
-
-    const cartBox = document.getElementById("cartItems");
-
-    const totalBox = document.getElementById("totalPrice");
-
-    if(!cartBox || !totalBox) return;
-
-    let cart = getCart();
-
-    let html = "";
-
-    let total = 0;
-
-    if(cart.length===0){
-
-        cartBox.innerHTML="<h3>🛒 আপনার কার্ট খালি</h3>";
-
-        totalBox.innerHTML="মোট: ৳0";
-
-        return;
-
-    }
-
-    cart.forEach((item,index)=>{
-
-        total += item.price * item.qty;
-
-        html += `
-
-<div class="card" style="padding:20px;margin-bottom:15px;">
-
-<h3>${item.name}</h3>
-
-<p>দাম: ৳${item.price}</p>
-
-<p>পরিমাণ: ${item.qty}</p>
-
-<button class="wish-btn"
-onclick="removeItem(${index})">
-
-❌ Remove
-
-</button>
-
-</div>
-
-`;
-
-    });
-
-    cartBox.innerHTML = html;
-
-    totalBox.innerHTML = "মোট: ৳" + total;
-
-}
-
-// ---------- WhatsApp Checkout ----------
-
-function checkoutWhatsApp(){
-
-    let cart = getCart();
-
-    if(cart.length===0){
-
-        alert("কার্ট খালি");
-              return;
-
-    }
-
-    let message="আসসালামু আলাইকুম,%0Aআমি নিচের পণ্যগুলো অর্ডার করতে চাই:%0A%0A";
-
-    let total=0;
-
-    cart.forEach(item=>{
-
-        message += `${item.name} (${item.qty}টি) - ৳${item.price * item.qty}%0A`;
-
-        total += item.price * item.qty;
-
-    });
-
-    message += `%0Aমোট মূল্য: ৳${total}`;
-
-    window.open(
-
-"https://wa.me/8801400599748?text="+message,
-
-"_blank"
-
-    );
-
-}
-
-// ---------- Wishlist ----------
-
-function addToWishlist(name){
-
-    let list = getWishlist();
-
-    if(!list.includes(name)){
-
-        list.push(name);
-
-        saveWishlist(list);
-
-        showToast("❤️ Wishlist-এ যোগ হয়েছে");
-
-    }else{
-
-        showToast("✔ আগে থেকেই Wishlist-এ আছে");
-
-    }
-
-}
-
-// ---------- Load Wishlist ----------
-
-function loadWishlist(){
-
-    const box=document.getElementById("wishlistItems");
-
-    if(!box) return;
-
-    let wishlist=getWishlist();
-
-    let html="";
-
-    if(wishlist.length===0){
-
-        html=`
-
-<div class="card" style="padding:40px;text-align:center;">
-
-<h2>❤️ Wishlist খালি</h2>
-
-<p>
-
-আপনি এখনো কোনো পণ্য Wishlist-এ যোগ করেননি।
-
-</p>
-
-<a href="index.html" class="btn">
-
-🛍️ কেনাকাটা শুরু করুন
-
-</a>
-
-</div>
-
-`;
-
-    }else{
-
-        wishlist.forEach((item,index)=>{
-
-            html+=`
-
-<div class="product-card">
-
-<h3>${item.name}</h3>
-
-<p class="price">
-
-৳${item.price || 0}
-
-</p>
-
-<button
-
-class="cart-btn"
-
-onclick="addToCart('${item.name}',${item.price || 0})">
-
-🛒 Cart-এ যোগ করুন
-
-</button>
-
-<button
-
-class="wish-btn"
-
-onclick="removeWishlist(${index})">
-
-🗑️ Remove
-
-</button>
-
-</div>
-
-`;
-
-        });
-
-    }
-
-    box.innerHTML=html;
-
-    const count=document.getElementById("wishlistCount");
-
-    if(count){
-
-        count.innerHTML=wishlist.length;
-
-    }
-
-}
-
-// ---------- Remove Wishlist ----------
-
-function removeWishlist(index){
-
-    let list = getWishlist();
-
-    list.splice(index,1);
-
-    saveWishlist(list);
-
-    loadWishlist();
-
-    showToast("🗑 Wishlist থেকে সরানো হয়েছে");
-
-}
-/* ==========================================
-   Picker Shop V11
-   script.js - Part 3
-   Search, Filter & Reviews
-========================================== */
-
-// ---------- Product Search ----------
-
-function searchProducts(){
-
-    const input=document.getElementById("searchInput");
-
-    if(!input) return;
-
-    const keyword=input.value.toLowerCase();
-
-    const cards=document.querySelectorAll(".product-card");
-
-    cards.forEach(card=>{
-
-        const title=card.querySelector("h3").innerText.toLowerCase();
-
-        if(title.indexOf(keyword)>-1){
-
-            card.style.display="block";
-
-        }else{
-
-            card.style.display="none";
-
-        }
-
-    });
-
-}
-
-// ---------- Category Filter ----------
-
-function filterProducts(category){
-
-    const cards=document.querySelectorAll(".product-card");
-
-    cards.forEach(card=>{
-
-        if(category==="all"){
-
-            card.style.display="block";
-
-        }
-
-        else if(card.dataset.category===category){
-
-            card.style.display="block";
-
-        }
-
-        else{
-
-            card.style.display="none";
-
-        }
-
-    });
-
-}
-
-// ---------- Reviews ----------
-
-function getReviews(){
-
-    return JSON.parse(localStorage.getItem("pickerReviews")) || [];
-
-}
-
-function saveReviews(reviews){
-
-    localStorage.setItem("pickerReviews",JSON.stringify(reviews));
-
-}
-
-// ---------- Submit Review ----------
-
-function submitReview(){
-
-    const name=document.getElementById("reviewName");
-
-    const rating=document.getElementById("reviewRating");
-
-    const review=document.getElementById("reviewText");
-
-    if(!name || !rating || !review){
-
-        return;
-
-    }
-
-    if(name.value.trim()==="" || review.value.trim()===""){
-
-        alert("সব তথ্য পূরণ করুন");
-
-        return;
-
-    }
-
-    let reviews=getReviews();
-
-    reviews.unshift({
-
-        name:name.value,
-
-        rating:Number(rating.value),
-
-        review:review.value,
-
-        likes:0,
-
-        date:new Date().toLocaleDateString("bn-BD")
-
-    });
-
-    saveReviews(reviews);
-
-    name.value="";
-
-    review.value="";
-
-    rating.value="5";
-
-    loadReviews();
-
-    showToast("⭐ রিভিউ সফলভাবে যোগ হয়েছে");
-
-}
-
-// ---------- Load Reviews ----------
-
-function loadReviews(){
-
-    const list=document.getElementById("reviewList");
-
-    if(!list) return;
-
-    const reviews=getReviews();
-
-    let html="";
-
-    let total=0;
-
-    reviews.forEach((item,index)=>{
-
-        total+=item.rating;
-
-        html+=`
-
-<div class="review-item">
-
-<h4>${item.name}</h4>
-
-<div class="review-stars">
-
-${"⭐".repeat(item.rating)}
-
-</div>
-
-<p>${item.review}</p>
-
-<small>${item.date}</small>
-
-<div class="review-actions">
-
-<button class="like-btn"
-
-onclick="likeReview(${index})">
-
-❤️ ${item.likes}
-
-</button>
-
-<button class="delete-btn"
-
-onclick="deleteReview(${index})">
-
-🗑 Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-    });
-
-    list.innerHTML=html;
-
-    const avg=document.getElementById("averageRating");
-
-    const totalReview=document.getElementById("totalReviews");
-
-    if(avg){
-
-        avg.innerHTML=reviews.length ? (total/reviews.length).toFixed(1) : "0.0";
-
-    }
-
-    if(totalReview){
-
-        totalReview.innerHTML=reviews.length;
-
-    }
-
-}
-
-// ---------- Like Review ----------
-
-function likeReview(index){
-
-    let reviews=getReviews();
-
-    reviews[index].likes++;
-
-    saveReviews(reviews);
-
-    loadReviews();
-
-}
-
-// ---------- Delete Review ----------
-
-function deleteReview(index){
-
-    let reviews=getReviews();
-
-    reviews.splice(index,1);
-
-    saveReviews(reviews);
-
-    loadReviews();
-
-    showToast("🗑 রিভিউ মুছে ফেলা হয়েছে");
-
-}
-/* ==========================================
-   Picker Shop V11
-   script.js - Part 4 (Final)
-========================================== */
-
-// ---------- Newsletter ----------
-
-function subscribeNewsletter(){
-
-    const email=document.getElementById("newsletterEmail");
-
-    if(!email) return;
-
-    if(email.value.trim()===""){
-
-        alert("আপনার ইমেইল লিখুন");
-
-        return;
-
-    }
-
-    localStorage.setItem("newsletterEmail",email.value);
-
-    showToast("📩 সাবস্ক্রাইব সফল হয়েছে");
-
-    email.value="";
-
-}
-
-// ---------- Login ----------
-
-function loginUser(){
-
-    const email=document.getElementById("loginEmail");
-
-    const password=document.getElementById("loginPassword");
-
-    if(!email || !password) return;
-
-    if(email.value.trim()==="" || password.value.trim()===""){
-
-        alert("ইমেইল ও পাসওয়ার্ড দিন");
-
-        return;
-
-    }
-
-    localStorage.setItem("pickerLogin","true");
-
-    localStorage.setItem("pickerUser",email.value);
-
-    showToast("✅ লগইন সফল");
-
-    setTimeout(()=>{
-
-        window.location.href="profile.html";
-
-    },800);
-
-}
-
-// ---------- Register ----------
-
-function registerUser(){
-
-    const name=document.getElementById("registerName");
-
-    const email=document.getElementById("registerEmail");
-
-    const password=document.getElementById("registerPassword");
-
-    const confirm=document.getElementById("confirmPassword");
-
-    if(!name || !email || !password || !confirm) return;
-
-    if(name.value==="" || email.value==="" || password.value===""){
-
-        alert("সব তথ্য পূরণ করুন");
-
-        return;
-
-    }
-
-    if(password.value!==confirm.value){
-
-        alert("পাসওয়ার্ড মিলছে না");
-
-        return;
-
-    }
-
-    localStorage.setItem("pickerName",name.value);
-
-    localStorage.setItem("pickerUser",email.value);
-
-    localStorage.setItem("pickerPassword",password.value);
-
-    showToast("🎉 রেজিস্ট্রেশন সফল");
-
-    setTimeout(()=>{
-
-        window.location.href="login.html";
-
-    },1000);
-
-}
-
-// ---------- Logout ----------
-
-function logoutUser(){
-
-    localStorage.removeItem("pickerLogin");
-
-    showToast("👋 লগআউট সফল");
-
-    setTimeout(()=>{
-
-        window.location.href="login.html";
-
-    },800);
-
-}
-
-// ---------- Load Profile ----------
-
-function loadProfile(){
-
-    const name = localStorage.getItem("pickerName") || "Guest User";
-    const email = localStorage.getItem("pickerUser") || "guest@example.com";
-
-    const profileName = document.getElementById("profileName");
-    const userName = document.getElementById("userName");
-    const profileEmail = document.getElementById("profileEmail");
-    const userEmail = document.getElementById("userEmail");
-    const wishlistTotal = document.getElementById("wishlistTotal");
-
-    if(profileName) profileName.innerHTML = name;
-    if(userName) userName.innerHTML = name;
-
-    if(profileEmail) profileEmail.innerHTML = email;
-    if(userEmail) userEmail.innerHTML = email;
-
-    if(wishlistTotal){
-        wishlistTotal.innerHTML = getWishlist().length;
-    }
-}
-
-// ---------- Order Tracking ----------
-
-// ==========================
-// Order Tracking
-// ==========================
-
-function trackOrder(){
-
-    const input = document.getElementById("trackingNumber");
-    const result = document.getElementById("trackingResult");
-
-    if(!input || !result) return;
-
-    if(input.value.trim()===""){
-
-        result.innerHTML=`
-        <div class="card">
-            <h3>⚠️ Order ID লিখুন</h3>
-        </div>
-        `;
-
-        return;
-
-    }
-
-    result.innerHTML=`
-
-    <div class="card">
-
-        <h3>📦 Order Found</h3>
-
-        <p><strong>Tracking ID:</strong> ${input.value}</p>
-
-        <p>🟢 Status : ডেলিভারির পথে</p>
-
-        <p>📍 Current Location : ঢাকা হাব</p>
-
-        <p>🚚 সম্ভাব্য ডেলিভারি : ১-২ কার্যদিবস</p>
-
-    </div>
-
-    `;
-
-}
-
-// ---------- Auto Initialize ----------
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    updateCartCount();
-
-    if(document.getElementById("cartItems")){
-
-        loadCart();
-
-    }
-document.getElementById("cartItemCount").innerHTML = cart.length;
-document.getElementById("subTotal").innerHTML = "৳" + total;
-document.getElementById("grandTotal").innerHTML = "৳" + (total + 80);
-    if(document.getElementById("wishlistItems")){
-
-        loadWishlist();
-
-    }
-
-    if(document.getElementById("reviewList")){
-
-        loadReviews();
-
-    }
-
-    if(document.getElementById("profileName")){
-
-        loadProfile();
-
-    }
+behavior:"smooth"
 
 });
-// ==========================
-// Show / Hide Password
-// ==========================
 
-function togglePassword(){
+};
 
-    const pass = document.getElementById("loginPassword");
+window.addEventListener("scroll",()=>{
 
-    if(!pass) return;
+if(window.scrollY>300){
 
-    if(pass.type === "password"){
+topButton.style.display="block";
 
-        pass.type = "text";
+}else{
 
-    }else{
-
-        pass.type = "password";
-
-    }
+topButton.style.display="none";
 
 }
-// ==========================
-// Register Password Show / Hide
-// ==========================
 
-function toggleRegisterPassword(){
+});
 
-    const pass=document.getElementById("registerPassword");
-    const confirm=document.getElementById("confirmPassword");
+// ===============================
+// Loading Animation
+// ===============================
 
-    if(!pass || !confirm) return;
+window.addEventListener("load",()=>{
 
-    const type = pass.type==="password" ? "text" : "password";
+const loader=document.getElementById("loader");
 
-    pass.type=type;
-    confirm.type=type;
+if(loader){
+
+loader.style.display="none";
 
 }
-// ==========================
-// Contact Form
-// ==========================
 
-function sendContactMessage(){
+});
 
-    const name=document.getElementById("contactName");
-    const email=document.getElementById("contactEmail");
-    const subject=document.getElementById("contactSubject");
-    const message=document.getElementById("contactMessage");
+// ===============================
+// Search Product
+// ===============================
 
-    if(!name || !email || !message) return;
+window.searchProduct=function(){
 
-    if(
-        name.value.trim()==="" ||
-        email.value.trim()==="" ||
-        message.value.trim()===""
-    ){
+const keyword=document
+.getElementById("searchInput")
+.value
+.toLowerCase();
 
-        alert("অনুগ্রহ করে সব প্রয়োজনীয় তথ্য পূরণ করুন।");
-        return;
+const cards=document.querySelectorAll(".product-card");
 
-    }
+cards.forEach(card=>{
 
-    showToast("📩 আপনার বার্তা সফলভাবে পাঠানো হয়েছে।");
+const text=card.innerText.toLowerCase();
 
-    name.value="";
-    email.value="";
-    subject.value="";
-    message.value="";
+card.style.display=text.includes(keyword)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+};
+
+// ===============================
+// Newsletter
+// ===============================
+
+window.subscribeNews=function(){
+
+const email=document
+.getElementById("newsletterEmail")
+.value;
+
+if(email===""){
+
+alert("Email লিখুন");
+
+return;
+
 }
+
+alert("ধন্যবাদ! Newsletter Subscribe হয়েছে।");
+
+};
+
+// ===============================
+// Dark Mode
+// ===============================
+
+window.toggleDarkMode=function(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+
+"darkmode",
+
+document.body.classList.contains("dark")
+
+);
+
+};
+
+if(localStorage.getItem("darkmode")=="true"){
+
+document.body.classList.add("dark");
+
+}
+
+// ===============================
+// Wishlist Count
+// ===============================
+
+function updateWishlistCount(){
+
+const wishlist=
+
+JSON.parse(
+
+localStorage.getItem("wishlist")
+
+||"[]"
+
+);
+
+const badge=
+
+document.getElementById("wishlistCount");
+
+if(badge){
+
+badge.innerHTML=wishlist.length;
+
+}
+
+}
+
+// ===============================
+// Cart Count
+// ===============================
+
+function updateCartCount(){
+
+const cart=
+
+JSON.parse(
+
+localStorage.getItem("cart")
+
+||"[]"
+
+);
+
+const badge=
+
+document.getElementById("cartCount");
+
+if(badge){
+
+badge.innerHTML=cart.length;
+
+}
+
+}
+
+updateCartCount();
+
+updateWishlistCount();
