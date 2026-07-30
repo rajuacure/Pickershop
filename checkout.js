@@ -25,7 +25,21 @@ window.placeOrder = async function () {
     }
 
     try {
+if (currentCoupon) {
 
+    await updateDoc(
+
+        doc(db, "coupons", currentCoupon.id),
+
+        {
+
+            usedCount: increment(1)
+
+        }
+
+    );
+
+}
         await addDoc(collection(db, "orders"), {
 const orderNumber =
 "PKS-" +
