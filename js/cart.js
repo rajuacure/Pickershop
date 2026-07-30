@@ -1,41 +1,38 @@
 // ==========================================
-// Picker Shop Cart System
+// Picker Shop V2
+// cart.js
+// Part 5.1
 // ==========================================
 
-let cart = JSON.parse(localStorage.getItem("pickerCart")) || [];
+// -----------------------------
+// Local Cart
+// -----------------------------
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// -----------------------------
+// Save Cart
+// -----------------------------
 
 function saveCart() {
-    localStorage.setItem("pickerCart", JSON.stringify(cart));
-    updateCartCount();
-}
 
-window.addToCart = function(product) {
-
-    const exists = cart.find(item => item.id === product.id);
-
-    if (exists) {
-
-        exists.qty++;
-
-    } else {
-
-        product.qty = 1;
-
-        cart.push(product);
-
-    }
-
-    saveCart();
-
-    alert("✅ Product Added To Cart");
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
 
 }
 
-window.updateCartCount = function() {
+// -----------------------------
+// Cart Count
+// -----------------------------
 
-    const count = document.getElementById("cartCount");
+export function updateCartCount() {
 
-    if (!count) return;
+    const badge =
+        document.getElementById("cartCount");
+
+    if (!badge) return;
 
     let total = 0;
 
@@ -45,8 +42,110 @@ window.updateCartCount = function() {
 
     });
 
-    count.innerHTML = total;
+    badge.innerHTML = total;
 
 }
 
-updateCartCount();
+// -----------------------------
+// Add To Cart
+// -----------------------------
+
+window.addToCart = function (product) {
+
+    const index =
+        cart.findIndex(i => i.id === product.id);
+
+    if (index > -1) {
+
+        cart[index].qty++;
+
+    } else {
+
+        cart.push({
+
+            id: product.id,
+
+            name: product.name,
+
+            price: Number(product.price),
+
+            image: product.image,
+
+            qty: 1
+
+        });
+
+    }
+
+    saveCart();
+
+    updateCartCount();
+
+    alert("✅ কার্টে যোগ হয়েছে");
+
+};
+
+// -----------------------------
+// Remove Item
+// -----------------------------
+
+window.removeCartItem = function (id) {
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+    saveCart();
+
+    renderCart();
+
+};
+
+// -----------------------------
+// Increase Qty
+// -----------------------------
+
+window.increaseQty = function (id) {
+
+    cart.forEach(item => {
+
+        if (item.id === id) {
+
+            item.qty++;
+
+        }
+
+    });
+
+    saveCart();
+
+    renderCart();
+
+};
+
+// -----------------------------
+// Decrease Qty
+// -----------------------------
+
+window.decreaseQty = function (id) {
+
+    cart.forEach(item => {
+
+        if (item.id === id) {
+
+            item.qty--;
+
+            if (item.qty < 1) {
+
+                item.qty = 1;
+
+            }
+
+        }
+
+    });
+
+    saveCart();
+
+    renderCart();
+
+};
