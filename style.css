@@ -173,3 +173,256 @@ select{
     padding:20px;
     box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
+/* ==========================================
+   HERO SECTION
+========================================== */
+
+.hero{
+    padding:60px 0;
+    background:linear-gradient(135deg,#e8fff1,#ffffff);
+}
+
+.hero .container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.hero-text h1{
+    font-size:52px;
+    color:#198754;
+    margin-bottom:20px;
+    line-height:1.2;
+}
+
+.hero-text p{
+    font-size:18px;
+    color:#666;
+    margin-bottom:35px;
+}
+
+.hero-image img{
+    width:100%;
+    border-radius:20px;
+}
+
+/* ==========================================
+   FEATURES
+========================================== */
+
+.features{
+    padding:60px 0;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.feature-card{
+    background:#fff;
+    border-radius:15px;
+    text-align:center;
+    padding:30px;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+}
+
+.feature-card i{
+    font-size:45px;
+    color:#198754;
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    margin-bottom:12px;
+}
+
+/* ==========================================
+   SECTION TITLE
+========================================== */
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:38px;
+    color:#198754;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:10px;
+}
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+.categories{
+    padding:70px 0;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+}
+
+.category-card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.category-card:hover{
+    background:#198754;
+    color:#fff;
+    transform:translateY(-8px);
+}
+
+.category-card img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    margin:auto;
+    margin-bottom:18px;
+}
+
+.category-card h4{
+    font-size:18px;
+}
+
+/* ==========================================
+   PRODUCTS
+========================================== */
+
+.products{
+    padding:80px 0;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+.product-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.35s;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.product-card:hover{
+    transform:translateY(-10px);
+}
+
+.product-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:270px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.product-card:hover img{
+    transform:scale(1.08);
+}
+
+.sale-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#dc3545;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.product-body{
+    padding:22px;
+}
+
+.product-title{
+    font-size:19px;
+    margin-bottom:10px;
+}
+
+.product-price{
+    color:#198754;
+    font-size:26px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:15px;
+    margin-left:10px;
+}
+
+.product-rating{
+    color:#ffc107;
+    margin-bottom:18px;
+}
+
+.product-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.product-buttons .btn{
+    flex:1;
+}
+
+/* ==========================================
+   OFFER BANNER
+========================================== */
+
+.offer-banner{
+    padding:70px 0;
+}
+
+.offer-box{
+    background:linear-gradient(135deg,#198754,#28a745);
+    border-radius:20px;
+    color:#fff;
+    padding:60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.offer-box h2{
+    font-size:45px;
+    margin-bottom:18px;
+}
+
+.offer-box p{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.offer-box img{
+    width:340px;
+}
