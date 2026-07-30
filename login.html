@@ -1,22 +1,21 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Login | Picker Shop</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="stylesheet" href="responsive.css">
+
 </head>
 
 <body>
-
-<!-- Header -->
 
 <header class="header">
 
@@ -24,21 +23,17 @@ content="width=device-width, initial-scale=1.0">
 
 <a href="index.html" class="logo">
 
-<img src="images/logo.png" alt="Picker Shop">
-
-<span>Picker Shop</span>
+🌿 <span>Picker Shop</span>
 
 </a>
 
-<nav class="navbar">
+<nav>
 
-<a href="index.html">🏠 হোম</a>
+<a href="index.html">Home</a>
 
-<a href="cart.html">🛒 Cart</a>
+<a href="products.html">Products</a>
 
-<a href="wishlist.html">❤️ Wishlist</a>
-
-<a href="register.html">📝 Register</a>
+<a href="register.html">Register</a>
 
 </nav>
 
@@ -46,188 +41,90 @@ content="width=device-width, initial-scale=1.0">
 
 </header>
 
-<!-- Login -->
-
-<section class="products-section">
+<section class="login-section">
 
 <div class="container">
 
-<div class="card"
-style="max-width:500px;margin:auto;padding:35px;">
+<div class="card login-card">
 
-<h2 style="text-align:center;margin-bottom:25px;">
+<h2>🔐 Customer Login</h2>
 
-🔐 লগইন করুন
+<p>
 
-</h2>
+আপনার Email ও Password দিয়ে Login করুন
+
+</p>
+
+<br>
 
 <input
 type="email"
 id="loginEmail"
-placeholder="আপনার ইমেইল">
+placeholder="Email Address">
 
 <br><br>
 
 <input
 type="password"
 id="loginPassword"
-placeholder="আপনার পাসওয়ার্ড">
+placeholder="Password">
 
 <br><br>
 
 <button
 class="btn"
-style="width:100%;"
+type="button"
 onclick="loginUser()">
 
-লগইন
+Login
 
 </button>
 
 <br><br>
 
-<p style="text-align:center;">
+<a href="forgot-password.html">
 
-অ্যাকাউন্ট নেই?
-
-<a href="register.html">
-
-রেজিস্টার করুন
+Forgot Password?
 
 </a>
 
+<hr>
+
+<p>
+
+নতুন অ্যাকাউন্ট নেই?
+
 </p>
+
+<a
+class="btn"
+href="register.html">
+
+Create Account
+
+</a>
 
 </div>
 
 </div>
 
 </section>
-<!-- Login Options -->
 
-<div style="margin-top:20px;">
+<footer>
 
-<label style="display:flex;align-items:center;gap:8px;">
+<div class="container">
 
-<input type="checkbox" id="rememberMe">
+<p>
 
-<span>আমাকে মনে রাখুন</span>
-
-</label>
-
-</div>
-
-<br>
-
-<button
-class="wish-btn"
-style="width:100%;"
-onclick="togglePassword()">
-
-👁️ পাসওয়ার্ড দেখুন / লুকান
-
-</button>
-
-<br><br>
-
-<a
-href="#"
-style="display:block;text-align:center;color:#198754;">
-
-পাসওয়ার্ড ভুলে গেছেন?
-
-</a>
-
-<br>
-
-<button
-class="wish-btn"
-style="width:100%;">
-
-🔵 Google দিয়ে Login (Demo)
-
-</button>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="container footer-grid">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
-
-<p>Pure • Natural • Trusted</p>
-
-<p>বাংলাদেশের বিশ্বস্ত হারবাল ও প্রাকৃতিক পণ্যের অনলাইন শপ।</p>
-
-</div>
-
-<div>
-
-<h3>দ্রুত লিংক</h3>
-
-<ul>
-
-<li><a href="index.html">হোম</a></li>
-
-<li><a href="register.html">Register</a></li>
-
-<li><a href="contact.html">যোগাযোগ</a></li>
-
-<li><a href="about.html">আমাদের সম্পর্কে</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>যোগাযোগ</h3>
-
-<p>📍 খিলগাঁও, ঢাকা</p>
-
-<p>📞 +8801400599748</p>
-
-<p>📧 support@pickershop.com</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Picker Shop | All Rights Reserved.
+© 2026 Picker Shop
 
 </p>
 
+</div>
+
 </footer>
 
-<!-- WhatsApp -->
-
-<a
-href="https://wa.me/8801400599748"
-class="whatsapp"
-target="_blank">
-
-💬
-
-</a>
-
-<!-- Scroll To Top -->
-
-<button
-id="topBtn"
-onclick="topFunction()">
-
-⬆
-
-</button>
-
-<script src="script.js"></script>
+<script type="module" src="auth.js"></script>
 
 </body>
 
