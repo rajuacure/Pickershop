@@ -126,24 +126,27 @@ window.loadCoupons = async function () {
 window.saveCoupon = async function () {
 
     const code =
-        document.getElementById("couponCode")
-        .value
+        document.getElementById("couponCode").value
         .trim()
         .toUpperCase();
 
     const type =
-        document.getElementById("couponType")
-        .value;
+        document.getElementById("couponType").value;
 
     const value =
-        Number(
-            document.getElementById("couponValue")
-            .value
-        );
+        Number(document.getElementById("couponValue").value);
 
     const active =
-        document.getElementById("couponActive")
-        .checked;
+        document.getElementById("couponActive").checked;
+
+    const expiry =
+        document.getElementById("couponExpiry").value;
+
+    const usageLimit =
+        Number(document.getElementById("couponLimit").value);
+
+    const minimumOrder =
+        Number(document.getElementById("minimumOrder").value);
 
     if (
         code === "" ||
@@ -156,6 +159,26 @@ window.saveCoupon = async function () {
 
     }
 
+    const data = {
+
+        code,
+
+        type,
+
+        value,
+
+        active,
+
+        expiry,
+
+        usageLimit,
+
+        minimumOrder,
+
+        usedCount: 0
+
+    };
+
     try {
 
         if (editingCouponId) {
@@ -164,17 +187,7 @@ window.saveCoupon = async function () {
 
                 doc(db, "coupons", editingCouponId),
 
-                {
-
-                    code,
-
-                    type,
-
-                    value,
-
-                    active
-
-                }
+                data
 
             );
 
@@ -188,17 +201,7 @@ window.saveCoupon = async function () {
 
                 collection(db, "coupons"),
 
-                {
-
-                    code,
-
-                    type,
-
-                    value,
-
-                    active
-
-                }
+                data
 
             );
 
@@ -221,7 +224,6 @@ window.saveCoupon = async function () {
     }
 
 };
-
 
 // ==========================================
 // Edit Coupon
