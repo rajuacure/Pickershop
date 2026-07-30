@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Dashboard | Picker Shop</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container">
+
+<a href="index.html" class="logo">
+
+🌿 Picker Shop
+
+</a>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="orders.html">Orders</a>
+
+<a href="wishlist.html">Wishlist</a>
+
+<a href="profile.html">Profile</a>
+
+<button
+class="btn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="products-section">
+
+<div class="container">
+
+<h2>
+
+👤 Customer Dashboard
+
+</h2>
+
+<br>
+
+<div class="dashboard-grid">
+
+<div class="card">
+
+<h3>Total Orders</h3>
+
+<h1 id="totalOrders">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Wishlist</h3>
+
+<h1 id="wishlistCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Cart Items</h3>
+
+<h1 id="cartCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Spending</h3>
+
+<h1 id="totalSpent">৳0</h1>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Quick Menu</h3>
+
+<br>
+
+<a class="btn" href="orders.html">📦 My Orders</a>
+
+<a class="btn" href="wishlist.html">❤️ Wishlist</a>
+
+<a class="btn" href="profile.html">👤 Profile</a>
+
+<a class="btn" href="cart.html">🛒 Cart</a>
+
+</div>
+
+</div>
+
+</section>
+
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/customer-dashboard.js"></script>
+
+</body>
+
+</html>
