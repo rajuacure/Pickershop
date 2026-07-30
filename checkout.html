@@ -2,44 +2,57 @@
 <html lang="bn">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout | Picker Shop</title>
 
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | Picker Shop</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
 </head>
 
 <body>
 
+<!-- Header -->
+
 <header class="header">
-
-    <div class="container">
-
-        <a href="index.html" class="logo">
-            🌿 <span>Picker Shop</span>
-        </a>
-
-        <nav class="navbar">
-
-            <a href="index.html">হোম</a>
-
-            <a href="products.html">পণ্য</a>
-
-            <a href="cart.html">কার্ট</a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-
-<section class="checkout-section">
 
 <div class="container">
 
-<h2 style="text-align:center;margin-bottom:30px;">
+<a href="index.html" class="logo">
+
+🌿 Picker Shop
+
+</a>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="orders.html">Orders</a>
+
+<a href="profile.html">Profile</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<!-- Checkout -->
+
+<section class="products-section">
+
+<div class="container">
+
+<h2>
 
 🛒 Checkout
 
@@ -49,9 +62,9 @@
 
 <!-- Customer Information -->
 
-<div class="checkout-form">
+<div class="card">
 
-<h3>গ্রাহকের তথ্য</h3>
+<h3>Billing Information</h3>
 
 <input
 type="text"
@@ -63,119 +76,54 @@ type="tel"
 id="customerPhone"
 placeholder="মোবাইল নম্বর">
 
-<textarea
-id="customerAddress"<select
+<input
+type="text"
 id="customerDistrict"
-onchange="calculateDelivery()">
+placeholder="জেলা">
 
-<option value="">
+<input
+type="text"
+id="customerUpazila"
+placeholder="উপজেলা">
 
-জেলা নির্বাচন করুন
+<textarea
+id="customerAddress"
+placeholder="সম্পূর্ণ ঠিকানা"
+rows="4"></textarea>
 
-</option>
-
-<option value="Dhaka">
-
-ঢাকা
-
-</option>
-
-<option value="Chattogram">
-
-চট্টগ্রাম
-
-</option>
-
-<option value="Rajshahi">
-
-রাজশাহী
-
-</option>
-
-<option value="Khulna">
-
-খুলনা
-
-</option>
-
-<option value="Sylhet">
-
-সিলেট
-
-</option>
-
-<option value="Barishal">
-
-বরিশাল
-
-</option>
-
-<option value="Rangpur">
-
-রংপুর
-
-</option>
-
-<option value="Mymensingh">
-
-ময়মনসিংহ
-
-</option>
-
-<option value="Express">
-
-এক্সপ্রেস ডেলিভারি
-
-</option>
-
-</select>
-placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+<h3>Payment Method</h3>
 
 <select id="paymentMethod">
 
-<option value="Cash on Delivery">
-
-Cash on Delivery
-
+<option value="Cash On Delivery">
+Cash On Delivery
 </option>
 
 <option value="bKash">
-
 bKash
-
 </option>
 
 <option value="Nagad">
-
 Nagad
-
 </option>
 
 <option value="Rocket">
-
 Rocket
-
 </option>
 
 </select>
 
 </div>
 
-
-
 <!-- Order Summary -->
 
-<div class="checkout-summary">
+<div class="card">
 
-<h3>
-
-📦 Order Summary
-
-</h3>
-
-<hr>
+<h3>Order Summary</h3>
 
 <div id="checkoutItems">
+
+Loading...
 
 </div>
 
@@ -183,7 +131,7 @@ Rocket
 
 <h4>
 
-Subtotal :
+Subtotal
 
 <span id="subTotal">
 
@@ -195,19 +143,7 @@ Subtotal :
 
 <h4>
 
-Discount :
-
-<span id="discount">
-
-৳0
-
-</span>
-
-</h4>
-
-<h4>
-
-Delivery :
+Delivery
 
 <span id="deliveryCharge">
 
@@ -217,15 +153,27 @@ Delivery :
 
 </h4>
 
+<h4>
+
+Discount
+
+<span id="discount">
+
+৳0
+
+</span>
+
+</h4>
+
 <hr>
 
 <h2>
 
-Total :
+Grand Total
 
-<span id="finalTotal">
+<span id="grandTotal">
 
-৳80
+৳0
 
 </span>
 
@@ -235,7 +183,7 @@ Total :
 
 <h3>
 
-🎟 Coupon
+Coupon
 
 </h3>
 
@@ -243,8 +191,6 @@ Total :
 type="text"
 id="couponCode"
 placeholder="Coupon Code">
-
-<br><br>
 
 <button
 class="btn"
@@ -259,10 +205,9 @@ Apply Coupon
 <button
 class="btn"
 style="width:100%;"
-
 onclick="placeOrder()">
-saveCustomerInfo();
-✅ Confirm Order
+
+✅ Place Order
 
 </button>
 
@@ -273,6 +218,24 @@ saveCustomerInfo();
 </div>
 
 </section>
+
+<footer>
+
+<div class="container">
+
+<p>
+
+© 2026 Picker Shop
+
+</p>
+
+</div>
+
+</footer>
+
+<script type="module" src="js/auth.js"></script>
+
+<script type="module" src="js/navbar.js"></script>
 
 <script type="module" src="js/checkout.js"></script>
 
