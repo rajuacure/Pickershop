@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 
 <head>
@@ -10,12 +10,11 @@
 <title>Register | Picker Shop</title>
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="responsive.css">
 
 </head>
 
 <body>
-
-<!-- Header -->
 
 <header class="header">
 
@@ -23,21 +22,17 @@
 
 <a href="index.html" class="logo">
 
-<img src="images/logo.png" alt="Picker Shop">
-
-<span>Picker Shop</span>
+🌿 <span>Picker Shop</span>
 
 </a>
 
-<nav class="navbar">
+<nav>
 
-<a href="index.html">🏠 হোম</a>
+<a href="index.html">Home</a>
 
-<a href="login.html">🔐 Login</a>
+<a href="products.html">Products</a>
 
-<a href="cart.html">🛒 Cart</a>
-
-<a href="wishlist.html">❤️ Wishlist</a>
+<a href="login.html">Login</a>
 
 </nav>
 
@@ -45,203 +40,223 @@
 
 </header>
 
-<!-- Register -->
-
-<section class="products-section">
+<section class="login-section">
 
 <div class="container">
 
-<div class="card" style="max-width:550px;margin:auto;padding:35px;">
+<div class="card login-card">
 
-<h2 style="text-align:center;margin-bottom:25px;">
+<h2>📝 Customer Registration</h2>
 
-📝 নতুন অ্যাকাউন্ট তৈরি করুন
+<p>
 
-</h2>
+নতুন অ্যাকাউন্ট তৈরি করুন
+
+</p>
+
+<br>
 
 <input
 type="text"
 id="registerName"
-placeholder="আপনার পূর্ণ নাম">
+placeholder="আপনার নাম">
+
+<br><br>
+
+<input
+type="tel"
+id="registerPhone"
+placeholder="মোবাইল নম্বর">
 
 <br><br>
 
 <input
 type="email"
 id="registerEmail"
-placeholder="আপনার ইমেইল">
+placeholder="Email Address">
 
 <br><br>
 
 <input
 type="password"
 id="registerPassword"
-placeholder="পাসওয়ার্ড">
+placeholder="Password">
 
 <br><br>
 
 <input
 type="password"
-id="confirmPassword"
-placeholder="পাসওয়ার্ড নিশ্চিত করুন">
+id="registerConfirmPassword"
+placeholder="Confirm Password">
 
 <br><br>
 
 <button
+type="button"
 class="btn"
-style="width:100%;"
-onclick="registerUser()">
+onclick="registerCustomer()">
 
-📝 রেজিস্টার করুন
+Create Account
 
 </button>
 
-<br><br>
+<hr>
 
-<p style="text-align:center;">
+<p>
 
 আগেই অ্যাকাউন্ট আছে?
 
-<a href="login.html">
+</p>
 
-লগইন করুন
+<a
+href="login.html"
+class="btn">
+
+Login
 
 </a>
-
-</p>
 
 </div>
 
 </div>
 
 </section>
-<!-- Register Options -->
 
-<div style="margin-top:20px;">
+<footer>
 
-<label style="display:flex;align-items:flex-start;gap:10px;">
+<div class="container">
 
-<input type="checkbox" id="agreeTerms">
+<p>
 
-<span>
-
-আমি
-
-<a href="terms.html">Terms & Conditions</a>
-
-এবং
-
-<a href="privacy.html">Privacy Policy</a>
-
-মেনে নিচ্ছি।
-
-</span>
-
-</label>
-
-</div>
-
-<br>
-
-<button
-class="wish-btn"
-style="width:100%;"
-onclick="toggleRegisterPassword()">
-
-👁️ পাসওয়ার্ড দেখুন / লুকান
-
-</button>
-
-<br><br>
-
-<button
-class="wish-btn"
-style="width:100%;">
-
-🔵 Google দিয়ে Register (Demo)
-
-</button>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="container footer-grid">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
-
-<p>Pure • Natural • Trusted</p>
-
-<p>বাংলাদেশের বিশ্বস্ত হারবাল ও প্রাকৃতিক পণ্যের অনলাইন শপ।</p>
-
-</div>
-
-<div>
-
-<h3>দ্রুত লিংক</h3>
-
-<ul>
-
-<li><a href="index.html">হোম</a></li>
-
-<li><a href="login.html">Login</a></li>
-
-<li><a href="contact.html">যোগাযোগ</a></li>
-
-<li><a href="about.html">আমাদের সম্পর্কে</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>যোগাযোগ</h3>
-
-<p>📍 খিলগাঁও, ঢাকা</p>
-
-<p>📞 +8801400599748</p>
-
-<p>📧 support@pickershop.com</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Picker Shop | All Rights Reserved.
+© 2026 Picker Shop
 
 </p>
 
+</div>
+
 </footer>
 
-<!-- WhatsApp -->
+<script type="module">
 
-<a
-href="https://wa.me/8801400599748"
-class="whatsapp"
-target="_blank">
+import {
+auth
+} from "./firebase.js";
 
-💬
+import {
+createUserWithEmailAndPassword,
+updateProfile
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-</a>
+import {
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-<!-- Scroll To Top -->
+import {
+db
+} from "./firebase.js";
 
-<button
-id="topBtn"
-onclick="topFunction()">
+window.registerCustomer = async function(){
 
-⬆
+const name =
+document.getElementById("registerName").value.trim();
 
-</button>
+const phone =
+document.getElementById("registerPhone").value.trim();
 
-<script src="script.js"></script>
+const email =
+document.getElementById("registerEmail").value.trim();
+
+const password =
+document.getElementById("registerPassword").value;
+
+const confirm =
+document.getElementById("registerConfirmPassword").value;
+
+if(
+!name ||
+!phone ||
+!email ||
+!password
+){
+
+alert("সব তথ্য পূরণ করুন");
+
+return;
+
+}
+
+if(password!==confirm){
+
+alert("Password মিলছে না");
+
+return;
+
+}
+
+try{
+
+const userCredential =
+
+await createUserWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+await updateProfile(
+
+userCredential.user,
+
+{
+
+displayName:name
+
+}
+
+);
+
+await setDoc(
+
+doc(db,"users",userCredential.user.uid),
+
+{
+
+uid:userCredential.user.uid,
+
+name,
+
+phone,
+
+email,
+
+role:"customer",
+
+createdAt:new Date().toISOString()
+
+}
+
+);
+
+alert("✅ Registration Successful");
+
+window.location.href="login.html";
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+}
+
+</script>
 
 </body>
 
