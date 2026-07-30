@@ -477,3 +477,208 @@ window.placeOrder = async function () {
     }
 
 };
+// ==========================================
+// Picker Shop V2
+// Phase 2 - Part 5.4
+// Delivery + Customer Profile
+// ==========================================
+
+// ----------------------------
+// Delivery Charge
+// ----------------------------
+
+window.calculateDelivery=function(){
+
+const district=
+
+document.getElementById("customerDistrict")?.value;
+
+let charge=80;
+
+if(
+
+district==="Dhaka"
+
+){
+
+charge=60;
+
+}
+
+if(
+
+district==="Express"
+
+){
+
+charge=120;
+
+}
+
+const summary=
+
+JSON.parse(
+
+localStorage.getItem("orderSummary")
+
+);
+
+if(summary){
+
+summary.delivery=charge;
+
+summary.total=
+
+summary.subtotal-
+
+summary.discount+
+
+charge;
+
+localStorage.setItem(
+
+"orderSummary",
+
+JSON.stringify(summary)
+
+);
+
+}
+
+if(document.getElementById("deliveryCharge")){
+
+document.getElementById("deliveryCharge").innerHTML=
+
+"৳"+charge;
+
+}
+
+if(document.getElementById("grandTotal")){
+
+document.getElementById("grandTotal").innerHTML=
+
+"৳"+summary.total;
+
+}
+
+};
+
+// ----------------------------
+// Buy Now
+// ----------------------------
+
+window.buyNow=function(product){
+
+localStorage.setItem(
+
+"cart",
+
+JSON.stringify([
+
+{
+
+id:product.id,
+
+name:product.name,
+
+price:product.price,
+
+image:product.image,
+
+qty:1
+
+}
+
+])
+
+);
+
+window.location.href="checkout.html";
+
+};
+
+// ----------------------------
+// Save Customer
+// ----------------------------
+
+window.saveCustomerInfo=function(){
+
+const customer={
+
+name:
+
+document.getElementById("customerName")?.value,
+
+phone:
+
+document.getElementById("customerPhone")?.value,
+
+address:
+
+document.getElementById("customerAddress")?.value,
+
+district:
+
+document.getElementById("customerDistrict")?.value
+
+};
+
+localStorage.setItem(
+
+"customer",
+
+JSON.stringify(customer)
+
+);
+
+};
+
+// ----------------------------
+// Load Customer
+// ----------------------------
+
+window.loadCustomerInfo=function(){
+
+const customer=
+
+JSON.parse(
+
+localStorage.getItem("customer")
+
+||"null"
+
+);
+
+if(!customer)return;
+
+if(document.getElementById("customerName"))
+
+document.getElementById("customerName").value=
+
+customer.name||"";
+
+if(document.getElementById("customerPhone"))
+
+document.getElementById("customerPhone").value=
+
+customer.phone||"";
+
+if(document.getElementById("customerAddress"))
+
+document.getElementById("customerAddress").value=
+
+customer.address||"";
+
+if(document.getElementById("customerDistrict"))
+
+document.getElementById("customerDistrict").value=
+
+customer.district||"";
+
+};
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+loadCustomerInfo();
+
+});
