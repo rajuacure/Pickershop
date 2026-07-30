@@ -7,80 +7,88 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Orders | Admin Panel</title>
+<title>My Orders | Picker Shop</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
-<div class="admin-layout">
+<header class="header">
 
-<!-- Sidebar -->
+<div class="container">
 
-<aside class="admin-sidebar">
+<a href="index.html" class="logo">
 
-<h2 style="text-align:center;color:#198754;">
 🌿 Picker Shop
-</h2>
 
-<hr>
+</a>
 
-<a href="admin-dashboard.html">📊 Dashboard</a>
+<nav>
 
-<a href="admin-products.html">📦 Products</a>
+<a href="index.html">Home</a>
 
-<a href="admin-orders.html" class="active">🛒 Orders</a>
+<a href="products.html">Products</a>
 
-<a href="admin-users.html">👥 Users</a>
+<a href="cart.html">Cart</a>
 
-<a href="admin-settings.html">⚙ Settings</a>
+<a href="wishlist.html">Wishlist</a>
 
-<hr>
+<div id="guestMenu">
+
+<a href="login.html">Login</a>
+
+<a href="register.html">Register</a>
+
+</div>
+
+<div id="userMenu" style="display:none;">
+
+<span id="navUserName"></span>
+
+<a href="profile.html">Profile</a>
 
 <button
 class="btn"
-onclick="adminLogout()"
-style="width:100%;">
+onclick="logout()">
 
-🚪 Logout
+Logout
 
 </button>
 
-</aside>
+</div>
 
-<!-- Main -->
+</nav>
 
-<main class="admin-main">
+</div>
 
-<h1>
+</header>
 
-🛒 Order Management
+<section class="products-section">
 
-</h1>
+<div class="container">
+
+<h2>
+
+📦 My Orders
+
+</h2>
 
 <br>
 
 <input
 type="text"
 id="searchOrder"
-placeholder="🔍 Search Order..."
-onkeyup="searchOrders()">
+placeholder="Order Search..."
+onkeyup="searchMyOrders()">
 
 <br><br>
 
-<div class="card">
+<div class="table-responsive">
 
-<h2>
-
-📋 All Orders
-
-</h2>
-
-<br>
-
-<table style="width:100%;border-collapse:collapse;">
+<table>
 
 <thead>
 
@@ -88,9 +96,7 @@ onkeyup="searchOrders()">
 
 <th>Order ID</th>
 
-<th>Customer</th>
-
-<th>Phone</th>
+<th>Date</th>
 
 <th>Total</th>
 
@@ -102,13 +108,13 @@ onkeyup="searchOrders()">
 
 </thead>
 
-<tbody id="orderTable">
+<tbody id="myOrderTable">
 
 <tr>
 
-<td colspan="6" style="text-align:center;">
+<td colspan="5">
 
-Loading Orders...
+Loading...
 
 </td>
 
@@ -120,11 +126,15 @@ Loading Orders...
 
 </div>
 
-</main>
-
 </div>
 
-<script type="module" src="admin.js"></script>
+</section>
+
+<script type="module" src="js/auth.js"></script>
+
+<script type="module" src="js/navbar.js"></script>
+
+<script type="module" src="js/orders.js"></script>
 
 </body>
 
