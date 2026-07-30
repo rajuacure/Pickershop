@@ -1055,3 +1055,227 @@ border-radius:8px;
 cursor:pointer;
 
 }
+// ==========================================
+// Phase 2 - Part 6.2
+// Search + Category + Pagination
+// ==========================================
+
+let allProducts = [];
+let currentPage = 1;
+const productsPerPage = 12;
+
+// ----------------------------
+// Load All Products
+// ----------------------------
+
+window.loadAllProducts = async function () {
+
+    const container = document.getElementById("productContainer");
+
+    if (!container) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        allProducts = [];
+
+        snapshot.forEach((docItem) => {
+
+            allProducts.push({
+                id: docItem.id,
+                ...docItem.data()
+            });
+
+        });
+
+        renderProducts(allProducts);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ----------------------------
+// Render Products
+// ----------------------------
+
+window.renderProducts = function (products) {
+
+    const container =
+        document.getElementById("productContainer");
+
+    if (!container) return;
+
+    let html = "";
+
+    const start =
+        (currentPage - 1) * productsPerPage;
+
+    const end =
+        start + productsPerPage;
+
+    const pageProducts =
+        products.slice(start, end);
+
+    pageProducts.forEach((p) => {
+
+        html += `
+
+<div class="product-card">
+
+<img src="${p.image}" alt="${p.name}">
+
+<h3>${p.name}</h3>
+
+<p class="price">
+
+৳${p.price}
+
+</p>
+
+<div class="product-buttons">
+
+<button
+class="btn"
+onclick="addToCart({
+
+id:'${p.id}',
+
+name:'${p.name}',
+
+price:${p.price},
+
+image:'${p.image}',
+
+stock:${p.stock}
+
+})">
+
+🛒 Add To Cart
+
+</button>
+
+<button
+class="wish-btn"
+onclick="addToWishlist({
+
+id:'${p.id}',
+
+name:'${p.name}',
+
+price:${p.price},
+
+image:'${p.image}',
+
+stock:${p.stock}
+
+})">
+
+❤️
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+    });
+
+    container.innerHTML = html;
+
+};
+
+// ----------------------------
+// Search
+// ----------------------------
+
+window.searchProducts = function () {
+
+    const keyword =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+    const filtered =
+        allProducts.filter((p) =>
+
+            p.name.toLowerCase().includes(keyword)
+
+        );
+
+    currentPage = 1;
+
+    renderProducts(filtered);
+
+};
+
+// ----------------------------
+// Category
+// ----------------------------
+
+window.filterCategory = function () {
+
+    const category =
+        document
+            .getElementById("categoryFilter")
+            .value;
+
+    if (category === "") {
+
+        renderProducts(allProducts);
+
+        return;
+
+    }
+
+    const filtered =
+        allProducts.filter(
+
+            p => p.category === category
+
+        );
+
+    currentPage = 1;
+
+    renderProducts(filtered);
+
+};
+
+// ----------------------------
+// Pagination
+// ----------------------------
+
+window.nextPage = function () {
+
+    currentPage++;
+
+    renderProducts(allProducts);
+
+};
+
+window.previousPage = function () {
+
+    if (currentPage > 1) {
+
+        currentPage--;
+
+    }
+
+    renderProducts(allProducts);
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadAllProducts();
+
+});
