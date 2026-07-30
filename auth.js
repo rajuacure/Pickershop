@@ -351,3 +351,153 @@ function updateNavbar(user) {
     }
 
 }
+// ==========================================
+// Picker Shop V3
+// auth.js
+// Segment 3
+// Profile + Protected Pages
+// ==========================================
+
+
+// ==========================================
+// Load Profile
+// ==========================================
+
+window.loadProfile = async function () {
+
+    if (!currentUser) {
+
+        location.href = "login.html";
+
+        return;
+
+    }
+
+    try {
+
+        const snap = await getDoc(
+
+            doc(db, "users", currentUser.uid)
+
+        );
+
+        if (!snap.exists()) return;
+
+        const user = snap.data();
+
+        if (document.getElementById("profileName"))
+            document.getElementById("profileName").value =
+                user.name || "";
+
+        if (document.getElementById("profilePhone"))
+            document.getElementById("profilePhone").value =
+                user.phone || "";
+
+        if (document.getElementById("profileEmail"))
+            document.getElementById("profileEmail").value =
+                user.email || "";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("Profile Load Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Update Profile
+// ==========================================
+
+window.updateUserProfile = async function () {
+
+    if (!currentUser) return;
+
+    const name =
+        document.getElementById("profileName").value.trim();
+
+    const phone =
+        document.getElementById("profilePhone").value.trim();
+
+    try {
+
+        await updateProfile(
+
+            currentUser,
+
+            {
+
+                displayName: name
+
+            }
+
+        );
+
+        await updateDoc(
+
+            doc(db, "users", currentUser.uid),
+
+            {
+
+                name,
+
+                phone
+
+            }
+
+        );
+
+        alert("✅ Profile Updated Successfully");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
+
+
+// ==========================================
+// Protect Pages
+// ==========================================
+
+window.protectPage = function () {
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+
+            alert("প্রথমে Login করুন");
+
+            location.href = "login.html";
+
+        }
+
+    });
+
+};
+
+
+// ==========================================
+// Auto Load Profile
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.getElementById("profileName")) {
+
+        loadProfile();
+
+    }
+
+});
