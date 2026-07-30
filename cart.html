@@ -144,3 +144,217 @@ style="display:block;text-align:center;">
 </a>
 
 </div>
+// ==========================================
+// Picker Shop V2
+// Phase 2 - Part 5.5
+// Wishlist + Compare + Recently Viewed
+// ==========================================
+
+// ------------------------------
+// Wishlist
+// ------------------------------
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+window.addToWishlist = function(product){
+
+    const exists =
+    wishlist.find(item => item.id === product.id);
+
+    if(exists){
+
+        alert("❤️ Wishlist এ আগে থেকেই আছে");
+
+        return;
+
+    }
+
+    wishlist.push(product);
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
+
+    updateWishlistCount();
+
+    alert("❤️ Wishlist এ যোগ হয়েছে");
+
+};
+
+window.removeWishlist=function(id){
+
+    wishlist =
+    wishlist.filter(item=>item.id!==id);
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(wishlist)
+    );
+
+    renderWishlist();
+
+};
+
+window.renderWishlist=function(){
+
+    const container =
+    document.getElementById("wishlistItems");
+
+    if(!container) return;
+
+    if(wishlist.length===0){
+
+        container.innerHTML=`
+
+        <h3 style="text-align:center">
+
+        Wishlist খালি
+
+        </h3>
+
+        `;
+
+        return;
+
+    }
+
+    let html="";
+
+    wishlist.forEach(item=>{
+
+        html+=`
+
+        <div class="product-card">
+
+        <img src="${item.image}">
+
+        <h3>${item.name}</h3>
+
+        <p>৳${item.price}</p>
+
+        <button class="btn"
+
+        onclick="removeWishlist('${item.id}')">
+
+        Remove
+
+        </button>
+
+        </div>
+
+        `;
+
+    });
+
+    container.innerHTML=html;
+
+};
+
+function updateWishlistCount(){
+
+    const badge =
+    document.getElementById("wishlistCount");
+
+    if(badge){
+
+        badge.innerHTML=wishlist.length;
+
+    }
+
+}
+
+// ------------------------------
+// Compare
+// ------------------------------
+
+let compare =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+window.addCompare=function(product){
+
+    if(compare.length>=3){
+
+        alert("সর্বোচ্চ ৩টি Product Compare করা যাবে");
+
+        return;
+
+    }
+
+    const exists =
+    compare.find(i=>i.id===product.id);
+
+    if(exists){
+
+        return;
+
+    }
+
+    compare.push(product);
+
+    localStorage.setItem(
+        "compare",
+        JSON.stringify(compare)
+    );
+
+    alert("Compare List এ যোগ হয়েছে");
+
+};
+
+// ------------------------------
+// Recently Viewed
+// ------------------------------
+
+window.addRecent=function(product){
+
+    let recent =
+    JSON.parse(localStorage.getItem("recent")) || [];
+
+    recent =
+    recent.filter(item=>item.id!==product.id);
+
+    recent.unshift(product);
+
+    if(recent.length>8){
+
+        recent.pop();
+
+    }
+
+    localStorage.setItem(
+        "recent",
+        JSON.stringify(recent)
+    );
+
+};
+
+// ------------------------------
+// Stock Check
+// ------------------------------
+
+window.checkStock=function(product){
+
+    if(product.stock<=0){
+
+        alert("❌ এই পণ্যটি বর্তমানে Out Of Stock");
+
+        return false;
+
+    }
+
+    return true;
+
+};
+
+// ------------------------------
+// Auto Load
+// ------------------------------
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    updateWishlistCount();
+
+    renderWishlist();
+
+});
