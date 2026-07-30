@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 
 <head>
@@ -9,7 +9,8 @@
 
 <title>Wishlist | Picker Shop</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
@@ -23,29 +24,49 @@
 
 <a href="index.html" class="logo">
 
-<img src="images/logo.png" alt="Picker Shop">
-
-<span>Picker Shop</span>
+🌿 <span>Picker Shop</span>
 
 </a>
 
-<nav class="navbar">
+<nav>
 
-<a href="index.html">🏠 হোম</a>
+<a href="index.html">Home</a>
 
-<a href="cart.html">
+<a href="products.html">Products</a>
 
-🛒 Cart
+<a href="cart.html">Cart</a>
 
-<span id="cartCount">0</span>
+<a href="orders.html">Orders</a>
+
+<div id="guestMenu">
+
+<a href="login.html">Login</a>
+
+<a href="register.html">Register</a>
+
+</div>
+
+<div
+id="userMenu"
+style="display:none;align-items:center;gap:15px;">
+
+<span id="navUserName"></span>
+
+<a href="profile.html">
+
+Profile
 
 </a>
 
-<a href="wishlist.html">
+<button
+class="btn"
+onclick="logout()">
 
-❤️ Wishlist
+Logout
 
-</a>
+</button>
+
+</div>
 
 </nav>
 
@@ -61,108 +82,33 @@
 
 <h2>
 
-❤️ আমার Wishlist
+❤️ My Wishlist
 
 </h2>
 
-<p style="text-align:center;margin-bottom:30px;">
+<br>
 
-আপনার পছন্দের পণ্যগুলো এখানে সংরক্ষিত থাকবে।
-
-</p>
-
-<div id="wishlistItems">
-
-<!-- JavaScript এখানে Wishlist দেখাবে -->
-
-</div>
-
-</div>
-
-</section>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
-<!-- Wishlist Summary -->
-
-<div class="card" style="margin-top:30px;padding:25px;">
-
-<h3>❤️ Wishlist Summary</h3>
-
-<hr style="margin:15px 0;">
-
-<div style="display:flex;justify-content:space-between;margin-bottom:10px;">
-
-<span>মোট পণ্য</span>
-
-<strong id="wishlistCount">0</strong>
-
-</div>
-
-<p style="margin:20px 0;color:#666;">
-
-আপনার পছন্দের পণ্যগুলো এখান থেকে কার্টে যোগ করতে পারবেন অথবা মুছে ফেলতে পারবেন।
-
-</p>
-
-<button
-class="btn"
-style="width:100%;"
-onclick="moveAllToCart()">
-
-🛒 সবগুলো Cart-এ যোগ করুন
-
-</button>
+<input
+type="text"
+id="wishlistSearch"
+placeholder="Wishlist Search..."
+onkeyup="searchWishlist()">
 
 <br><br>
 
-<button
-class="wish-btn"
-style="width:100%;"
-onclick="clearWishlist()">
+<div
+id="wishlistContainer"
+class="product-grid">
 
-🗑️ পুরো Wishlist খালি করুন
+<div
+class="card"
+style="text-align:center;">
 
-</button>
-
-<br><br>
-
-<a
-href="index.html"
-class="wish-btn"
-style="display:block;text-align:center;">
-
-🛍️ আরও কেনাকাটা করুন
-
-</a>
+Loading Wishlist...
 
 </div>
-<!-- Wishlist Information -->
 
-<section class="cta">
-
-<div class="container">
-
-<h2>
-
-💚 আপনার পছন্দের পণ্য সংরক্ষিত আছে
-
-</h2>
-
-<p>
-
-Wishlist-এ রাখা পণ্যগুলো পরে সহজেই Cart-এ যোগ করতে পারবেন।
-
-</p>
-
-<a href="index.html" class="btn">
-
-🛍️ আরও কেনাকাটা করুন
-
-</a>
+</div>
 
 </div>
 
@@ -170,97 +116,27 @@ Wishlist-এ রাখা পণ্যগুলো পরে সহজেই Car
 
 <!-- Footer -->
 
-<footer class="footer">
+<footer>
 
-<div class="container footer-grid">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
+<div class="container">
 
 <p>
 
-Pure • Natural • Trusted
-
-</p>
-
-<p>
-
-বাংলাদেশের বিশ্বস্ত হারবাল ও ন্যাচারাল পণ্যের অনলাইন শপ।
+© 2026 Picker Shop
 
 </p>
 
 </div>
-
-<div>
-
-<h3>দ্রুত লিংক</h3>
-
-<ul>
-
-<li><a href="index.html">হোম</a></li>
-
-<li><a href="cart.html">Cart</a></li>
-
-<li><a href="contact.html">যোগাযোগ</a></li>
-
-<li><a href="about.html">আমাদের সম্পর্কে</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>যোগাযোগ</h3>
-
-<p>📍 খিলগাঁও, ঢাকা</p>
-
-<p>📞 +8801400599748</p>
-
-<p>📧 support@pickershop.com</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Picker Shop | All Rights Reserved.
-
-</p>
 
 </footer>
 
-<!-- WhatsApp -->
+<!-- Scripts -->
 
-<a
+<script type="module" src="js/auth.js"></script>
 
-href="https://wa.me/8801400599748"
+<script type="module" src="js/navbar.js"></script>
 
-class="whatsapp"
-
-target="_blank">
-
-💬
-
-</a>
-
-<!-- Scroll To Top -->
-
-<button
-
-id="topBtn"
-
-onclick="topFunction()">
-
-⬆
-
-</button>
-
-<script src="script.js"></script>
+<script type="module" src="js/wishlist.js"></script>
 
 </body>
 
