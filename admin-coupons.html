@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Coupon Management | Picker Shop Admin</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container">
+
+<h2>
+
+🎟 Coupon Management
+
+</h2>
+
+<nav>
+
+<a href="admin-dashboard.html">Dashboard</a>
+
+<a href="admin-products.html">Products</a>
+
+<a href="admin-orders.html">Orders</a>
+
+<a href="admin-users.html">Users</a>
+
+<a href="admin-settings.html">Settings</a>
+
+<button
+class="btn"
+onclick="adminLogout()">
+
+Logout
+
+</button>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="products-section">
+
+<div class="container">
+
+<div class="card">
+
+<h3>
+
+➕ Add New Coupon
+
+</h3>
+
+<br>
+
+<input
+type="text"
+id="couponCode"
+placeholder="Coupon Code (Example: WELCOME10)">
+
+<br><br>
+
+<select id="couponType">
+
+<option value="percent">
+
+Percentage Discount
+
+</option>
+
+<option value="fixed">
+
+Fixed Discount
+
+</option>
+
+</select>
+
+<br><br>
+
+<input
+type="number"
+id="couponValue"
+placeholder="Discount Value">
+
+<br><br>
+
+<label>
+
+<input
+type="checkbox"
+id="couponActive"
+checked>
+
+Active Coupon
+
+</label>
+
+<br><br>
+
+<button
+class="btn"
+onclick="saveCoupon()">
+
+💾 Save Coupon
+
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>
+
+📋 Coupon List
+
+</h3>
+
+<br>
+
+<input
+type="text"
+id="searchCoupon"
+placeholder="Search Coupon..."
+onkeyup="searchCoupons()">
+
+<br><br>
+
+<div class="table-responsive">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Code</th>
+
+<th>Type</th>
+
+<th>Value</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="couponTable">
+
+<tr>
+
+<td colspan="5" style="text-align:center;">
+
+Loading...
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script type="module" src="js/firebase.js"></script>
+
+<script type="module" src="js/admin.js"></script>
+
+<script type="module" src="js/admin-coupons.js"></script>
+
+</body>
+
+</html>
