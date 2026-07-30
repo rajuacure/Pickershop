@@ -1279,3 +1279,43 @@ document.addEventListener("DOMContentLoaded", () => {
     loadAllProducts();
 
 });
+.product-toolbar{
+
+display:flex;
+
+justify-content:space-between;
+
+gap:15px;
+
+margin-bottom:25px;
+
+flex-wrap:wrap;
+
+}
+
+.product-toolbar input,
+.product-toolbar select{
+
+padding:12px;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+font-size:15px;
+
+min-width:220px;
+
+}
+
+.pagination{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+margin-top:40px;
+
+}
