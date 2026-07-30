@@ -898,3 +898,72 @@ display:block;
 margin:auto;
 
 }
+/* Sticky */
+
+.sticky{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+background:#fff;
+
+z-index:9999;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+/* Back To Top */
+
+#topButton{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#198754;
+
+color:#fff;
+
+font-size:24px;
+
+display:none;
+
+cursor:pointer;
+
+z-index:99999;
+
+}
+
+/* Dark Mode */
+
+.dark{
+
+background:#111;
+
+color:#fff;
+
+}
+
+.dark .card{
+
+background:#222;
+
+color:#fff;
+
+}
