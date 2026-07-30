@@ -9,13 +9,13 @@
 
 <title>My Profile | Picker Shop</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
-
-<!-- Header -->
 
 <header class="header">
 
@@ -23,21 +23,27 @@
 
 <a href="index.html" class="logo">
 
-<img src="images/logo.png" alt="Picker Shop">
-
-<span>Picker Shop</span>
+🌿 Picker Shop
 
 </a>
 
-<nav class="navbar">
+<nav>
 
-<a href="index.html">🏠 হোম</a>
+<a href="index.html">Home</a>
 
-<a href="cart.html">🛒 Cart</a>
+<a href="products.html">Products</a>
 
-<a href="wishlist.html">❤️ Wishlist</a>
+<a href="orders.html">My Orders</a>
 
-<a href="profile.html">👤 Profile</a>
+<a href="wishlist.html">Wishlist</a>
+
+<button
+class="btn"
+onclick="logoutUser()">
+
+Logout
+
+</button>
 
 </nav>
 
@@ -45,103 +51,50 @@
 
 </header>
 
-<!-- Profile -->
-
-<section class="products-section">
+<section class="profile-section">
 
 <div class="container">
 
-<div class="card" style="max-width:700px;margin:auto;padding:35px;">
+<div class="card">
 
-<div style="text-align:center;">
+<h2>
 
-<img
-src="images/user.png"
-alt="User"
-style="width:120px;height:120px;border-radius:50%;margin:auto;">
-
-<h2 id="profileName" style="margin-top:20px;">
-
-Guest User
+👤 My Profile
 
 </h2>
 
-<p id="profileEmail">
+<br>
 
-guest@example.com
+<label>নাম</label>
 
-</p>
-
-</div>
-
-<hr style="margin:25px 0;">
-
-<div class="profile-info">
-
-<p>
-
-<strong>👤 নাম :</strong>
-
-<span id="userName">
-
-Guest User
-
-</span>
-
-</p>
+<input
+type="text"
+id="profileName">
 
 <br>
 
-<p>
+<label>মোবাইল</label>
 
-<strong>📧 ইমেইল :</strong>
-
-<span id="userEmail">
-
-guest@example.com
-
-</span>
-
-</p>
+<input
+type="text"
+id="profilePhone">
 
 <br>
 
-<p>
+<label>Email</label>
 
-<strong>🛒 মোট অর্ডার :</strong>
-
-<span id="totalOrders">
-
-0
-
-</span>
-
-</p>
-
-<br>
-
-<p>
-
-<strong>❤️ Wishlist :</strong>
-
-<span id="wishlistTotal">
-
-0
-
-</span>
-
-</p>
-
-</div>
+<input
+type="email"
+id="profileEmail"
+readonly>
 
 <br>
 
 <button
 class="btn"
-style="width:100%;"
-onclick="logoutUser()">
+onclick="updateUserProfile()">
 
-🚪 Logout
+💾 Save Changes
 
 </button>
 
@@ -150,139 +103,9 @@ onclick="logoutUser()">
 </div>
 
 </section>
-<!-- Recent Orders -->
 
-<div class="card" style="margin-top:30px;padding:25px;">
-
-<h3>📦 সাম্প্রতিক অর্ডার</h3>
-
-<div id="recentOrders">
-
-<p>এখনো কোনো অর্ডার করা হয়নি।</p>
-
-</div>
-
-</div>
-
-<!-- Account Settings -->
-
-<div class="card" style="margin-top:25px;padding:25px;">
-
-<h3>⚙️ অ্যাকাউন্ট সেটিংস</h3>
-
-<br>
-
-<a href="wishlist.html" class="btn"
-style="display:block;text-align:center;">
-
-❤️ আমার Wishlist
-
-</a>
-
-<br>
-
-<a href="cart.html" class="btn"
-style="display:block;text-align:center;">
-
-🛒 আমার Cart
-
-</a>
-
-<br>
-
-<a href="contact.html" class="wish-btn"
-style="display:block;text-align:center;">
-
-📞 সাহায্য প্রয়োজন?
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Footer -->
-
-<footer class="footer">
-
-<div class="container footer-grid">
-
-<div>
-
-<h3>🌿 Picker Shop</h3>
-
-<p>Pure • Natural • Trusted</p>
-
-<p>বাংলাদেশের বিশ্বস্ত হারবাল ও প্রাকৃতিক পণ্যের অনলাইন শপ।</p>
-
-</div>
-
-<div>
-
-<h3>দ্রুত লিংক</h3>
-
-<ul>
-
-<li><a href="index.html">হোম</a></li>
-
-<li><a href="about.html">আমাদের সম্পর্কে</a></li>
-
-<li><a href="contact.html">যোগাযোগ</a></li>
-
-<li><a href="privacy.html">Privacy Policy</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>যোগাযোগ</h3>
-
-<p>📍 খিলগাঁও, ঢাকা</p>
-
-<p>📞 +8801400599748</p>
-
-<p>📧 support@pickershop.com</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Picker Shop | All Rights Reserved.
-
-</p>
-
-</footer>
-
-<!-- WhatsApp -->
-
-<a
-href="https://wa.me/8801400599748"
-class="whatsapp"
-target="_blank">
-
-💬
-
-</a>
-
-<!-- Scroll To Top -->
-
-<button
-id="topBtn"
-onclick="topFunction()">
-
-⬆
-
-</button>
-
-<script src="script.js"></script>
+<script type="module" src="js/auth.js"></script>
 
 </body>
+
 </html>
