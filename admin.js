@@ -5,6 +5,7 @@
 // ==========================================
 
 // Firebase Config
+console.log("admin.js loaded");
 import {
     auth,
     db,
