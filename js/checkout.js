@@ -137,3 +137,148 @@ window.calculateTotal = function () {
         "৳" + grandTotal;
 
 };
+// ==========================================
+// Apply Coupon
+// ==========================================
+
+window.applyCoupon = function () {
+
+    const code =
+        document.getElementById("couponCode")
+        .value
+        .trim()
+        .toUpperCase();
+
+    if (code === "PICKER10") {
+
+        discount = subTotal * 0.10;
+
+        alert("✅ 10% Discount Applied");
+
+    }
+
+    else if (code === "PICKER20") {
+
+        discount = subTotal * 0.20;
+
+        alert("✅ 20% Discount Applied");
+
+    }
+
+    else {
+
+        discount = 0;
+
+        alert("❌ Invalid Coupon");
+
+    }
+
+    calculateTotal();
+
+};
+
+
+// ==========================================
+// Place Order
+// ==========================================
+
+window.placeOrder = async function () {
+
+    const customerName =
+        document.getElementById("customerName").value.trim();
+
+    const customerPhone =
+        document.getElementById("customerPhone").value.trim();
+
+    const district =
+        document.getElementById("customerDistrict").value.trim();
+
+    const upazila =
+        document.getElementById("customerUpazila").value.trim();
+
+    const address =
+        document.getElementById("customerAddress").value.trim();
+
+    const paymentMethod =
+        document.getElementById("paymentMethod").value;
+
+    if (
+        customerName === "" ||
+        customerPhone === "" ||
+        district === "" ||
+        upazila === "" ||
+        address === ""
+    ) {
+
+        alert("সব তথ্য পূরণ করুন");
+
+        return;
+
+    }
+
+    if (cart.length === 0) {
+
+        alert("Cart Empty");
+
+        return;
+
+    }
+
+    try {
+
+        await addDoc(
+
+            collection(db, "orders"),
+
+            {
+
+                userId: currentUser.uid,
+
+                customerName,
+
+                phone: customerPhone,
+
+                district,
+
+                upazila,
+
+                address,
+
+                paymentMethod,
+
+                items: cart,
+
+                subtotal: subTotal,
+
+                delivery: deliveryCharge,
+
+                discount: discount,
+
+                total: grandTotal,
+
+                status: "Pending",
+
+                orderDate: serverTimestamp()
+
+            }
+
+        );
+
+        localStorage.removeItem("cart");
+
+        alert("🎉 Order Placed Successfully");
+
+        window.location.href =
+            "order-success.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Order Failed");
+
+    }
+
+};
