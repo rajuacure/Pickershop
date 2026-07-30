@@ -1,6 +1,7 @@
 // ==========================================
-// Picker Shop V1
+// Picker Shop V3
 // firebase.js
+// Complete File
 // ==========================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
@@ -17,27 +18,25 @@ import {
     getStorage
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
-
 // ==========================================
-// Firebase Configuration
+// Firebase Config
 // ==========================================
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBSHIUE40N17ISOxduOSoaDt2gxtwSxKto",
+    apiKey: "YOUR_API_KEY",
 
-    authDomain: "picker-shop.firebaseapp.com",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
 
-    projectId: "picker-shop",
+    projectId: "YOUR_PROJECT",
 
-    storageBucket: "picker-shop.firebasestorage.app",
+    storageBucket: "YOUR_PROJECT.firebasestorage.app",
 
-    messagingSenderId: "841337147537",
+    messagingSenderId: "XXXXXXXXXXXX",
 
-    appId: "1:841337147537:web:5bca33f1c004806a4daf30"
+    appId: "YOUR_APP_ID"
 
 };
-
 
 // ==========================================
 // Initialize Firebase
@@ -45,28 +44,12 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-
 // ==========================================
-// Services
-// ==========================================
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-const storage = getStorage(app);
-
-
-// ==========================================
-// Export
+// Export Services
 // ==========================================
 
-export {
+export const auth = getAuth(app);
 
-    auth,
+export const db = getFirestore(app);
 
-    db,
-
-    storage
-
-};
+export const storage = getStorage(app);
