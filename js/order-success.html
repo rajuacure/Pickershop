@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Order Success</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<section class="products-section">
+
+<div class="container">
+
+<div class="card"
+style="max-width:650px;
+margin:auto;
+text-align:center;
+padding:50px;">
+
+<h1>
+
+🎉 Order Successful
+
+</h1>
+
+<br>
+
+<p>
+
+আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে।
+
+</p>
+
+<br>
+
+<h3>
+
+Order ID
+
+</h3>
+
+<h2 id="orderId">
+
+Loading...
+
+</h2>
+
+<br>
+
+<a
+href="tracking.html"
+class="btn">
+
+Track Order
+
+</a>
+
+<a
+href="index.html"
+class="btn">
+
+Home
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const params =
+new URLSearchParams(location.search);
+
+document.getElementById("orderId")
+.innerHTML =
+params.get("id");
+
+</script>
+
+</body>
+
+</html>
