@@ -1408,19 +1408,6 @@ onclick="viewOrder('${docItem.id}')">
 class="btn"
 onclick="printInvoice('${docItem.id}')">
 
-🧾 Invoice
-
-</button>
-
-<button
-class="btn"
-style="background:red;"
-onclick="deleteOrder('${docItem.id}')">
-
-🗑 Delete
-
-</button>
-
 </td>
 
 </tr>
