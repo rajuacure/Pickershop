@@ -1,143 +1,317 @@
-<!DOCTYPE html>
-<html lang="bn">
+// ==========================================
+// Picker Shop V3
+// wishlist.js
+// Complete File
+// ==========================================
 
-<head>
+import { auth, db } from "./firebase.js";
 
-<meta charset="UTF-8">
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+import {
+    collection,
+    doc,
+    getDocs,
+    getDoc,
+    setDoc,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-<title>Wishlist | Picker Shop</title>
+let currentUser = null;
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+// ==========================================
+// Auto Login Check
+// ==========================================
 
-</head>
+onAuthStateChanged(auth, (user) => {
 
-<body>
+    if (!user) {
 
-<!-- Header -->
+        location.href = "login.html";
 
-<header class="header">
+        return;
 
-<div class="container">
+    }
 
-<a href="index.html" class="logo">
+    currentUser = user;
 
-🌿 <span>Picker Shop</span>
+    loadWishlist();
 
-</a>
+});
 
-<nav>
+// ==========================================
+// Load Wishlist
+// ==========================================
 
-<a href="index.html">Home</a>
+window.loadWishlist = async function () {
 
-<a href="products.html">Products</a>
+    const container =
+        document.getElementById("wishlistContainer");
 
-<a href="cart.html">Cart</a>
+    if (!container) return;
 
-<a href="orders.html">Orders</a>
+    container.innerHTML = "<p>Loading...</p>";
 
-<div id="guestMenu">
+    try {
 
-<a href="login.html">Login</a>
+        const snapshot =
+            await getDocs(
+                collection(db, "users", currentUser.uid, "wishlist")
+            );
 
-<a href="register.html">Register</a>
+        if (snapshot.empty) {
 
-</div>
+            container.innerHTML = `
+                <div class="card" style="text-align:center;">
+                    ❤️ Wishlist Empty
+                </div>
+            `;
 
-<div
-id="userMenu"
-style="display:none;align-items:center;gap:15px;">
+            return;
 
-<span id="navUserName"></span>
+        }
 
-<a href="profile.html">
+        container.innerHTML = "";
 
-Profile
+        snapshot.forEach((docItem) => {
 
-</a>
+            const product = docItem.data();
 
-<button
-class="btn"
-onclick="logout()">
+            container.innerHTML += `
 
-Logout
+            <div class="card">
 
-</button>
+                <img
+                src="${product.image}"
+                alt="${product.name}"
+                class="product-image">
 
-</div>
+                <h3>${product.name}</h3>
 
-</nav>
+                <p>৳${product.price}</p>
 
-</div>
+                <button
+                class="btn"
+                onclick="moveToCart('${docItem.id}')">
 
-</header>
+                🛒 Add To Cart
 
-<!-- Wishlist -->
+                </button>
 
-<section class="products-section">
+                <button
+                class="btn"
+                style="background:#dc3545;margin-top:10px;"
+                onclick="removeWishlist('${docItem.id}')">
 
-<div class="container">
+                ❌ Remove
 
-<h2>
+                </button>
 
-❤️ My Wishlist
+            </div>
 
-</h2>
+            `;
 
-<br>
+        });
 
-<input
-type="text"
-id="wishlistSearch"
-placeholder="Wishlist Search..."
-onkeyup="searchWishlist()">
+    }
 
-<br><br>
+    catch (error) {
 
-<div
-id="wishlistContainer"
-class="product-grid">
+        console.error(error);
 
-<div
-class="card"
-style="text-align:center;">
+        alert("Wishlist Load Failed");
 
-Loading Wishlist...
+    }
 
-</div>
+};
 
-</div>
+// ==========================================
+// Add Wishlist
+// ==========================================
 
-</div>
+window.addWishlist = async function (product) {
 
-</section>
+    if (!currentUser) {
 
-<!-- Footer -->
+        location.href = "login.html";
 
-<footer>
+        return;
 
-<div class="container">
+    }
 
-<p>
+    try {
 
-© 2026 Picker Shop
+        await setDoc(
 
-</p>
+            doc(
 
-</div>
+                db,
 
-</footer>
+                "users",
 
-<!-- Scripts -->
+                currentUser.uid,
 
-<script type="module" src="js/auth.js"></script>
+                "wishlist",
 
-<script type="module" src="js/navbar.js"></script>
+                product.id
 
-<script type="module" src="js/wishlist.js"></script>
+            ),
 
-</body>
+            product
 
-</html>
+        );
+
+        alert("❤️ Added To Wishlist");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Remove Wishlist
+// ==========================================
+
+window.removeWishlist = async function (id) {
+
+    try {
+
+        await deleteDoc(
+
+            doc(
+
+                db,
+
+                "users",
+
+                currentUser.uid,
+
+                "wishlist",
+
+                id
+
+            )
+
+        );
+
+        loadWishlist();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Move To Cart
+// ==========================================
+
+window.moveToCart = async function (id) {
+
+    try {
+
+        const snap =
+            await getDoc(
+
+                doc(
+
+                    db,
+
+                    "users",
+
+                    currentUser.uid,
+
+                    "wishlist",
+
+                    id
+
+                )
+
+            );
+
+        if (!snap.exists()) return;
+
+        const product = snap.data();
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        cart.push(product);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        await removeWishlist(id);
+
+        alert("🛒 Added To Cart");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+// ==========================================
+// Search Wishlist
+// ==========================================
+
+window.searchWishlist = function () {
+
+    const keyword =
+        document
+            .getElementById("wishlistSearch")
+            .value
+            .toLowerCase();
+
+    const cards =
+        document.querySelectorAll("#wishlistContainer .card");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        card.style.display =
+            text.includes(keyword)
+                ? ""
+                : "none";
+
+    });
+
+};
+
+// ==========================================
+// Empty Wishlist
+// ==========================================
+
+window.clearWishlist = async function () {
+
+    if (!confirm("Wishlist Empty করবেন?")) return;
+
+    const snapshot =
+        await getDocs(
+            collection(db, "users", currentUser.uid, "wishlist")
+        );
+
+    for (const item of snapshot.docs) {
+
+        await deleteDoc(item.ref);
+
+    }
+
+    loadWishlist();
+
+};
