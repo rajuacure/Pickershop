@@ -1,171 +1,139 @@
-import { db } from "./firebase.js";
+// ==========================================
+// Picker Shop V3
+// checkout.js
+// Part 1
+// ==========================================
+
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 import {
     collection,
-    addDoc
+    addDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-let cart =
-JSON.parse(localStorage.getItem("pickerCart")) || [];
+// ==========================================
+// Global Variables
+// ==========================================
 
-const items =
-document.getElementById("checkoutItems");
+let currentUser = null;
+
+let cart = [];
 
 let subTotal = 0;
-let delivery = 80;
+
 let discount = 0;
 
-cart.forEach(item => {
+let deliveryCharge = 80;
 
-    subTotal += item.price * item.qty;
+let grandTotal = 0;
 
-    items.innerHTML += `
+// ==========================================
+// Auth Check
+// ==========================================
 
-    <p>
+onAuthStateChanged(auth, (user) => {
 
-    ${item.name}
+    if (!user) {
 
-    × ${item.qty}
-
-    = ৳${item.price * item.qty}
-
-    </p>
-
-    `;
-
-});
-
-document.getElementById("subTotal").innerHTML =
-"৳" + subTotal;
-
-document.getElementById("discount").innerHTML =
-"৳" + discount;
-
-document.getElementById("deliveryCharge").innerHTML =
-"৳" + delivery;
-
-document.getElementById("finalTotal").innerHTML =
-"৳" + (subTotal + delivery - discount);
-
-window.applyCoupon = function () {
-
-    const code =
-    document.getElementById("couponCode").value;
-
-    if (code == "PICKER10") {
-
-        discount = 100;
-
-        alert("✅ Coupon Applied");
-
-    } else {
-
-        discount = 0;
-
-        alert("❌ Invalid Coupon");
-
-    }
-
-    document.getElementById("discount").innerHTML =
-    "৳" + discount;
-
-    document.getElementById("finalTotal").innerHTML =
-    "৳" + (subTotal + delivery - discount);
-
-};
-
-window.placeOrder = async function () {
-
-    const customerName =
-    document.getElementById("customerName").value.trim();
-
-    const customerPhone =
-    document.getElementById("customerPhone").value.trim();
-
-    const customerAddress =
-    document.getElementById("customerAddress").value.trim();
-
-    const paymentMethod =
-    document.getElementById("paymentMethod").value;
-
-    if (
-        customerName == "" ||
-        customerPhone == "" ||
-        customerAddress == ""
-    ) {
-
-        alert("সব তথ্য পূরণ করুন");
+        location.href = "login.html";
 
         return;
 
     }
 
-    try {
+    currentUser = user;
 
-        await addDoc(collection(db, "orders"), {
+    loadCheckout();
 
-            customerName,
+});
 
-            phone: customerPhone,
+// ==========================================
+// Load Checkout
+// ==========================================
 
-            address: customerAddress,
+window.loadCheckout = function () {
 
-            paymentMethod,
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            products: cart,
+    const items =
+        document.getElementById("checkoutItems");
 
-            subtotal: subTotal,
+    items.innerHTML = "";
 
-            delivery,
+    subTotal = 0;
 
-            discount,
+    if (cart.length === 0) {
 
-            total: subTotal + delivery - discount,
+        items.innerHTML = `
+        <p>Your cart is empty.</p>
+        `;
 
-            status: "Pending",
+        calculateTotal();
 
-            createdAt: new Date().toISOString()
-
-        });
-
-        localStorage.removeItem("pickerCart");
-
-        alert("✅ Order Placed Successfully");
-
-        window.location.href = "index.html";
+        return;
 
     }
-const invoiceData={
 
-orderNumber,
+    cart.forEach((product) => {
 
-customerName,
+        const qty = product.qty || 1;
 
-phone:customerPhone,
+        const total = product.price * qty;
 
-address:customerAddress,
+        subTotal += total;
 
-paymentMethod,
+        items.innerHTML += `
 
-products:cart,
+        <div class="checkout-item">
 
-total:subTotal+delivery-discount
+            <strong>${product.name}</strong>
+
+            <br>
+
+            Qty : ${qty}
+
+            <br>
+
+            ৳${product.price} × ${qty}
+
+            <hr>
+
+        </div>
+
+        `;
+
+    });
+
+    calculateTotal();
 
 };
 
-localStorage.setItem(
+// ==========================================
+// Calculate Total
+// ==========================================
 
-"lastInvoice",
+window.calculateTotal = function () {
 
-JSON.stringify(invoiceData)
+    grandTotal =
+        subTotal +
+        deliveryCharge -
+        discount;
 
-);
-    catch (error) {
+    document.getElementById("subTotal").innerHTML =
+        "৳" + subTotal;
 
-        console.error(error);
+    document.getElementById("deliveryCharge").innerHTML =
+        "৳" + deliveryCharge;
 
-        alert("❌ Order Failed");
+    document.getElementById("discount").innerHTML =
+        "৳" + discount;
 
-    }
+    document.getElementById("grandTotal").innerHTML =
+        "৳" + grandTotal;
 
 };
