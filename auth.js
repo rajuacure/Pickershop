@@ -179,3 +179,175 @@ window.loginUser = async function () {
     }
 
 };
+// ==========================================
+// Logout
+// ==========================================
+
+window.logoutUser = async function () {
+
+    try {
+
+        await signOut(auth);
+
+        alert("✅ Logout Successful");
+
+        location.href = "login.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
+
+
+// ==========================================
+// Forgot Password
+// ==========================================
+
+window.resetPassword = async function () {
+
+    const email =
+        document.getElementById("resetEmail").value.trim();
+
+    if (!email) {
+
+        alert("Email লিখুন");
+
+        return;
+
+    }
+
+    try {
+
+        await sendPasswordResetEmail(
+
+            auth,
+
+            email
+
+        );
+
+        alert("✅ Password Reset Email পাঠানো হয়েছে");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
+
+
+// ==========================================
+// Auth State
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
+
+    currentUser = user;
+
+    if (!user) {
+
+        updateNavbar(null);
+
+        return;
+
+    }
+
+    try {
+
+        const snap = await getDoc(
+
+            doc(db, "users", user.uid)
+
+        );
+
+        if (snap.exists()) {
+
+            updateNavbar(snap.data());
+
+        }
+
+        else {
+
+            updateNavbar({
+
+                name: user.displayName || "Customer"
+
+            });
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+});
+
+
+// ==========================================
+// Navbar
+// ==========================================
+
+function updateNavbar(user) {
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const profileBtn =
+        document.getElementById("profileBtn");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const userName =
+        document.getElementById("userName");
+
+    if (!loginBtn) return;
+
+    if (user) {
+
+        loginBtn.style.display = "none";
+
+        if (profileBtn)
+            profileBtn.style.display = "inline-block";
+
+        if (logoutBtn)
+            logoutBtn.style.display = "inline-block";
+
+        if (userName)
+            userName.innerHTML =
+                "👋 " + (user.name || "Customer");
+
+    }
+
+    else {
+
+        loginBtn.style.display = "inline-block";
+
+        if (profileBtn)
+            profileBtn.style.display = "none";
+
+        if (logoutBtn)
+            logoutBtn.style.display = "none";
+
+        if (userName)
+            userName.innerHTML = "";
+
+    }
+
+}
