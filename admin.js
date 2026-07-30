@@ -1484,81 +1484,105 @@ window.searchOrders = function(){
 
 
 };
-
+<td>
 
 <button
 class="btn"
+onclick="viewOrder('${docItem.id}')">
+
+👁 View
+
+</button>
+
+<button
+class="btn"
+style="background:#0d6efd;"
 onclick="printInvoice('${docItem.id}')">
 
 🧾 Invoice
 
 </button>
+
+<button
+class="btn"
+style="background:#dc3545;"
+onclick="deleteOrder('${docItem.id}')">
+
+🗑 Delete
+
+</button>
+
+</td>
 // ==========================================
 // Print Invoice
 // ==========================================
 
 window.printInvoice = async function(id){
 
-
     try{
 
-
-        const snap =
-
-        await getDoc(
+        const snap = await getDoc(
             doc(db,"orders",id)
         );
 
+        if(!snap.exists()){
 
-        const order =
-        snap.data();
+            alert("Order পাওয়া যায়নি");
 
+            return;
 
+        }
+
+        const order = snap.data();
 
         const invoice = `
+        <html>
+        <head>
+        <title>Picker Shop Invoice</title>
+        </head>
 
+        <body style="font-family:Arial;padding:30px;">
 
-        <h2>
-        Picker Shop Invoice
-        </h2>
+        <h2>Picker Shop Invoice</h2>
 
+        <hr>
 
-        Customer:
-        ${order.customerName}
+        <p><strong>Customer:</strong> ${order.customerName}</p>
 
+        <p><strong>Phone:</strong> ${order.phone}</p>
 
-        <br>
+        <p><strong>Address:</strong> ${order.address || "-"}</p>
 
-        Phone:
-        ${order.phone}
+        <p><strong>Payment:</strong> ${order.paymentMethod || "COD"}</p>
 
+        <p><strong>Status:</strong> ${order.status}</p>
 
-        <br><br>
+        <h3>Total : ৳${order.total}</h3>
 
+        </body>
 
-        Total:
-        ৳${order.total}
-
-
-
+        </html>
         `;
 
-
-
-        const win =
-        window.open("");
-
-
+        const win = window.open("");
 
         win.document.write(invoice);
 
+        win.document.close();
 
         win.print();
 
+    }
 
+    catch(error){
+
+        console.error(error);
+
+        alert("❌ Invoice Print Failed");
 
     }
 
+};
 
     catch(error){
 
