@@ -501,3 +501,173 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// ==========================================
+// Picker Shop V3
+// auth.js
+// Segment 4 (Final)
+// ==========================================
+
+// ==========================================
+// Get Current User
+// ==========================================
+
+window.getCurrentUser = function () {
+
+    return currentUser;
+
+};
+
+
+// ==========================================
+// Check Admin
+// ==========================================
+
+window.isAdmin = async function () {
+
+    if (!currentUser) return false;
+
+    try {
+
+        const snap = await getDoc(
+
+            doc(db, "users", currentUser.uid)
+
+        );
+
+        if (!snap.exists()) return false;
+
+        return snap.data().role === "admin";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        return false;
+
+    }
+
+};
+
+
+// ==========================================
+// Check Customer
+// ==========================================
+
+window.isCustomer = async function () {
+
+    if (!currentUser) return false;
+
+    try {
+
+        const snap = await getDoc(
+
+            doc(db, "users", currentUser.uid)
+
+        );
+
+        if (!snap.exists()) return false;
+
+        return snap.data().role === "customer";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        return false;
+
+    }
+
+};
+
+
+// ==========================================
+// Protect Admin Page
+// ==========================================
+
+window.protectAdmin = async function () {
+
+    onAuthStateChanged(auth, async (user) => {
+
+        if (!user) {
+
+            location.href = "login.html";
+
+            return;
+
+        }
+
+        const admin = await isAdmin();
+
+        if (!admin) {
+
+            alert("Admin Access Only");
+
+            location.href = "index.html";
+
+        }
+
+    });
+
+};
+
+
+// ==========================================
+// Protect Customer Page
+// ==========================================
+
+window.protectCustomer = function () {
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+
+            location.href = "login.html";
+
+        }
+
+    });
+
+};
+
+
+// ==========================================
+// Auto Restore Session
+// ==========================================
+
+window.restoreSession = function () {
+
+    onAuthStateChanged(auth, (user) => {
+
+        currentUser = user || null;
+
+    });
+
+};
+
+
+// ==========================================
+// Initialize Auth
+// ==========================================
+
+window.initializeAuth = function () {
+
+    restoreSession();
+
+    checkLogin();
+
+};
+
+
+// ==========================================
+// Auto Initialize
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initializeAuth();
+
+});
