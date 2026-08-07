@@ -626,3 +626,16 @@ closeModal();
 }
 
 });
+// ==========================
+// Product Gallery
+// ==========================
+
+function changeImage(image){
+
+let card=image.closest(".card");
+
+let mainImage=card.querySelector("img");
+
+mainImage.src=image.src;
+
+}
