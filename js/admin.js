@@ -1078,3 +1078,201 @@ setInterval(() => {
     loadFullDashboard();
 
 }, 60000);
+// ==========================================
+// Picker Shop V15
+// admin.js
+// Part 10
+// Dashboard Advanced Functions
+// ==========================================
+
+
+// ==========================================
+// Load Recent Products
+// ==========================================
+
+window.loadRecentProducts = async function () {
+
+    const box = document.getElementById("recentProducts");
+
+    if (!box) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        box.innerHTML = "";
+
+        let count = 0;
+
+        snapshot.forEach((docItem) => {
+
+            if (count >= 5) return;
+
+            const p = docItem.data();
+
+            box.innerHTML += `
+
+            <div class="card" style="margin-bottom:10px;">
+
+                <img src="${p.image}"
+                width="60"
+                style="border-radius:8px;">
+
+                <b>${p.name}</b>
+
+                <br>
+
+                ৳${p.price}
+
+            </div>
+
+            `;
+
+            count++;
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Low Stock Warning
+// ==========================================
+
+window.loadLowStock = async function () {
+
+    const box = document.getElementById("lowStockProducts");
+
+    if (!box) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        box.innerHTML = "";
+
+        snapshot.forEach((docItem) => {
+
+            const p = docItem.data();
+
+            if ((p.stock || 0) <= 5) {
+
+                box.innerHTML += `
+
+                <div
+                style="
+                color:red;
+                margin-bottom:8px;
+                ">
+
+                ⚠ ${p.name}
+
+                (${p.stock})
+
+                </div>
+
+                `;
+
+            }
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Total Inventory Value
+// ==========================================
+
+window.loadInventoryValue = async function () {
+
+    const box = document.getElementById("inventoryValue");
+
+    if (!box) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        let total = 0;
+
+        snapshot.forEach((docItem) => {
+
+            const p = docItem.data();
+
+            total +=
+                (p.price || 0) *
+                (p.stock || 0);
+
+        });
+
+        box.innerHTML =
+            "৳" +
+            total.toLocaleString();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Dashboard Initialize
+// ==========================================
+
+window.initDashboard = function () {
+
+    loadFullDashboard();
+
+    loadDashboardStats();
+
+    loadRecentProducts();
+
+    loadLowStock();
+
+    loadInventoryValue();
+
+};
+
+
+// ==========================================
+// Auto Dashboard Load
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initDashboard();
+
+});
+
+
+// ==========================================
+// Auto Refresh Every 60 Seconds
+// ==========================================
+
+setInterval(() => {
+
+    initDashboard();
+
+}, 60000);
