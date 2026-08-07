@@ -315,3 +315,14 @@ window.clearWishlist = async function () {
     loadWishlist();
 
 };
+<input
+type="text"
+id="wishlistSearch"
+placeholder="Search Product"
+onkeyup="searchWishlist()">
+
+<button onclick="clearWishlist()">
+🗑 Clear Wishlist
+</button>
+
+<div id="wishlistContainer"></div>
