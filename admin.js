@@ -2240,3 +2240,17 @@ window.uploadBanner = async function(){
 
 
 };
+window.viewOrder = async function(id){
+
+    const snap = await getDoc(doc(db,"orders",id));
+
+    if(!snap.exists()){
+        alert("Order Not Found");
+        return;
+    }
+
+    const order = snap.data();
+
+    alert(JSON.stringify(order,null,2));
+
+};
