@@ -1,56 +1,58 @@
 // ==========================================
 // Picker Shop V15
 // firebase.js
-// Part 1
 // ==========================================
 
 // Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
 import {
-    getAuth,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 import {
-    getFirestore
+  getFirestore
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 import {
-    getStorage
+  getStorage
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
 
 // ==========================================
 // Firebase Config
-// আপনার Firebase Project-এর Config এখানে বসান
+// আপনার Firebase Console থেকে কপি করে বসান
 // ==========================================
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXX",
 
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
+  authDomain: "your-project.firebaseapp.com",
 
-    projectId: "YOUR_PROJECT_ID",
+  projectId: "your-project-id",
 
-    storageBucket: "YOUR_PROJECT.appspot.com",
+  storageBucket: "your-project.firebasestorage.app",
 
-    messagingSenderId: "YOUR_SENDER_ID",
+  messagingSenderId: "123456789012",
 
-    appId: "YOUR_APP_ID"
+  appId: "1:123456789012:web:xxxxxxxxxxxxxxxx"
 
 };
+
+
 // ==========================================
 // Initialize Firebase
 // ==========================================
 
 const app = initializeApp(firebaseConfig);
 
+
 // ==========================================
-// Services
+// Firebase Services
 // ==========================================
 
 const auth = getAuth(app);
@@ -58,25 +60,26 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const storage = getStorage(app);
+
+
 // ==========================================
-// Export Firebase Services
+// Export
 // ==========================================
 
 export {
 
-    // Firebase App
-    app,
+  app,
 
-    // Authentication
-    auth,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged,
+  auth,
 
-    // Firestore
-    db,
+  db,
 
-    // Storage
-    storage
+  storage,
+
+  signInWithEmailAndPassword,
+
+  signOut,
+
+  onAuthStateChanged
 
 };
