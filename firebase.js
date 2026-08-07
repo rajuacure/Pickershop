@@ -1,13 +1,17 @@
 // ==========================================
-// Picker Shop V3
+// Picker Shop V15
 // firebase.js
-// Complete File
+// Part 1
 // ==========================================
 
+// Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 
 import {
-    getAuth
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 import {
@@ -18,8 +22,10 @@ import {
     getStorage
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
+
 // ==========================================
 // Firebase Config
+// আপনার Firebase Project-এর Config এখানে বসান
 // ==========================================
 
 const firebaseConfig = {
@@ -28,28 +34,12 @@ const firebaseConfig = {
 
     authDomain: "YOUR_PROJECT.firebaseapp.com",
 
-    projectId: "YOUR_PROJECT",
+    projectId: "YOUR_PROJECT_ID",
 
-    storageBucket: "YOUR_PROJECT.firebasestorage.app",
+    storageBucket: "YOUR_PROJECT.appspot.com",
 
-    messagingSenderId: "XXXXXXXXXXXX",
+    messagingSenderId: "YOUR_SENDER_ID",
 
     appId: "YOUR_APP_ID"
 
 };
-
-// ==========================================
-// Initialize Firebase
-// ==========================================
-
-const app = initializeApp(firebaseConfig);
-
-// ==========================================
-// Export Services
-// ==========================================
-
-export const auth = getAuth(app);
-
-export const db = getFirestore(app);
-
-export const storage = getStorage(app);
