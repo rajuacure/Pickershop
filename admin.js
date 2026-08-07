@@ -2283,3 +2283,26 @@ window.deleteOrder = async function(id){
     }
 
 };
+// ===============================
+// Reset Product Form
+// ===============================
+window.resetProductForm = function () {
+
+    editingProductId = null;
+
+    document.getElementById("productName").value = "";
+    document.getElementById("productPrice").value = "";
+    document.getElementById("productCategory").value = "";
+    document.getElementById("productDescription").value = "";
+    document.getElementById("productImage").value = "";
+
+    const preview = document.getElementById("productPreview");
+
+    if (preview) {
+        preview.src = "";
+        preview.style.display = "none";
+    }
+
+    document.getElementById("saveProductBtn").innerHTML =
+        "➕ Add Product";
+};
