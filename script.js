@@ -92,3 +92,123 @@ window.onload = function () {
     updateCartCount();
 
 };
+// =====================================
+// Picker Shop V3
+// script.js - Part 2
+// =====================================
+
+// ---------- Product Search ----------
+
+function searchProducts(){
+
+const input=document.getElementById("searchInput");
+
+if(!input) return;
+
+const filter=input.value.toLowerCase();
+
+const cards=document.querySelectorAll(".product-card");
+
+cards.forEach(function(card){
+
+const title=card.querySelector("h3").innerText.toLowerCase();
+
+if(title.indexOf(filter)>-1){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+// ---------- Category Filter ----------
+
+function filterProducts(category){
+
+const cards=document.querySelectorAll(".product-card");
+
+cards.forEach(function(card){
+
+if(category==="all"){
+
+card.style.display="block";
+
+return;
+
+}
+
+if(card.dataset.category===category){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+// ---------- Back To Top ----------
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",function(){
+
+if(!topBtn) return;
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+// ---------- Smooth Anchor ----------
+
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+
+link.addEventListener("click",function(e){
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+});
+
+});
