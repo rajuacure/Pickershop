@@ -2254,3 +2254,10 @@ window.viewOrder = async function(id){
     alert(JSON.stringify(order,null,2));
 
 };
+window.printInvoice = async function(id){
+
+    localStorage.setItem("invoiceOrderId",id);
+
+    window.open("invoice.html?id="+id,"_blank");
+
+};
