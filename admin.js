@@ -1487,7 +1487,7 @@ window.searchOrders = function(){
 };
 <td>
 
-<div class="card">
+<div class="card"
 onclick="viewOrder('${docItem.id}')">
 👁 View
 </button>
@@ -1507,6 +1507,7 @@ onclick="deleteOrder('${docItem.id}')">
 </button>
 
 </td>
+}
 // ==========================================
 // Print Invoice
 // ==========================================
