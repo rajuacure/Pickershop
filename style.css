@@ -711,3 +711,30 @@ color:#fff;
 .dark-mode a{
 color:#90EE90;
 }
+/* Extra Info */
+
+.extra-info{
+
+padding:60px 20px;
+
+text-align:center;
+
+background:#ffffff;
+
+}
+
+.extra-info h2{
+
+color:#2E7D32;
+
+margin-bottom:20px;
+
+}
+
+.extra-info p{
+
+font-size:18px;
+
+margin:10px 0;
+
+}
