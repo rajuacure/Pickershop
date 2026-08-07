@@ -1,217 +1,94 @@
-// ==========================================
-// Picker Shop V2
-// script.js
-// ==========================================
+ // =====================================
+// Picker Shop V3
+// script.js - Part 1
+// =====================================
 
-// ===============================
-// Sticky Header
-// ===============================
+// ---------- Cart ----------
 
-window.addEventListener("scroll",()=>{
+let cart = JSON.parse(localStorage.getItem("pickerCart")) || [];
 
-const header=document.querySelector(".header");
+function saveCart() {
+    localStorage.setItem("pickerCart", JSON.stringify(cart));
+}
 
-if(!header) return;
+function updateCartCount() {
+    const cartCount = document.getElementById("cartCount");
 
-if(window.scrollY>80){
+    if (cartCount) {
+        cartCount.innerText = cart.length;
+    }
+}
 
-header.classList.add("sticky");
+function addToCart(name, price) {
 
-}else{
+    cart.push({
+        name: name,
+        price: price
+    });
 
-header.classList.remove("sticky");
+    saveCart();
+
+    updateCartCount();
+
+    showToast("🛒 কার্টে যোগ হয়েছে");
+}
+
+// ---------- Wishlist ----------
+
+let wishlist = JSON.parse(localStorage.getItem("pickerWishlist")) || [];
+
+function saveWishlist() {
+    localStorage.setItem("pickerWishlist", JSON.stringify(wishlist));
+}
+
+function addToWishlist(product) {
+
+    if (!wishlist.includes(product)) {
+
+        wishlist.push(product);
+
+        saveWishlist();
+
+        showToast("❤️ Wishlist-এ যোগ হয়েছে");
+
+    } else {
+
+        showToast("এই পণ্যটি আগে থেকেই Wishlist-এ আছে");
+
+    }
 
 }
 
-});
+// ---------- Toast ----------
 
-// ===============================
-// Back To Top
-// ===============================
+function showToast(message) {
 
-const topButton=document.createElement("button");
+    let toast = document.createElement("div");
 
-topButton.id="topButton";
+    toast.className = "toast";
 
-topButton.innerHTML="⬆";
+    toast.innerHTML = message;
 
-document.body.appendChild(topButton);
+    document.body.appendChild(toast);
 
-topButton.onclick=()=>{
+    setTimeout(function () {
 
-window.scrollTo({
+        toast.classList.add("show");
 
-top:0,
+    }, 100);
 
-behavior:"smooth"
+    setTimeout(function () {
 
-});
+        toast.remove();
+
+    }, 3000);
+
+}
+
+// ---------- Page Load ----------
+
+window.onload = function () {
+
+    updateCartCount();
 
 };
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>300){
-
-topButton.style.display="block";
-
-}else{
-
-topButton.style.display="none";
-
-}
-
-});
-
-// ===============================
-// Loading Animation
-// ===============================
-
-window.addEventListener("load",()=>{
-
-const loader=document.getElementById("loader");
-
-if(loader){
-
-loader.style.display="none";
-
-}
-
-});
-
-// ===============================
-// Search Product
-// ===============================
-
-window.searchProduct=function(){
-
-const keyword=document
-.getElementById("searchInput")
-.value
-.toLowerCase();
-
-const cards=document.querySelectorAll(".product-card");
-
-cards.forEach(card=>{
-
-const text=card.innerText.toLowerCase();
-
-card.style.display=text.includes(keyword)
-
-?
-
-"block"
-
-:
-
-"none";
-
-});
-
-};
-
-// ===============================
-// Newsletter
-// ===============================
-
-window.subscribeNews=function(){
-
-const email=document
-.getElementById("newsletterEmail")
-.value;
-
-if(email===""){
-
-alert("Email লিখুন");
-
-return;
-
-}
-
-alert("ধন্যবাদ! Newsletter Subscribe হয়েছে।");
-
-};
-
-// ===============================
-// Dark Mode
-// ===============================
-
-window.toggleDarkMode=function(){
-
-document.body.classList.toggle("dark");
-
-localStorage.setItem(
-
-"darkmode",
-
-document.body.classList.contains("dark")
-
-);
-
-};
-
-if(localStorage.getItem("darkmode")=="true"){
-
-document.body.classList.add("dark");
-
-}
-
-// ===============================
-// Wishlist Count
-// ===============================
-
-function updateWishlistCount(){
-
-const wishlist=
-
-JSON.parse(
-
-localStorage.getItem("wishlist")
-
-||"[]"
-
-);
-
-const badge=
-
-document.getElementById("wishlistCount");
-
-if(badge){
-
-badge.innerHTML=wishlist.length;
-
-}
-
-}
-
-// ===============================
-// Cart Count
-// ===============================
-
-function updateCartCount(){
-
-const cart=
-
-JSON.parse(
-
-localStorage.getItem("cart")
-
-||"[]"
-
-);
-
-const badge=
-
-document.getElementById("cartCount");
-
-if(badge){
-
-badge.innerHTML=cart.length;
-
-}
-
-}
-
-updateCartCount();
-
-updateWishlistCount();
