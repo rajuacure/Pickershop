@@ -58,3 +58,25 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const storage = getStorage(app);
+// ==========================================
+// Export Firebase Services
+// ==========================================
+
+export {
+
+    // Firebase App
+    app,
+
+    // Authentication
+    auth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+
+    // Firestore
+    db,
+
+    // Storage
+    storage
+
+};
