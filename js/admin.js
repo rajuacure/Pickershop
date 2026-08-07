@@ -1,94 +1,83 @@
-import { auth } from "./firebase.js";
+// ==========================================
+// Picker Shop V15
+// admin.js
+// Part 1
+// ==========================================
 
 import {
+    auth,
+    db,
+    storage,
+    signInWithEmailAndPassword,
+    signOut
+} from "./firebase.js";
 
-signInWithEmailAndPassword,
-signOut,
-onAuthStateChanged
+import {
+    collection,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-}
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-storage.js";
 
-from
 
-"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+// ==========================================
+// Global Variables
+// ==========================================
+
+let editingProductId = null;
+
+let uploadedImage = "";
 
 
-// ===============================
+// ==========================================
 // Admin Login
-// ===============================
+// ==========================================
 
 window.adminLogin = async function () {
 
-const email =
-document.getElementById("adminEmail").value.trim();
+    const email =
+        document.getElementById("adminEmail").value.trim();
 
-const password =
-document.getElementById("adminPassword").value;
+    const password =
+        document.getElementById("adminPassword").value;
 
-if(email==="" || password===""){
+    if (!email || !password) {
 
-alert("Email এবং Password দিন");
+        alert("Email এবং Password লিখুন");
 
-return;
+        return;
 
-}
+    }
 
-try{
+    try {
 
-await signInWithEmailAndPassword(
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
-auth,
+        alert("✅ Login Successful");
 
-email,
+        location.href = "admin-dashboard.html";
 
-password
+    }
 
-);
+    catch (error) {
 
-alert("Login Success");
+        console.error(error);
 
-location.href="admin-dashboard.html";
+        alert(error.message);
 
-}
-
-catch(error){
-
-console.error(error);
-
-alert(error.message);
-
-}
+    }
 
 };
-
-
-// ===============================
-// Logout
-// ===============================
-
-window.adminLogout = async function(){
-
-await signOut(auth);
-
-location.href="admin-login.html";
-
-};
-
-
-// ===============================
-// Protect Admin Pages
-// ===============================
-
-onAuthStateChanged(auth,(user)=>{
-
-if(!user){
-
-if(location.pathname.includes("admin-dashboard")){
-
-location.href="admin-login.html";
-
-}
-
-}
-
-});
