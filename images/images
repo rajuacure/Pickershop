@@ -5,3 +5,12 @@ slider1.jpg
 slider2.jpg
 
 slider3.jpg
+Pickershop
+│
+├── images
+│      ├── ashwagandha.jpeg
+│      ├── moringa.jpeg
+│      ├── chia.jpeg
+│      ├── pumpkin-seed.jpeg
+│      ├── coconut-oil.jpeg
+│      └── turmeric.jpeg
