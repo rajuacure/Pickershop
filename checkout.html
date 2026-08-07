@@ -9,94 +9,46 @@
 
 <title>Checkout | Picker Shop</title>
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<!-- Header -->
+<header>
 
-<header class="header">
+<h1>🛒 Checkout</h1>
 
-<div class="container">
-
-<a href="index.html" class="logo">
-
-🌿 Picker Shop
-
-</a>
-
-<nav>
-
-<a href="index.html">Home</a>
-
-<a href="products.html">Products</a>
-
-<a href="cart.html">Cart</a>
-
-<a href="orders.html">Orders</a>
-
-<a href="profile.html">Profile</a>
-
-</nav>
-
-</div>
+<p>আপনার অর্ডারের তথ্য পূরণ করুন</p>
 
 </header>
 
-<!-- Checkout -->
+<section class="checkout">
 
-<section class="products-section">
-
-<div class="container">
-
-<h2>
-
-🛒 Checkout
-
-</h2>
-
-<div class="checkout-grid">
-
-<!-- Customer Information -->
-
-<div class="card">
-
-<h3>Billing Information</h3>
+<form id="checkoutForm">
 
 <input
 type="text"
 id="customerName"
-placeholder="আপনার নাম">
+placeholder="আপনার নাম"
+required>
 
 <input
 type="tel"
 id="customerPhone"
-placeholder="মোবাইল নম্বর">
-
-<input
-type="text"
-id="customerDistrict"
-placeholder="জেলা">
-
-<input
-type="text"
-id="customerUpazila"
-placeholder="উপজেলা">
+placeholder="মোবাইল নম্বর"
+required>
 
 <textarea
 id="customerAddress"
 placeholder="সম্পূর্ণ ঠিকানা"
-rows="4"></textarea>
-
-<h3>Payment Method</h3>
+rows="4"
+required></textarea>
 
 <select id="paymentMethod">
 
-<option value="Cash On Delivery">
-Cash On Delivery
+<option value="Cash on Delivery">
+Cash on Delivery
 </option>
 
 <option value="bKash">
@@ -113,133 +65,21 @@ Rocket
 
 </select>
 
-</div>
-
-<!-- Order Summary -->
-
-<div class="card">
-
-<h3>Order Summary</h3>
-
-<div id="checkoutItems">
-
-Loading...
-
-</div>
-
-<hr>
-
-<h4>
-
-Subtotal
-
-<span id="subTotal">
-
-৳0
-
-</span>
-
-</h4>
-
-<h4>
-
-Delivery
-
-<span id="deliveryCharge">
-
-৳80
-
-</span>
-
-</h4>
-
-<h4>
-
-Discount
-
-<span id="discount">
-
-৳0
-
-</span>
-
-</h4>
-
-<hr>
-
-<h2>
-
-Grand Total
-
-<span id="grandTotal">
-
-৳0
-
-</span>
-
-</h2>
-
-<br>
-
-<h3>
-
-Coupon
-
-</h3>
-
-<input
-type="text"
-id="couponCode"
-placeholder="Coupon Code">
-
 <button
-class="btn"
-onclick="applyCoupon()">
+type="button"
+class="cart-btn"
+onclick="submitOrder()">
 
-Apply Coupon
+✅ অর্ডার নিশ্চিত করুন
 
 </button>
 
-<br><br>
-
-<button
-class="btn"
-style="width:100%;"
-onclick="placeOrder()">
-
-✅ Place Order
-
-</button>
-
-</div>
-
-</div>
-
-</div>
+</form>
 
 </section>
 
-<footer>
+<script src="script.js"></script>
 
-<div class="container">
-
-<p>
-
-© 2026 Picker Shop
-
-</p>
-
-</div>
-
-</footer>
-
-<script type="module" src="js/auth.js"></script>
-
-<script type="module" src="js/navbar.js"></script>
-
-<script type="module" src="js/coupon.js"></script>
-
-<script type="module" src="js/checkout.js"></script>
 </body>
 
 </html>
