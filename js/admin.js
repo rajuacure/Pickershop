@@ -81,3 +81,65 @@ window.adminLogin = async function () {
     }
 
 };
+// ==========================================
+// Admin Logout
+// ==========================================
+
+window.adminLogout = async function () {
+
+    try {
+
+        await signOut(auth);
+
+        localStorage.removeItem("pickerAdmin");
+
+        window.location.href = "admin-login.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("Logout Failed");
+
+    }
+
+};
+
+// ==========================================
+// Check Admin Login
+// ==========================================
+
+window.checkAdmin = function () {
+
+    const isLogin = localStorage.getItem("pickerAdmin");
+
+    const currentPage = window.location.pathname;
+
+    // Login Page হলে Check লাগবে না
+    if (currentPage.includes("admin-login.html")) {
+
+        return;
+
+    }
+
+    if (!isLogin) {
+
+        alert("প্রথমে Admin Login করুন");
+
+        window.location.href = "admin-login.html";
+
+    }
+
+};
+
+// ==========================================
+// Run Authentication Check
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    checkAdmin();
+
+});
