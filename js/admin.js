@@ -642,3 +642,167 @@ window.deleteProduct = async function (id) {
     }
 
 };
+// ==========================================
+// Product Search
+// ==========================================
+
+window.searchProducts = function () {
+
+    const keyword = document
+        .getElementById("searchProduct")
+        .value
+        .toLowerCase();
+
+    const rows = document.querySelectorAll("#productTable tr");
+
+    rows.forEach((row) => {
+
+        if (row.innerText.toLowerCase().includes(keyword)) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+};
+
+
+// ==========================================
+// Product Count
+// ==========================================
+
+window.loadProductCount = async function () {
+
+    const box = document.getElementById("productCount");
+
+    if (!box) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        box.innerHTML = snapshot.size;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Toggle Featured Product
+// ==========================================
+
+window.toggleFeatured = async function (id, value) {
+
+    try {
+
+        await updateDoc(
+
+            doc(db, "products", id),
+
+            {
+
+                featured: value
+
+            }
+
+        );
+
+        loadProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("Featured Update Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Dashboard Product Statistics
+// ==========================================
+
+window.loadDashboardStats = async function () {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        let featured = 0;
+
+        let lowStock = 0;
+
+        snapshot.forEach((item) => {
+
+            const product = item.data();
+
+            if (product.featured) {
+
+                featured++;
+
+            }
+
+            if ((product.stock || 0) <= 5) {
+
+                lowStock++;
+
+            }
+
+        });
+
+        const totalBox =
+            document.getElementById("dashboardProducts");
+
+        const featuredBox =
+            document.getElementById("dashboardFeatured");
+
+        const stockBox =
+            document.getElementById("dashboardLowStock");
+
+        if (totalBox)
+            totalBox.innerHTML = snapshot.size;
+
+        if (featuredBox)
+            featuredBox.innerHTML = featured;
+
+        if (stockBox)
+            stockBox.innerHTML = lowStock;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Auto Load Dashboard
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadProductCount();
+
+    loadDashboardStats();
+
+});
