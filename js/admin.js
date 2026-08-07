@@ -806,3 +806,123 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDashboardStats();
 
 });
+// ==========================================
+// Export Products CSV
+// ==========================================
+
+window.exportProducts = async function () {
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        let csv = "Name,Price,Category,Stock,Featured\n";
+
+        snapshot.forEach((docItem) => {
+
+            const product = docItem.data();
+
+            csv += `"${product.name}",${product.price},"${product.category}",${product.stock || 0},${product.featured || false}\n`;
+
+        });
+
+        const blob = new Blob([csv], {
+            type: "text/csv"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+
+        a.href = url;
+
+        a.download = "PickerShopProducts.csv";
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ CSV Export Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Delete All Products
+// ==========================================
+
+window.deleteAllProducts = async function () {
+
+    const ok = confirm("আপনি কি সব Product Delete করতে চান?");
+
+    if (!ok) return;
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "products"));
+
+        for (const item of snapshot.docs) {
+
+            await deleteDoc(doc(db, "products", item.id));
+
+        }
+
+        alert("✅ সব Product Delete হয়েছে");
+
+        loadProducts();
+
+        loadProductCount();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("❌ Delete Failed");
+
+    }
+
+};
+
+
+// ==========================================
+// Refresh Products
+// ==========================================
+
+window.refreshProducts = function () {
+
+    loadProducts();
+
+    loadProductCount();
+
+    loadDashboardStats();
+
+};
+
+
+// ==========================================
+// Auto Refresh Every 60 Seconds
+// ==========================================
+
+setInterval(() => {
+
+    if (document.getElementById("productTable")) {
+
+        refreshProducts();
+
+    }
+
+}, 60000);
