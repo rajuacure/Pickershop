@@ -378,3 +378,103 @@ loadCart();
 loadWishlist();
 
 });
+// =====================================
+// Picker Shop V3
+// script.js - Part 4
+// =====================================
+
+// ---------- Dark Mode ----------
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark-mode");
+
+if(document.body.classList.contains("dark-mode")){
+
+localStorage.setItem("theme","dark");
+
+showToast("🌙 Dark Mode চালু হয়েছে");
+
+}else{
+
+localStorage.setItem("theme","light");
+
+showToast("☀️ Light Mode চালু হয়েছে");
+
+}
+
+}
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark-mode");
+
+}
+
+// ---------- Product Sort ----------
+
+function sortProducts(){
+
+const container=document.querySelector(".products");
+
+if(!container) return;
+
+const cards=Array.from(container.querySelectorAll(".product-card"));
+
+cards.sort(function(a,b){
+
+const priceA=parseInt(a.querySelector("p").innerText.replace(/[^\d]/g,""));
+
+const priceB=parseInt(b.querySelector("p").innerText.replace(/[^\d]/g,""));
+
+return priceA-priceB;
+
+});
+
+cards.forEach(card=>container.appendChild(card));
+
+showToast("💰 কম দাম অনুযায়ী সাজানো হয়েছে");
+
+}
+
+// ---------- Newsletter ----------
+
+function subscribeNewsletter(){
+
+const email=document.querySelector(".newsletter input");
+
+if(!email) return;
+
+if(email.value.trim()===""){
+
+alert("আপনার ইমেইল লিখুন");
+
+return;
+
+}
+
+showToast("📩 সাবস্ক্রাইব সফল হয়েছে");
+
+email.value="";
+
+}
+
+// ---------- Page Ready ----------
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const btn=document.querySelector(".newsletter button");
+
+if(btn){
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault();
+
+subscribeNewsletter();
+
+});
+
+}
+
+});
