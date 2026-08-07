@@ -1487,8 +1487,7 @@ window.searchOrders = function(){
 };
 <td>
 
-<button
-class="btn"
+<div class="card">
 onclick="viewOrder('${docItem.id}')">
 👁 View
 </button>
