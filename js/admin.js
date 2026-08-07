@@ -926,3 +926,155 @@ setInterval(() => {
     }
 
 }, 60000);
+// ==========================================
+// Import Products CSV
+// ==========================================
+
+window.importProducts = async function () {
+
+    const file = document.getElementById("csvFile").files[0];
+
+    if (!file) {
+
+        alert("CSV File নির্বাচন করুন");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+
+        const rows = e.target.result.split("\n");
+
+        rows.shift();
+
+        try {
+
+            for (const row of rows) {
+
+                if (row.trim() === "") continue;
+
+                const data = row.split(",");
+
+                await addDoc(collection(db, "products"), {
+
+                    name: data[0].replace(/"/g, ""),
+
+                    price: Number(data[1]),
+
+                    category: data[2].replace(/"/g, ""),
+
+                    stock: Number(data[3]) || 100,
+
+                    featured: data[4] === "true",
+
+                    image: "",
+
+                    description: "",
+
+                    createdAt: new Date().toISOString()
+
+                });
+
+            }
+
+            alert("✅ CSV Import Successful");
+
+            refreshProducts();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert("❌ CSV Import Failed");
+
+        }
+
+    };
+
+    reader.readAsText(file);
+
+};
+
+
+// ==========================================
+// Dashboard Full Statistics
+// ==========================================
+
+window.loadFullDashboard = async function () {
+
+    try {
+
+        // Products
+        const productSnap = await getDocs(collection(db, "products"));
+
+        // Orders
+        const orderSnap = await getDocs(collection(db, "orders"));
+
+        // Users
+        const userSnap = await getDocs(collection(db, "users"));
+
+        const totalProducts = productSnap.size;
+
+        const totalOrders = orderSnap.size;
+
+        const totalUsers = userSnap.size;
+
+        let totalSales = 0;
+
+        orderSnap.forEach((docItem) => {
+
+            const order = docItem.data();
+
+            totalSales += Number(order.total || 0);
+
+        });
+
+        if (document.getElementById("dashboardProducts"))
+            document.getElementById("dashboardProducts").innerHTML = totalProducts;
+
+        if (document.getElementById("dashboardOrders"))
+            document.getElementById("dashboardOrders").innerHTML = totalOrders;
+
+        if (document.getElementById("dashboardUsers"))
+            document.getElementById("dashboardUsers").innerHTML = totalUsers;
+
+        if (document.getElementById("dashboardSales"))
+            document.getElementById("dashboardSales").innerHTML =
+                "৳" + totalSales.toLocaleString();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+};
+
+
+// ==========================================
+// Auto Dashboard Refresh
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadFullDashboard();
+
+});
+
+
+// ==========================================
+// Auto Refresh Dashboard Every 60 Seconds
+// ==========================================
+
+setInterval(() => {
+
+    loadFullDashboard();
+
+}, 60000);
