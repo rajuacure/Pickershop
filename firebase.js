@@ -43,3 +43,18 @@ const firebaseConfig = {
     appId: "YOUR_APP_ID"
 
 };
+// ==========================================
+// Initialize Firebase
+// ==========================================
+
+const app = initializeApp(firebaseConfig);
+
+// ==========================================
+// Services
+// ==========================================
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
