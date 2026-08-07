@@ -1,982 +1,430 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+    <title>Picker Shop | Professional Invoice Generator</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 
-<title>Picker Shop | Premium Online Shopping</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<meta name="description" content="Picker Shop বাংলাদেশের বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="responsive.css">
-
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
 
-<!-- =========================
-Top Bar
-========================= -->
-
-<div class="top-bar">
-
 <div class="container">
 
-<div>
+    <!-- Header Start -->
 
-🚚 সারা বাংলাদেশে হোম ডেলিভারি
+    <header class="header">
 
-</div>
-
-<div>
-
-📞 +8801XXXXXXXXX
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =========================
-Header
-========================= -->
-
-<header class="header">
-
-<div class="container">
-
-<a href="index.html" class="logo">
-
-<img src="images/logo.png" alt="Picker Shop">
-
-<span>Picker Shop</span>
-
-</a>
-
-<nav class="navbar">
-
-<a href="index.html">Home</a>
-
-<a href="products.html">Products</a>
-
-<a href="wishlist.html">Wishlist</a>
-
-<a href="cart.html">Cart</a>
-
-<a href="contact.html">Contact</a>
-
-</nav>
-
-<div class="search-box">
-
-<input
-type="text"
-placeholder="পণ্য খুঁজুন...">
-
-<button>
-
-🔍
-
-</button>
-
-</div>
-
-</div>
-
-</header>
-
-<!-- =========================
-Hero Section
-========================= -->
-
-<section class="hero">
-<!-- =========================
-Flash Sale
-========================= -->
-
-<section class="offer-banner">
-
-<div class="container">
-
-<div class="offer-box">
-
-<div>
-
-<h2>
-
-🔥 Flash Sale
-
-</h2>
-
-<p>
-
-আজকের অফারে নির্বাচিত পণ্যে পাচ্ছেন
-
-<strong>৩০% পর্যন্ত ছাড়</strong>
-
-</p>
-
-<a href="products.html" class="btn">
-
-এখনই কিনুন
-
-</a>
-
-</div>
-
-<div>
-
-<img src="images/offer.png" alt="Flash Sale">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="products">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-Featured Products
-
-</h2>
-
-</div>
-
-<div
-id="featuredProducts"
-class="product-grid">
-
-</div>
-
-</div>
-
-</section>
-<!-- =========================
-Trending Products
-========================= -->
-
-<section class="products">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-🔥 Trending Products
-
-</h2>
-
-<p>
-
-সবচেয়ে বেশি বিক্রিত পণ্য
-
-</p>
-
-</div>
-
-<div id="trendingProducts" class="product-grid">
-
-<!-- JavaScript থেকে Load হবে -->
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-Why Choose Picker Shop
-========================= -->
-
-<section class="features">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-কেন Picker Shop?
-
-</h2>
-
-</div>
-
-<div class="feature-grid">
-
-<div class="feature-card">
-
-<h3>✅ 100% Original</h3>
-
-<p>
-
-শতভাগ আসল ও মানসম্মত পণ্য
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>🚚 Fast Delivery</h3>
-
-<p>
-
-সারা বাংলাদেশে দ্রুত ডেলিভারি
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>💳 Secure Payment</h3>
-
-<p>
-
-Cash on Delivery ও Online Payment
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>⭐ Trusted Shop</h3>
-
-<p>
-
-হাজারো গ্রাহকের আস্থা
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-Latest Products
-========================= -->
-
-<section class="products">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-🆕 নতুন পণ্য
-
-</h2>
-
-<p>
-
-সদ্য যুক্ত হওয়া পণ্যসমূহ
-
-</p>
-
-</div>
-
-<div id="latestProducts" class="product-grid">
-
-<!-- JavaScript -->
-
-</div>
-
-</div>
-
-</section>
-<div class="container">
-
-<div class="hero-text">
-
-<h1>
-
-বাংলাদেশের বিশ্বস্ত Online Shop
-
-</h1>
-
-<p>
-
-Natural • Grocery • Health • Lifestyle Products
-
-</p>
-
-<a href="products.html" class="btn">
-
-এখনই কেনাকাটা করুন
-
-</a>
-
-</div>
-
-<div class="hero-image">
-
-<img src="images/banner.jpg" alt="Banner">
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-Feature
-========================= -->
-
-<section class="features">
-
-<div class="container">
-
-<div class="feature-grid">
-
-<div class="feature-card">
-
-<h3>
-
-🚚 Fast Delivery
-
-</h3>
-
-<p>
-
-সারা বাংলাদেশ
-
-</p>
-
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-💳 Secure Payment
-
-</h3>
-
-<p>
-
-নিরাপদ পেমেন্ট
-
-</p>
-
-</div>
-
-<div class="feature-card">
+        <div class="brand">
 
-<h3>
+            <img src="assets/logo.png" alt="Picker Shop Logo" class="logo">
 
-🔄 Easy Return
+            <div class="brand-info">
+                <h1>Picker Shop</h1>
+                <p>Professional Invoice Generator</p>
+            </div>
 
-</h3>
+        </div>
 
-<p>
+        <div class="company-info">
 
-সহজ রিটার্ন
+            <p><i class="fa-solid fa-phone"></i> 01400599748</p>
 
-</p>
+            <p><i class="fa-solid fa-envelope"></i> mrahmador@gmail.com</p>
 
-</div>
-
-<div class="feature-card">
-
-<h3>
-
-⭐ Premium Quality
-
-</h3>
-
-<p>
-
-উন্নত মান
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-Categories
-========================= -->
-
-<section class="categories">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-জনপ্রিয় ক্যাটাগরি
-
-</h2>
-
-<p>
-
-আপনার প্রয়োজনীয় সবকিছু
-
-</p>
-
-</div>
-
-<div class="category-grid">
-
-<div class="category-card">
-
-<img src="images/placeholder.png">
-
-<h4>
-
-Natural Food
-
-</h4>
-
-</div>
-
-<div class="category-card">
-
-<img src="images/placeholder.png">
-
-<h4>
-
-Health Care
-
-</h4>
-
-</div>
-
-<div class="category-card">
-
-<img src="images/placeholder.png">
-
-<h4>
-
-Honey
-
-</h4>
-
-</div>
-
-<div class="category-card">
-
-<img src="images/placeholder.png">
-
-<h4>
-
-Dry Fruits
-
-</h4>
-
-</div>
-
-<div class="category-card">
-
-<img src="images/placeholder.png">
-
-<h4>
-
-Herbal
-
-</h4>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-Featured Products
-========================= -->
-
-<section class="products">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-Featured Products
-
-</h2>
-
-<p>
-
-আমাদের জনপ্রিয় পণ্য
-
-</p>
-
-</div>
-
-<div
-class="product-grid"
-id="productContainer">
-
-<!-- JavaScript Products -->
-
-</div>
-
-</div>
-
-</section>
-<!-- ==========================================
-Brand Partners
-========================================== -->
-
-<section class="brands">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-আমাদের বিশ্বস্ত ব্র্যান্ডসমূহ
-
-</h2>
-
-<p>
-
-শীর্ষস্থানীয় ব্র্যান্ডের আসল পণ্য
-
-</p>
-
-</div>
-
-<div class="brand-slider">
-
-<div class="brand-item">
-
-<img src="images/brand1.png" alt="Brand">
-
-</div>
-
-<div class="brand-item">
-
-<img src="images/brand2.png" alt="Brand">
-
-</div>
-
-<div class="brand-item">
-
-<img src="images/brand3.png" alt="Brand">
-
-</div>
-
-<div class="brand-item">
-
-<img src="images/brand4.png" alt="Brand">
-
-</div>
-
-<div class="brand-item">
-
-<img src="images/brand5.png" alt="Brand">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ==========================================
-Customer Reviews
-========================================== -->
-
-<section class="testimonials">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>
-
-গ্রাহকদের মতামত
-
-</h2>
-
-<p>
-
-হাজারো সন্তুষ্ট গ্রাহকের বিশ্বাস
-
-</p>
-
-</div>
-
-<div class="testimonial-grid">
-
-<div class="testimonial-card">
-
-<div class="stars">
-
-⭐⭐⭐⭐⭐
-
-</div>
-
-<p>
-
-অসাধারণ সার্ভিস। খুব দ্রুত ডেলিভারি পেয়েছি।
-
-</p>
-
-<h4>
+            <p><i class="fa-solid fa-location-dot"></i> Khilgaon, Dhaka</p>
 
-— Rahim Ahmed
+        </div>
 
-</h4>
+    </header>
 
-</div>
-
-<div class="testimonial-card">
-
-<div class="stars">
-
-⭐⭐⭐⭐⭐
-
-</div>
-
-<p>
-
-পণ্যের মান খুবই ভালো। আবারও অর্ডার করবো।
-
-</p>
-
-<h4>
-
-— Fatema Akter
-
-</h4>
-
-</div>
-
-<div class="testimonial-card">
-
-<div class="stars">
-
-⭐⭐⭐⭐⭐
-
-</div>
-
-<p>
-
-অনলাইন শপিংয়ের জন্য দারুণ একটি ওয়েবসাইট।
-
-</p>
-
-<h4>
-
-— Mahmud Hasan
+    <!-- Header End -->
 
-</h4>
+    <!-- Invoice Title -->
 
-</div>
-
-</div>
+    <section class="invoice-header">
 
-</div>
+        <div>
 
-</section>
+            <h2>INVOICE</h2>
 
-<!-- ==========================================
-Counter Section
-========================================== -->
+            <span id="invoiceNo">
+                Invoice No :
+                PS-20260805-001
+            </span>
 
-<section class="counter-section">
+        </div>
 
-<div class="container">
+        <div class="invoice-date">
 
-<div class="counter-grid">
+            <label>Date</label>
 
-<div>
+            <input type="date" id="invoiceDate">
 
-<h2>
+        </div>
 
-5000+
+    </section>
 
-</h2>
+    <!-- Customer Section Part-2 থেকে শুরু হবে -->
+    <!-- =========================
+         Customer Information
+    ========================== -->
 
-<p>
+    <section class="customer-section">
 
-Happy Customers
+        <div class="card">
 
-</p>
+            <h3>Customer Information</h3>
 
-</div>
+            <div class="form-grid">
 
-<div>
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter customer name">
+                </div>
 
-<h2>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input
+                        type="text"
+                        id="customerPhone"
+                        placeholder="01XXXXXXXXX">
+                </div>
 
-1200+
+                <div class="form-group full-width">
+                    <label>Delivery Address</label>
+                    <textarea
+                        id="customerAddress"
+                        rows="3"
+                        placeholder="Customer address"></textarea>
+                </div>
 
-</h2>
+            </div>
 
-<p>
+        </div>
 
-Products
+        <div class="card">
 
-</p>
+            <h3>Order Information</h3>
 
-</div>
+            <div class="form-grid">
 
-<div>
+                <div class="form-group">
+                    <label>Courier</label>
 
-<h2>
+                    <select id="courier">
 
-64
+                        <option value="Pathao">
+                            Pathao
+                        </option>
 
-</h2>
+                        <option value="Steadfast">
+                            Steadfast
+                        </option>
 
-<p>
+                        <option value="RedX">
+                            RedX
+                        </option>
 
-District Delivery
+                        <option value="Sundarban">
+                            Sundarban
+                        </option>
 
-</p>
+                    </select>
 
-</div>
+                </div>
 
-<div>
+                <div class="form-group">
+                    <label>Payment Method</label>
 
-<h2>
+                    <select id="paymentMethod">
 
-99%
+                        <option value="Cash On Delivery">
+                            Cash On Delivery
+                        </option>
 
-</h2>
+                        <option value="bKash">
+                            bKash
+                        </option>
 
-<p>
+                        <option value="Nagad">
+                            Nagad
+                        </option>
 
-Positive Reviews
+                        <option value="Bank">
+                            Bank Transfer
+                        </option>
 
-</p>
+                    </select>
 
-</div>
+                </div>
 
-</div>
+                <div class="form-group">
+                    <label>Payment Status</label>
 
-</div>
+                    <select id="paymentStatus">
 
-</section>
+                        <option value="Unpaid">
+                            Unpaid
+                        </option>
 
-<!-- ==========================================
-App Download
-========================================== -->
+                        <option value="Paid">
+                            Paid
+                        </option>
 
-<section class="app-section">
+                        <option value="Partial">
+                            Partial Paid
+                        </option>
 
-<div class="container">
+                    </select>
 
-<div class="app-content">
+                </div>
 
-<div>
+                <div class="form-group">
+                    <label>Order Status</label>
 
-<h2>
+                    <select id="orderStatus">
 
-Picker Shop App
+                        <option>Pending</option>
+                        <option>Confirmed</option>
+                        <option>Processing</option>
+                        <option>Shipped</option>
+                        <option>Delivered</option>
+                        <option>Cancelled</option>
 
-</h2>
+                    </select>
 
-<p>
+                </div>
 
-খুব শীঘ্রই Android ও iOS App আসছে।
+            </div>
 
-</p>
+        </div>
 
-<a href="#" class="btn">
+    </section>
 
-Coming Soon
+    <!-- =========================
+         Product Table (Part-3)
+    ========================== -->
+    <!-- ===================================== -->
+    <!-- Product Table -->
+    <!-- ===================================== -->
 
-</a>
+    <section class="product-section">
 
-</div>
+        <div class="card">
 
-<div>
+            <div class="section-header">
+                <h3>Product List</h3>
 
-<img src="images/mobile-app.png" alt="App">
+                <button type="button" id="addProduct" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Product
+                </button>
+            </div>
 
-</div>
+            <div class="table-responsive">
 
-</div>
+                <table class="invoice-table">
 
-</div>
+                    <thead>
 
-</section>
-<!-- =========================
-Newsletter
-========================= -->
+                        <tr>
 
-<section class="newsletter">
+                            <th width="5%">#</th>
 
-<div class="container">
+                            <th width="35%">Product Name</th>
 
-<div>
+                            <th width="15%">Quantity</th>
 
-<h2>
+                            <th width="20%">Unit Price</th>
 
-সর্বশেষ অফার পেতে Subscribe করুন
+                            <th width="20%">Total</th>
 
-</h2>
+                            <th width="5%">Action</th>
 
-</div>
+                        </tr>
 
-<div>
+                    </thead>
 
-<input
-type="email"
-placeholder="আপনার Email">
+                    <tbody id="productTable">
 
-</div>
+                        <tr>
 
-</div>
+                            <td>1</td>
 
-</section>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="product-name"
+                                    placeholder="Product Name">
+                            </td>
 
-<!-- =========================
-Footer
-========================= -->
+                            <td>
+                                <input
+                                    type="number"
+                                    class="qty"
+                                    value="1"
+                                    min="1">
+                            </td>
 
-<footer class="footer">
+                            <td>
+                                <input
+                                    type="number"
+                                    class="price"
+                                    value="0"
+                                    min="0">
+                            </td>
 
-<div class="container">
+                            <td>
+                                <input
+                                    type="text"
+                                    class="row-total"
+                                    value="0.00"
+                                    readonly>
+                            </td>
 
-<div class="footer-grid">
+                            <td>
 
-<div>
+                                <button
+                                    class="btn btn-danger remove-row">
 
-<h3>
+                                    <i class="fa-solid fa-trash"></i>
 
-Picker Shop
+                                </button>
 
-</h3>
+                            </td>
 
-<p>
+                        </tr>
 
-Premium Online Shopping Platform
+                    </tbody>
 
-</p>
+                </table>
 
-</div>
+            </div>
 
-<div>
+        </div>
 
-<h3>
+    </section>
 
-Quick Links
+    <!-- Total Summary Section Part-4 থেকে শুরু হবে -->
+    <!-- ========================================= -->
+    <!-- Invoice Summary -->
+    <!-- ========================================= -->
 
-</h3>
+    <section class="summary-section">
 
-<a href="products.html">
+        <div class="summary-card">
 
-Products
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subTotal">৳ 0.00</span>
+            </div>
 
-</a>
+            <div class="summary-row">
 
-<a href="contact.html">
+                <span>Discount</span>
 
-Contact
+                <input
+                    type="number"
+                    id="discount"
+                    value="0"
+                    min="0">
 
-</a>
+            </div>
 
-<a href="privacy.html">
+            <div class="summary-row">
 
-Privacy
+                <span>Delivery Charge</span>
 
-</a>
+                <span id="deliveryChargeText">
+                    ৳ 0.00
+                </span>
 
-</div>
+            </div>
 
-<div>
+            <hr>
 
-<h3>
+            <div class="summary-row grand-total">
 
-Customer Care
+                <strong>Grand Total</strong>
 
-</h3>
+                <strong id="grandTotal">
+                    ৳ 0.00
+                </strong>
 
-<a href="tracking.html">
+            </div>
 
-Track Order
+        </div>
 
-</a>
+    </section>
 
-<a href="refund.html">
 
-Refund
+    <!-- ========================================= -->
+    <!-- Action Buttons -->
+    <!-- ========================================= -->
 
-</a>
+    <section class="action-buttons">
 
-<a href="terms.html">
+        <button id="printInvoice" class="btn btn-success">
 
-Terms
+            <i class="fa-solid fa-print"></i>
 
-</a>
+            Print Invoice
 
-</div>
+        </button>
 
-<div>
+        <button id="downloadPDF" class="btn btn-primary">
 
-<h3>
+            <i class="fa-solid fa-file-pdf"></i>
 
-Contact
+            Download PDF
 
-</h3>
+        </button>
 
-<p>
+        <button id="clearInvoice" class="btn btn-warning">
 
-📞 +8801XXXXXXXXX
+            <i class="fa-solid fa-rotate-left"></i>
 
-</p>
+            Reset Invoice
 
-<p>
+        </button>
 
-📧 info@pickershop.com
+    </section>
 
-</p>
 
-</div>
+    <!-- ========================================= -->
+    <!-- Footer -->
+    <!-- ========================================= -->
 
-</div>
+    <footer class="footer">
 
-<div class="footer-bottom">
+        <p>
+            © 2026 Picker Shop
+        </p>
 
-© 2026 Picker Shop | All Rights Reserved.
+        <p>
+            Thank you for shopping with us.
+        </p>
 
-</div>
+    </footer>
 
 </div>
-
-</footer>
-
-<script type="module" src="products.js"></script>
 
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
