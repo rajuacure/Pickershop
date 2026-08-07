@@ -2261,3 +2261,25 @@ window.printInvoice = async function(id){
     window.open("invoice.html?id="+id,"_blank");
 
 };
+window.deleteOrder = async function(id){
+
+    if(!confirm("এই Order Delete করবেন?"))
+        return;
+
+    try{
+
+        await deleteDoc(doc(db,"orders",id));
+
+        alert("Order Deleted Successfully");
+
+        loadOrders();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("Delete Failed");
+
+    }
+
+};
