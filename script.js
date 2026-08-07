@@ -683,3 +683,81 @@ viewed=viewed.slice(0,5);
 localStorage.setItem("recentProducts",JSON.stringify(viewed));
 
 }
+// =====================================
+// Picker Shop V6
+// Checkout
+// =====================================
+
+function submitOrder(){
+
+const name=document.getElementById("customerName").value.trim();
+
+const phone=document.getElementById("customerPhone").value.trim();
+
+const address=document.getElementById("customerAddress").value.trim();
+
+const payment=document.getElementById("paymentMethod").value;
+
+if(name==="" || phone==="" || address===""){
+
+alert("অনুগ্রহ করে সব তথ্য পূরণ করুন।");
+
+return;
+
+}
+
+let cart=JSON.parse(localStorage.getItem("pickerCart")) || [];
+
+if(cart.length===0){
+
+alert("আপনার কার্ট খালি।");
+
+return;
+
+}
+
+let message="🛒 Picker Shop Order%0A%0A";
+
+message+="👤 নাম: "+name+"%0A";
+
+message+="📞 মোবাইল: "+phone+"%0A";
+
+message+="📍 ঠিকানা: "+address+"%0A";
+
+message+="💳 পেমেন্ট: "+payment+"%0A%0A";
+
+message+="📦 অর্ডারের পণ্যসমূহ:%0A";
+
+let total=0;
+
+cart.forEach(function(item,index){
+
+message+=(index+1)+". "+item.name+" - ৳"+item.price+"%0A";
+
+total+=item.price;
+
+});
+
+message+="%0A💰 মোট মূল্য: ৳"+total;
+
+window.open(
+
+"https://wa.me/8801400599748?text="+message,
+
+"_blank"
+
+);
+
+// Order শেষ হলে Cart খালি করা
+
+localStorage.removeItem("pickerCart");
+
+cart=[];
+
+updateCartCount();
+
+alert("আপনার অর্ডার সফলভাবে প্রস্তুত হয়েছে।");
+
+window.location.href="index.html";
+
+}
