@@ -880,3 +880,60 @@ color:#2E7D32;
 .out-stock{
 color:#E53935;
 }
+/* ==========================
+   Product Gallery
+========================== */
+
+.product-gallery{
+
+display:flex;
+
+justify-content:center;
+
+gap:10px;
+
+padding:15px;
+
+}
+
+.product-gallery img{
+
+width:60px;
+
+height:60px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+cursor:pointer;
+
+border:2px solid transparent;
+
+transition:.3s;
+
+}
+
+.product-gallery img:hover{
+
+border:2px solid #2E7D32;
+
+transform:scale(1.1);
+
+}
+
+/* Zoom Effect */
+
+.card img{
+
+cursor:zoom-in;
+
+transition:.4s;
+
+}
+
+.card img:hover{
+
+transform:scale(1.08);
+
+}
