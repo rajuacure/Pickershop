@@ -639,3 +639,47 @@ let mainImage=card.querySelector("img");
 mainImage.src=image.src;
 
 }
+// ==========================
+// Wishlist Counter
+// ==========================
+
+function updateWishlistCount(){
+
+const count=document.getElementById("wishlistCount");
+
+if(count){
+
+count.innerText=wishlist.length;
+
+}
+
+}
+
+// পুরনো addToWishlist() এর শেষে এই লাইনটি যোগ করুন:
+// updateWishlistCount();
+
+// Page Load
+
+document.addEventListener("DOMContentLoaded",function(){
+
+updateWishlistCount();
+
+});
+
+// ==========================
+// Recently Viewed
+// ==========================
+
+function saveRecentlyViewed(product){
+
+let viewed=JSON.parse(localStorage.getItem("recentProducts"))||[];
+
+viewed=viewed.filter(item=>item!==product);
+
+viewed.unshift(product);
+
+viewed=viewed.slice(0,5);
+
+localStorage.setItem("recentProducts",JSON.stringify(viewed));
+
+}
